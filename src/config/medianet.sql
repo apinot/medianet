@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Lun 04 Novembre 2019 à 10:23
+-- Généré le :  Lun 04 Novembre 2019 à 13:40
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -27,10 +27,23 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE `CD` (
-  `id_dvd` int(11) NOT NULL,
-  `name_dvd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `type_cd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `artistes_cd` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `id_cd` int(11) NOT NULL,
+  `artistes` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `maison_disque` varchar(30) COLLATE utf8_unicode_ci NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `Document`
+--
+
+CREATE TABLE `Document` (
+  `id_doc` int(11) NOT NULL,
+  `nom_doc` int(20) NOT NULL,
+  `resume_doc` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `genre_doc` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `dispo_doc` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -41,9 +54,8 @@ CREATE TABLE `CD` (
 
 CREATE TABLE `DVD` (
   `id_dvd` int(11) NOT NULL,
-  `name_dvd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `type_dvd` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `acteurs_dvd` varchar(100) COLLATE utf8_unicode_ci NOT NULL
+  `acteurs` varchar(100) COLLATE utf8_unicode_ci NOT NULL,
+  `duree_dvd` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -55,8 +67,7 @@ CREATE TABLE `DVD` (
 CREATE TABLE `Emprunt` (
   `id_emprunt` int(11) NOT NULL,
   `tmp_pris` date NOT NULL,
-  `tmp_retour` date NOT NULL,
-  `malus` float NOT NULL
+  `tmp_retour` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -67,9 +78,8 @@ CREATE TABLE `Emprunt` (
 
 CREATE TABLE `Livre` (
   `id_livre` int(11) NOT NULL,
-  `name_livre` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `plot_livre` varchar(30) COLLATE utf8_unicode_ci DEFAULT NULL,
-  `type_livre` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `auteur` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `edition` varchar(20) COLLATE utf8_unicode_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 -- --------------------------------------------------------
@@ -80,10 +90,12 @@ CREATE TABLE `Livre` (
 
 CREATE TABLE `User` (
   `id_user` int(11) NOT NULL,
-  `name_user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
+  `nom_user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
   `email_user` varchar(20) COLLATE utf8_unicode_ci NOT NULL,
-  `passwd_user` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
-  `role` varchar(20) COLLATE utf8_unicode_ci NOT NULL
+  `mdp_user` varchar(30) COLLATE utf8_unicode_ci NOT NULL,
+  `adresse_user` varchar(50) COLLATE utf8_unicode_ci NOT NULL,
+  `tel_user` int(10) NOT NULL,
+  `adhesion_user` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
@@ -94,7 +106,13 @@ CREATE TABLE `User` (
 -- Index pour la table `CD`
 --
 ALTER TABLE `CD`
-  ADD PRIMARY KEY (`id_dvd`);
+  ADD PRIMARY KEY (`id_cd`);
+
+--
+-- Index pour la table `Document`
+--
+ALTER TABLE `Document`
+  ADD PRIMARY KEY (`id_doc`);
 
 --
 -- Index pour la table `DVD`
@@ -128,7 +146,12 @@ ALTER TABLE `User`
 -- AUTO_INCREMENT pour la table `CD`
 --
 ALTER TABLE `CD`
-  MODIFY `id_dvd` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id_cd` int(11) NOT NULL AUTO_INCREMENT;
+--
+-- AUTO_INCREMENT pour la table `Document`
+--
+ALTER TABLE `Document`
+  MODIFY `id_doc` int(11) NOT NULL AUTO_INCREMENT;
 --
 -- AUTO_INCREMENT pour la table `DVD`
 --
