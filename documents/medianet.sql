@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Lun 04 Novembre 2019 à 16:24
+-- Généré le :  Lun 04 Novembre 2019 à 17:07
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -72,8 +72,9 @@ CREATE TABLE `dvds` (
 CREATE TABLE `emprunts` (
   `id` int(11) NOT NULL,
   `document_id` int(11) NOT NULL,
-  `dateEmprunt` timestamp NULL DEFAULT NULL,
-  `dateRetour` timestamp NULL DEFAULT NULL
+  `date_emprunt` timestamp NULL DEFAULT NULL,
+  `date_limite` timestamp NULL DEFAULT NULL,
+  `date_retour` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
