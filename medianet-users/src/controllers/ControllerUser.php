@@ -70,6 +70,16 @@ class ControllerUser extends Controller {
 		}
     }
 
+    //gestion d'un emprunt
+    public function empruntPage(Request $request, Response $response){
+	return $this->render($response, 'emprunt.html.twig');
+    }
+
+
+    //gestion d'un emprunt
+    public function emprunt(Request $request, Response $response){
+	
+    }
     /**
     * 
     */

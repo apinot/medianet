@@ -4,6 +4,7 @@
         {% if est_connecte() %}
             <li class="nav-item"><a href="{{ path_for('showProfil') }}" class="nav-link">Mon profil</a></li>
             <li class="nav-item"><a href="{{ path_for('execDeconnexion') }}" class="nav-link">Déconnexion</a></li>
+	    <li class="nav-item"><a href="{{ path_for('pageEmprunt') }}" class="nav-link">Emprunter</a></li>
         {% else %}
             <li class="nav-item"><a href="{{ path_for("formConnexion") }}" class="nav-link">Connexion</a></li>
         {% endif %}
