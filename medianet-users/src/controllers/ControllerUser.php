@@ -20,11 +20,10 @@ class ControllerUser extends Controller {
         $email = Utils::getFilteredPost($request,'email');
         $pwd = Utils::getFilteredPost($request, 'password');
         if(!Auth::connexion($email,$pwd)){
-           // Flash::flashError('email ou mot de passe incorrecte');
+            Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
-        
-        //FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
+        Flash::flashSuccess('Vous êtes connecté en tant que '.$email);
         return Utils::redirect($response, 'home');
     }
 
@@ -62,8 +61,8 @@ class ControllerUser extends Controller {
 
         $user->nom = Utils::getFilteredPost($request, "nom");
         $user->prenom = Utils::getFilteredPost($request, "prenom");
-        $user->adresse = filter_var(Utils::getFilteredPost($request, "adresse"), FILTER_VALIDATE_EMAIL);
-        $user->email = Utils::getFilteredPost($request, "email");
+        $user->adresse = Utils::getFilteredPost($request, "adresse");
+        $user->email = filter_var(Utils::getFilteredPost($request, "email"), FILTER_VALIDATE_EMAIL);
         $user->telephone = Utils::getFilteredPost($request, "telephone");
 
         $user->save();

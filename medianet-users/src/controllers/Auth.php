@@ -20,7 +20,7 @@ class Auth {
         if (!$user) { return false; }
         
         $user->mdp = password_hash($nouveauMdp, PASSWORD_DEFAULT);
-            return $user->save();
+        return $user->save();
     }
 
     //permet la deconnexion de l'utilisateur connecter
