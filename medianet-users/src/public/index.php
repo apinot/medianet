@@ -41,17 +41,4 @@ $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProf
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 
-
-$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
-
-
-//$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
-//$app->get('/', ControllerHome::class.':index')->setName('home');
-
-//$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
-
-
 $app->run();
