@@ -1,10 +1,8 @@
 <?php
 require_once('../../vendor/autoload.php');
 
-
-
-use MedianetUser\controllers\UserController;
-
+//controllers
+use medianet\controllers\ControllerHome;
 
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -14,15 +12,12 @@ $capsule->bootEloquent();
 
 //loading settings from config/settings.php
 $settings = require_once "../config/settings.php";
-$container = new Slim\Container($settings);
+$container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
 
 /** Routes */
 //affichage de la page d'accueil
-$app->get('/', function($request, $response, $args) {
-    $response->getBody()->write('Hello World');
-    return $response;
-})->setName('home');
+$app->get('/', ControllerHome::class.':index')->setName('home');
 
 
 $app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');

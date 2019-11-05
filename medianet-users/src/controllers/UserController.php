@@ -1,6 +1,6 @@
 <?php
 
-namespace MedianetUsers\controllers;
+namespace medianet\controllers;
 
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;

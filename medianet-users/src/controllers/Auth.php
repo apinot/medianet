@@ -1,7 +1,7 @@
 <?php
-namespace MedianetUsers\controllers;
+namespace medianet\controllers;
 
-use MedianetUsers\models\users;
+use medianet\models\users;
 
 //Class de methode static pour faciliter la gestion de la connexion
 class Auth {
