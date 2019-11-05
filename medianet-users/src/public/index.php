@@ -30,6 +30,7 @@ $app = new \Slim\App($container);
 //affichage de la page d'accueil
 
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
+$app->post('/filter', \medianet\controllers\MediaController::class.':filter')->setName('filter');
 
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
