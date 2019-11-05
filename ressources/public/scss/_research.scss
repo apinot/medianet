@@ -1,0 +1,8 @@
+@import 'mixins/_research';
+
+.research{
+  &>form{
+    @include research($media-large-size);
+  }
+
+}

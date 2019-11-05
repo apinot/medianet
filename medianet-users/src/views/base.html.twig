@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.0/css/all.css" integrity="sha384-aOkxzJ5uQz7WBObEZcHvV5JvRW3TUc2rNPA7pe3AwnsUohiw1Vj2Rgx2KSOkF5+h" crossorigin="anonymous">
-    <link rel="stylesheet" href="css/medianet.css" type="text/css">
+    <link rel="stylesheet" href="/css/medianet.css" type="text/css">
     <title>Medianet</title>
 </head>
 <body>
@@ -12,21 +12,11 @@
 
     {% include "flashMessages.html.twig" %}
 
-    <div class="research">
-        <form action="/filter" method="post">
-            <input name="mot_cle" type="text" placeholder="Veuillez entrer un mot clef ">
-            <input type="text" name="genre" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
-            <select name="type_media" id="type">
-                <option value="document">Tous</option>
-                <option value="dvd">DVD</option>
-                <option value="cd">CD</option>
-                <option value="livre">Livre</option>
-            </select>
-            <input type="submit" value="Rechercher">
-        </form>
-    </div>
+
     <div id="content">
-        {% block content %}{% endblock %}
+        {% block content %}
+
+        {% endblock %}
     </div>
 
 </body>

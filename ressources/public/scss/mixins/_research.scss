@@ -1,0 +1,10 @@
+@mixin research($media-queries: $media-large-size){
+  margin: 2%;
+  display: flex;
+  flex-direction: column;
+  @media (min-width: $media-queries) {
+    display: flex;
+    flex-direction: row;
+
+  }
+}

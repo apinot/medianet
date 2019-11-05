@@ -23,7 +23,6 @@ class ControllerUser extends Controller {
             Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
-        Flash::flashSuccess('Vous êtes connecté en tant que '.$email);
         return Utils::redirect($response, 'home');
     }
 
