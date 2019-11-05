@@ -37,7 +37,8 @@ $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConne
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
-$app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
+$app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
+$app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');

@@ -44,9 +44,31 @@ class ControllerUser extends Controller {
     }
 
     //changement du mot de passe
-    public function changePwd(Request $request, Response $response) {
-	    $user = Auth::getUser();
+    public function pwdPage(Request $request, Response $response) {
 	    return $this->render($response, 'changeMdp.html.twig', compact("user"));
+    }
+
+    //checks for a new user password
+    public function changePwd(Request $request, Response $response){
+		$user = Auth::getUser();
+	    	$mdpUser = $user->mdp;
+		$old = Utils::getFilteredPost($request, 'oldMdp');
+		$new = Utils::getFilteredPost($request, 'newMdp');
+		$confirm = Utils::getFilteredPost($request, 'confirmMdp');
+
+		//Check the passwords entered
+		if(($old == null)||($new == null)||($confirm == null)){
+			echo 'emptys';
+		}else if(password_verify($old, $mdpUser)==false){
+			echo 'old bad';
+		}else if($new != $confirm){
+			echo 'no same';
+		}else{
+			$toInsert = password_hash($new, PASSWORD_DEFAULT);
+			$user->mdp = $toInsert;
+			$user->save();
+		 	return Utils::redirect($response, 'showProfil');
+		}
     }
 
     /**
