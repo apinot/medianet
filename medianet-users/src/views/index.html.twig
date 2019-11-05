@@ -4,33 +4,9 @@
 {% endblock %}
 
 {% block content %}
-    <table class="table">
-        <thead>
-        <tr>
-            <th scope="col">Liste des medias</th>
-        </tr>
-        </thead>
+    <div class="card-deck">
         {% for media in medias %}
-            <tbody>
-            {% if media.artistes is defined %}
-            <tr>
-                <td>{{ media.artistes }}</td>
-            </tr>
-            {% elseif media.resume is defined %}
-                <tr>
-                    <td>{{ media.nom }}</td>
-                </tr>
-            {% elseif media.acteurs is defined %}
-                <tr>
-                    <td>{{ media.acteurs }}</td>
-                </tr>
-            {% elseif media.edition is defined %}
-                <tr>
-                    <td>{{ media.auteur }}</td>
-                </tr>
-            {% endif %}
-            {% endfor %}
-            </tbody>
-
-    </table>
+            {% include '_card.html.twig' %}
+        {% endfor %}
+    </div>
 {% endblock %}
