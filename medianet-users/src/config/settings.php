@@ -20,6 +20,7 @@ return [
 
             //fonction person
             $view->getEnvironment()->addFunction(new Twig_Function("est_connecte", Auth::class."::estConnecte"));
+            $view->getEnvironment()->addFunction(new Twig_Function("auth_user", Auth::class."::getUser"));
 
             return $view;
     },

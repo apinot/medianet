@@ -36,7 +36,12 @@ class Auth {
         if($user === null) return false;
 
         $_SESSION['user']['id'] = $user->id;
-        $_SESSION['user']['email'] = $user->email;
         return true;
+    }
+
+    //retourne l objet user correspondant à celui connecter (retourne null si pas connecter)
+    public static function getUser() : User {
+        if(!static::estConnecte()) return null;
+        return User::find($_SESSION['user']['id']);
     }
 }

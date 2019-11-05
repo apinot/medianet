@@ -29,11 +29,17 @@ class ControllerUser extends Controller {
     }
 
 
+    public function deconnecter(Request $request, Response $response){
+        Auth::deconnexion(); 
+        return Utils::redirect($response, 'home');
+    }
+
+
     /**
      * fenetre d'edition User
      */
     public function afficherProfil(Request $request, Response $response, $args) {
-        $user = User::find($request->getAttribute('id'));
-        return $this->views->render($response, 'profil.html.twig', $user);
+        $user = Auth::getUser();
+        return $this->render($response, 'profil.html.twig', compact("user"));
     }
 }
