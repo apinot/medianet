@@ -5,6 +5,10 @@ require_once('../../vendor/autoload.php');
 use medianet\controllers\ControllerHome;
 //use medianet\controllers\ControllerUser;
 
+//middlewares
+use oxanaplay\middlewares\MiddlewareFlash;
+
+
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection(parse_ini_file('../config/db.conf.ini'));
@@ -15,6 +19,9 @@ $capsule->bootEloquent();
 $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
+
+//global middlewares
+$app->add(MiddlewareFlash::class);
 
 /** Routes */
 //affichage de la page d'accueil
