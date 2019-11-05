@@ -19,7 +19,7 @@ return [
             $view->addExtension(new TwigExtension($router, $uri));
 
             //fonction person
-            $view->getEnvironment()->addFunction(new Twig_Function("get_user_id", Auth::class."::estConnecte"));
+            $view->getEnvironment()->addFunction(new Twig_Function("est_connecte", Auth::class."::estConnecte"));
 
             return $view;
     },
