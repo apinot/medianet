@@ -3,26 +3,16 @@
 {% block content %}
 	<div>
 		<h2>Informations</h2>
-		<img src="" id="tete">
-	</div><div>
-		<label id="nom">Nom</label>
-	</div><div>
-		<label id="prenom">Prenom</label>
-	</div><div>
-		<label id="adresse">Adresse</label>
-	</div><div>
-		<label id="email">Email</label>
-	</div><div>
-		<label id="telephone">Téléphone</label>
+		<img src="" id="tete" alt="photo">
 	</div>
+		<p>{{ user.nom }} {{ user.prenom }}</p>
+		<p>{{ user.email }}</p>
+		<p>{{ user.adresse }}</p>
+		<p>{{ user.telephone }}</p>
 	<div>
-		<h2>Gestion</h2>
-	</div><div>
-		<input type="submit" id="modifCompte" value="modifier les données">
-	</div><div>
-		<input type="submit" id="modifMdp" value="changer le mot de passe">
-	</div><div>
-		<input type="submit" id="delCompte" value="supprimer ce compte">
+
+		<a href="{{ path_for('formUpdateUser') }}"> Modifier mes données personnels </a>
+		<a href=""> Changer de mot de passe </a>
 	</div>
 	<div>
 		<h2>Mes Emprunts</h2>

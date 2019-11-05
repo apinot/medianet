@@ -42,4 +42,26 @@ class ControllerUser extends Controller {
         $user = Auth::getUser();
         return $this->render($response, 'profil.html.twig', compact("user"));
     }
+
+
+    /**
+    * 
+    */
+    public function showUser(Request $request, Response $response, $args) {
+        $user = Auth::getUser();
+        return $this->render($response, 'editProfil.html.twig',['user'=>$user]);
+    }
+
+    public function updateUser(Request $request, Response $response, $args) {
+        $user = Auth::getUser();
+
+        $user->nom = Utils::getFilteredPost($request, "nom");
+        $user->prenom = Utils::getFilteredPost($request, "prenom");
+        $user->adresse = Utils::getFilteredPost($request, "adresse");
+        $user->email = Utils::getFilteredPost($request, "email");
+        $user->telephone = Utils::getFilteredPost($request, "telephone");
+
+        $user->save();
+        return Utils::redirect($response, 'showProfil');
+    }
 }
