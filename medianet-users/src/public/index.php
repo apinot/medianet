@@ -18,8 +18,6 @@ $app = new \Slim\App($container);
 
 /** Routes */
 //affichage de la page d'accueil
-<<<<<<< HEAD
-
 
 //Installation de twig
 $container['view'] = function($container) {
@@ -33,19 +31,10 @@ $container['view'] = function($container) {
 };
 
 
-
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
-
-=======
 $app->get('/', ControllerHome::class.':index')->setName('home');
 
-
-<<<<<<< HEAD
 $app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
->>>>>>> 51c38e42f08ffb7cfcecb36d782785aa9c0adbfe
-=======
-$app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
 $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
->>>>>>> f188acb22005e8788acf3e2706ca017cd47aed19
 
 $app->run();
