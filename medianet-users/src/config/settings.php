@@ -1,11 +1,18 @@
 <?php
 
+use Slim\Http\Environment;
+use Slim\Http\Uri;
 use \Slim\Views\Twig;
-use \Slim\Http\Uri;
-use \Slim\Http\Environment;
-use \Slim\Views\TwigExtension;
 
-use medianet\controleurs\Auth;
+
+use Slim\Views\TwigExtension;
+
+
+use medianet\controllers\Auth;
+
+
+
+
 
 return [
     'view' => function ($c) {

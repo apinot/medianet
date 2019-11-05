@@ -1,9 +1,8 @@
 <?php
 namespace medianet\controllers;
 
-abstract class Controller {
+abstract class Controller{
     protected $view;
-    
     public function __construct(\Slim\Container $container) {
         $this->view = $container->view;
     }
