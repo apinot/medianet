@@ -1,5 +1,6 @@
 $primary-color: #c10000 !default;
 $nav-color: white !default;
+$media-large-size: 25em !default;
 
 @mixin nav($background: $primary-color, $color: $nav-color){
     background-color: $background;
@@ -24,7 +25,7 @@ $nav-color: white !default;
     text-align: center;
 }
 
-@mixin navItemsGroup($media-queries) {
+@mixin navItemsGroup($media-queries: $media-large-size) {
     box-sizing: border-box;
     padding: 0;
     margin: 0;
@@ -55,15 +56,17 @@ $nav-color: white !default;
     }
 }
 
-@mixin navLink($media-queries) {
+@mixin navLink($media-queries: $media-large-size) {
     color: inherit;
     text-decoration: none;
     padding: 0.5rem;
     width: 100%;
     height: 100%;
+    text-align: center;
 
     @media (min-width: $media-queries) {
         padding-left: 1rem;
         padding-right: 1rem;
+        text-align: left;
     }
 }
