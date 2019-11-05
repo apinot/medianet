@@ -1,7 +1,7 @@
 <?php
 namespace medianet\controllers;
 
-use medianet\models\users;
+use medianet\models\User;
 
 //Class de methode static pour faciliter la gestion de la connexion
 class Auth {
@@ -11,7 +11,7 @@ class Auth {
     }
 
     private static function verifierMdp(string $email, string $mdp) {
-        $user = Users::where("email", "=", $email)->first();
+        $user = User::where("email", "=", $email)->first();
         return ($user != null && password_verify($mdp, $user->mdp)) ? $user : null;
     }
 

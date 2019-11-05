@@ -25,6 +25,6 @@ class ControllerUser extends Controller {
         }
         
         // FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
-        return Utils::redirect($response, 'accueil');
+        return Utils::redirect($response, 'home');
     }
 }

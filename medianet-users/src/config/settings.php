@@ -5,7 +5,7 @@ use Slim\Http\Uri;
 use \Slim\Views\Twig;
 use \Slim\Views\TwigExtension;
 
-use medianet\controleurs\Auth;
+use medianet\controllers\Auth;
 
 return [
     'view' => function ($c) {
