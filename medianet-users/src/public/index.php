@@ -29,6 +29,7 @@ $app = new \Slim\App($container);
 /** Routes */
 //affichage de la page d'accueil
 
+$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
 
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
