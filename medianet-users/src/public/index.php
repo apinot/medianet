@@ -8,7 +8,7 @@ use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerUser;
 
 //middlewares
-use oxanaplay\middlewares\MiddlewareFlash;
+//use oxanaplay\middlewares\MiddlewareFlash;
 
 
 //database connection with Eloquent
@@ -23,7 +23,7 @@ $container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
 
 //global middlewares
-$app->add(MiddlewareFlash::class);
+//$app->add(MiddlewareFlash::class);
 
 /** Routes */
 //affichage de la page d'accueil
@@ -36,6 +36,6 @@ $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConne
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
-
+$app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
 
 $app->run();

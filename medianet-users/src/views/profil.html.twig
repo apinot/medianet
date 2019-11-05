@@ -19,9 +19,11 @@
 		<h2>Gestion</h2>
 	</div><div>
 		<input type="submit" id="modifCompte" value="modifier les données">
-	</div><div>
-		<input type="submit" id="modifMdp" value="changer le mot de passe">
-	</div><div>
+	</div>
+	<div>
+		<a href="{{ path_for('updatePwd') }}" id="modifMdp">Changer le mot de passe</a>
+	</div>
+	<div>
 		<input type="submit" id="delCompte" value="supprimer ce compte">
 	</div>
 	<div>
