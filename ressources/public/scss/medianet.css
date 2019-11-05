@@ -97,6 +97,15 @@ nav {
         display: flex;
         flex-direction: row; }
 
+.research > form {
+  margin: 2%;
+  display: flex;
+  flex-direction: column; }
+  @media (min-width: 70em) {
+    .research > form {
+      display: flex;
+      flex-direction: row; } }
+
 body, html {
   margin: 0;
   padding: 0; }
