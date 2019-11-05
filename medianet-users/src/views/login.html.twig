@@ -2,14 +2,14 @@
 
 {% block content %}
     <h2>Connection</h2>
-    <form method="POST" action="{{path_for('execConnexion')}}">
+    <form method="POST" action="{{ path_for('execConnexion') }}">
         <div>
-            <label for="login">Login</label>
-            <input id="login" type="text" name="login">
+            <label for="email">Email</label>
+            <input id="email" type="text" name="email">
         </div>
         <div>
             <label for="password">Password</label>
-            <inputid="password" type="password" name="password">
+            <input id="password" type="password" name="password">
         </div>
         <div>
             <input type="submit" value="Connexion">
