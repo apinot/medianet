@@ -1,7 +1,7 @@
 <?php
-namespace oxanaplay\middlewares;
+namespace medianet\middlewares;
 
-use oxanaplay\controllers\Flash;
+use medianet\controllers\Flash;
 
 class FlashMiddleware {
     

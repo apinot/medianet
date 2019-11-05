@@ -9,8 +9,8 @@ use medianet\controllers\ControllerUser;
 use medianet\controllers\ControllerDocument;
 
 //middlewares
-//use oxanaplay\middlewares\MiddlewareFlash;
-
+use medianet\middlewares\FlashMiddleware;
+use medianet\middlewares\AuthMiddleware;
 
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -23,14 +23,14 @@ $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
 
-
 //global middlewares
-//$app->add(MiddlewareFlash::class);
+$app->add(FlashMiddleware::class);
 
 /** Routes */
 //affichage de la page d'accueil
 
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
+$app->post('/filter', \medianet\controllers\MediaController::class.':filter')->setName('filter');
 
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
@@ -38,7 +38,8 @@ $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConne
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
-$app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
+$app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
+$app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');

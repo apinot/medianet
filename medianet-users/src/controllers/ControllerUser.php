@@ -20,11 +20,10 @@ class ControllerUser extends Controller {
         $email = Utils::getFilteredPost($request,'email');
         $pwd = Utils::getFilteredPost($request, 'password');
         if(!Auth::connexion($email,$pwd)){
-           // Flash::flashError('email ou mot de passe incorrecte');
+            Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
-        
-        //FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
+        Flash::flashSuccess('Vous êtes connecté en tant que '.$email);
         return Utils::redirect($response, 'home');
     }
 
@@ -44,9 +43,31 @@ class ControllerUser extends Controller {
     }
 
     //changement du mot de passe
-    public function changePwd(Request $request, Response $response) {
-	    $user = Auth::getUser();
+    public function pwdPage(Request $request, Response $response) {
 	    return $this->render($response, 'changeMdp.html.twig', compact("user"));
+    }
+
+    //checks for a new user password
+    public function changePwd(Request $request, Response $response){
+		$user = Auth::getUser();
+	    	$mdpUser = $user->mdp;
+		$old = Utils::getFilteredPost($request, 'oldMdp');
+		$new = Utils::getFilteredPost($request, 'newMdp');
+		$confirm = Utils::getFilteredPost($request, 'confirmMdp');
+
+		//Check the passwords entered
+		if(($old == null)||($new == null)||($confirm == null)){
+			echo 'emptys';
+		}else if(password_verify($old, $mdpUser)==false){
+			echo 'old bad';
+		}else if($new != $confirm){
+			echo 'no same';
+		}else{
+			$toInsert = password_hash($new, PASSWORD_DEFAULT);
+			$user->mdp = $toInsert;
+			$user->save();
+		 	return Utils::redirect($response, 'showProfil');
+		}
     }
 
     /**
@@ -62,8 +83,8 @@ class ControllerUser extends Controller {
 
         $user->nom = Utils::getFilteredPost($request, "nom");
         $user->prenom = Utils::getFilteredPost($request, "prenom");
-        $user->adresse = filter_var(Utils::getFilteredPost($request, "adresse"), FILTER_VALIDATE_EMAIL);
-        $user->email = Utils::getFilteredPost($request, "email");
+        $user->adresse = Utils::getFilteredPost($request, "adresse");
+        $user->email = filter_var(Utils::getFilteredPost($request, "email"), FILTER_VALIDATE_EMAIL);
         $user->telephone = Utils::getFilteredPost($request, "telephone");
 
         $user->save();
