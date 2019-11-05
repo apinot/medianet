@@ -5,15 +5,15 @@
 	<form method="POST" action="{{ path_for('lookPwd') }}">
 		<div>
 			<label for="oldMdp">Ancien mot de passe</label>
-			<input type="text" name="oldMdp">
+			<input name="oldMdp" type='password' required>
 		</div>
 		<div>
 			<label for="newMdp">Nouveau mot de passe</label>
-			<input type="text" name="newMdp">
+			<input name="newMdp" type='password' required>
 		</div>
 		<div>
 			<label for="confirmMdp">Confirmez ce mot de passe</label>
-			<input type="text" name="confirmMdp">
+			<input name="confirmMdp" type='password' required>
 		</div>
 		<div>
 			<input type="submit" value="Valider">
