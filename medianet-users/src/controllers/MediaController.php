@@ -51,7 +51,11 @@ class MediaController extends Controller
                 ->where("nom", 'like', '%' . $mot_clef . '%')->get();
             return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
         }
+        else{
+            return Utils::redirect($response,'home');
+        }
         return Utils::redirect($response,'home');
+
     }
 
 }
