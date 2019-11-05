@@ -18,8 +18,6 @@ $app = new \Slim\App($container);
 
 /** Routes */
 //affichage de la page d'accueil
-<<<<<<< HEAD
-=======
 
 //Installation de twig
 $container['view'] = function($container) {
@@ -32,20 +30,16 @@ $container['view'] = function($container) {
     return $view;
 };
 
->>>>>>> 792515d4176d023dfb8b6afc52ee12795944a55c
 
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
-<<<<<<< HEAD
 
 
 //$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
 //$app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
 //$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
-=======
 $app->get('/', ControllerHome::class.':index')->setName('home');
 
-$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
-$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
->>>>>>> 792515d4176d023dfb8b6afc52ee12795944a55c
+//$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
+//$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
 
 $app->run();
