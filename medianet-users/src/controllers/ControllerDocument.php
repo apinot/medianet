@@ -42,44 +42,22 @@ class ControllerDocument extends Controller {
         $mot_clef = Utils::getFilteredGet($request, 'keyword');
         $type = Utils::getFilteredGet($request, 'doctype');
         $genre = Utils::getFilteredGet($request, 'kind');
+
+        $req = Document::where(function ($query) use ($mot_clef) {
+            $query->where('nom', 'like', '%'.$mot_clef.'%')
+            ->orWhere('resume', 'like', '%'.$mot_clef.'%');
+        });
         
-        if (($mot_clef == "" || $mot_clef == null)&&($genre == "" || $genre == null)) {
-            switch ($type) {
-                case "dvd":
-                    $medias = DVD::all();
-                    return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-                    break;
-                case "cd":
-                    $medias = CD::all();
-                    return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-                    break;
-                case "livre":
-                    $medias = Livre::all();
-                    return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-                    break;
-                default: 
-                    $medias = Document::all();
-                    return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-                    break;
-            }
-        } elseif (($genre == "" || $genre == null)&&($mot_clef != null)) {
-            $medias = Document::where("nom", 'like', '%' . $mot_clef . '%')->get();
-            return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
+        if($genre !== null && $genre != "") {
+            $req->where('genre', 'like', '%'.$genre.'%');
         }
-        elseif (($genre != null)&&($mot_clef == "" || $mot_clef == null)) {
-            $medias = Document::where("genre", 'like', '%' . $genre . '%')->get();
-            return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-        }
-        elseif (($genre != null)&&($mot_clef != null)&&($type == "document")){
-            $medias = Document::where("genre", 'like', '%' . $genre . '%')
-            ->where("nom", 'like', '%' . $mot_clef . '%')->get();
-            return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
-        }
-        else{
-            return Utils::redirect($response,'home');
-        }
-        return Utils::redirect($response,'home');
         
+        if($type !== null && $type !== "" && $type !== 'all') {
+            $req->where('documentable_type', 'like', '%'.$type);
+        }
+        
+        $medias = $req->get();
+        
+        return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
     }
-    
 }
