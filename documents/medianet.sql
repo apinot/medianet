@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Lun 04 Novembre 2019 à 17:07
+-- Généré le :  Mar 05 Novembre 2019 à 12:15
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -40,13 +40,16 @@ CREATE TABLE `cds` (
 
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
+  `document_id` int(11) NOT NULL,
+  `document_type` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `resume` text NOT NULL,
   `genre` varchar(255) NOT NULL,
   `disponible` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `reference` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -103,8 +106,16 @@ CREATE TABLE `users` (
   `adhesion` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL,
+  `telephone` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `users`
+--
+
+INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
+(1, 'michel', 'jean', '$2y$10$ae67THLNIu6IaCslhUmIFOxjoswK82HePDc1RtUNZmuo9sENpcvm2', 'jeanmichel@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 09:17:00', NULL, NULL);
 
 --
 -- Index pour les tables exportées
@@ -179,7 +190,7 @@ ALTER TABLE `livres`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;

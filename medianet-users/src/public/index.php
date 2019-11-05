@@ -22,6 +22,7 @@ $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
 
+
 //global middlewares
 //$app->add(MiddlewareFlash::class);
 
@@ -38,4 +39,11 @@ $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDe
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
 $app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
 
+$app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
+$app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
+
+
+$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
 $app->run();
+
+
