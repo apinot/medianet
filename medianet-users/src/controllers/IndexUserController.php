@@ -20,18 +20,11 @@ class IndexUserController extends Controller
         $liste_livre = Livre::all();
         $liste_dvd = DVD::all();
         $liste_cd = CD::all();
-        foreach ($liste_livre as $livre) {
-            array_push($liste_media, $livre);
-        }
-        foreach ($liste_dvd as $dvd) {
-            array_push($liste_media, $dvd);
-        }
-        foreach ($liste_documents as $doc) {
-            array_push($liste_media, $doc);
-        }
-        foreach ($liste_cd as $cd) {
-            array_push($liste_media, $cd);
-        }
+
+        $liste_media=$this->addToArray($liste_documents,$liste_media);
+        $liste_media=$this->addToArray($liste_livre,$liste_media);
+        $liste_media=$this->addToArray($liste_dvd,$liste_media);
+        $liste_media=$this->addToArray($liste_cd,$liste_media);
 
         return $this->view->render($response, 'index.html.twig', ['medias' => $liste_media]);
     }
@@ -40,5 +33,6 @@ class IndexUserController extends Controller
         foreach ($liste1 as $doc) {
             array_push($liste2, $doc);
         }
+        return $liste2;
     }
 }
