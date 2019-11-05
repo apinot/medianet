@@ -44,9 +44,9 @@ class ControllerUser extends Controller {
     }
 
     //changement du mot de passe
-    public function changePwd(Request $request, Reponse $response){
-	$user = Auth::getUser();
-	return $this->render($response, 'changeMdp.html.twig', compact("user"));
+    public function changePwd(Request $request, Response $response) {
+	    $user = Auth::getUser();
+	    return $this->render($response, 'changeMdp.html.twig', compact("user"));
     }
 
     /**
