@@ -1,0 +1,30 @@
+$nbColumn: 12 !default;
+$gutterSize: 1.2% !default;
+
+
+@mixin row {
+    display: flex;
+    box-sizing: border-box;
+    flex-direction: row;
+    flex-wrap: wrap; 
+    flex-shrink: 0;
+    justify-content: flex-start;
+}
+
+@mixin col {
+    flex-grow: 0;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    margin-left: 0;
+    &+&{
+        margin-left: $gutterSize;
+    }
+}
+
+@mixin size($size: 1, $nbColumn: 12, $gutterSize: 1.2%) {
+    width: $size * (100% - ($nbColumn - 1) * $gutterSize) / $nbColumn + ($size - 1) * $gutterSize;
+    & + & {
+        margin-left: $gutterSize;
+    }
+}
+
