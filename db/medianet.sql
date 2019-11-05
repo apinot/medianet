@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mar 05 Novembre 2019 à 12:15
+-- Généré le :  Mar 05 Novembre 2019 à 14:27
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -32,6 +32,14 @@ CREATE TABLE `cds` (
   `maison_disque` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `cds`
+--
+
+INSERT INTO `cds` (`id`, `artistes`, `maison_disque`) VALUES
+(1, 'Gringe', 'Wagram Music'),
+(2, 'Jean michel patoche', 'les zinzins\r\n');
+
 -- --------------------------------------------------------
 
 --
@@ -52,6 +60,18 @@ CREATE TABLE `documents` (
   `reference` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `documents`
+--
+
+INSERT INTO `documents` (`id`, `document_id`, `document_type`, `nom`, `resume`, `genre`, `disponible`, `created_at`, `updated_at`, `deleted_at`, `reference`) VALUES
+(1, 1, 'medianet\\models\\CD', 'Enfante lune', 'resume', 'rap', 1, '2019-11-05 13:12:36', '2019-11-05 13:12:36', NULL, '1245'),
+(2, 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 1, '2019-11-05 13:13:44', '2019-11-05 13:13:44', NULL, '7643'),
+(3, 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 1, '2019-11-05 13:16:17', '2019-11-05 13:16:17', NULL, '8763'),
+(4, 2, 'medianet\\models\\DVD', 'Rocky 2', 'ah ouais', 'drame', 1, '2019-11-05 13:17:01', '2019-11-05 13:17:01', NULL, '7544'),
+(5, 1, 'medianet\\models\\Livre', '100 jours en enfer', 'pauvre gamin', 'policier', 1, '2019-11-05 13:19:22', '2019-11-05 13:19:22', NULL, '4433'),
+(6, 2, 'medianet\\models\\Livre', 'trafic', 'oh la la pas bien', 'policer', 1, '2019-11-05 13:20:27', '2019-11-05 13:20:27', NULL, '6545');
+
 -- --------------------------------------------------------
 
 --
@@ -63,6 +83,14 @@ CREATE TABLE `dvds` (
   `acteurs` varchar(255) NOT NULL,
   `duree` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `dvds`
+--
+
+INSERT INTO `dvds` (`id`, `acteurs`, `duree`) VALUES
+(1, 'Stallone', 119),
+(2, 'Stallone', 121);
 
 -- --------------------------------------------------------
 
@@ -90,6 +118,14 @@ CREATE TABLE `livres` (
   `edition` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Contenu de la table `livres`
+--
+
+INSERT INTO `livres` (`id`, `auteur`, `edition`) VALUES
+(1, 'Robert Muchamore', 'platine'),
+(2, 'Robert Muchamore', 'platine');
+
 -- --------------------------------------------------------
 
 --
@@ -115,7 +151,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
-(1, 'michel', 'jean', '$2y$10$ae67THLNIu6IaCslhUmIFOxjoswK82HePDc1RtUNZmuo9sENpcvm2', 'jeanmichel@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 09:17:00', NULL, NULL);
+(1, 'felix', 'leo', '$2y$10$ae67THLNIu6IaCslhUmIFOxjoswK82HePDc1RtUNZmuo9sENpcvm2', 'leofelix@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 12:44:57', NULL, 44466),
+(2, 'test', 'test', '$2y$10$6ZgKvy80TmWW45O/6SO/WeCqTPUC23NLK6e8y73kkFx40853RoEUG', 'test@gmail.com', 'test', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 13:24:53', NULL, 0);
 
 --
 -- Index pour les tables exportées
@@ -165,17 +202,17 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `cds`
 --
 ALTER TABLE `cds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT pour la table `dvds`
 --
 ALTER TABLE `dvds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `emprunts`
 --
@@ -185,12 +222,12 @@ ALTER TABLE `emprunts`
 -- AUTO_INCREMENT pour la table `livres`
 --
 ALTER TABLE `livres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
