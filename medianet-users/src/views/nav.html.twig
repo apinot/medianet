@@ -1,11 +1,11 @@
 <nav>
-    <a>Medianet</a>
-    <ul>
+    <h1 class="nav-title">Medianet</h1>
+    <ul class="nav-items-group">
         {% if est_connecte() %}
-            <li>Deconnecion</li>
-            <li>Mon profil</li>
+            <li class="nav-item"><a href="" class="nav-link">Mon profil</a></li>
+            <li class="nav-item"><a href="" class="nav-link">Déconnexion</a></li>
         {% else %}
-            <li>Connecion</li>
+            <li class="nav-item"><a href="" class="nav-link">Connexion</a></li>
         {% endif %}
     </ul>
 </nav>
