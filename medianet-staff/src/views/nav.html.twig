@@ -1,0 +1,12 @@
+<nav>
+    <h3 class="nav-title">Medianet</h3>
+    <ul class="nav-items-group">
+        <li class="nav-item"><a href="{{ path_for('home') }}" class="nav-link">Accueil</a></li>
+        {% if est_connecte() %}
+            <li class="nav-item"><a href="{{ path_for('showProfil') }}" class="nav-link">Mon profil</a></li>
+            <li class="nav-item"><a href="{{ path_for('execDeconnexion') }}" class="nav-link">Déconnexion</a></li>
+        {% else %}
+            <li class="nav-item"><a href="{{ path_for("formConnexion") }}" class="nav-link">Connexion</a></li>
+        {% endif %}
+    </ul>
+</nav>
