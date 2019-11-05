@@ -14,6 +14,6 @@ class Livre extends Model
     public $timestamps = true;
 
     public function document() {
-        $this->morphOne(Document::class);
+        return $this->morphOne(Document::class, 'documentable');
     }
 }

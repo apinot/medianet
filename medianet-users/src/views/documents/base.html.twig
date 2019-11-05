@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %}{{Parent}} - document.nom{% endblock %}
+
+{% block content %}
+    <h2>{{document.nom}}</h2>
+    <h3>Genre : {{document.genre}}</h3>
+    <p>{{document.resume}}</p>
+    <p>Dispo : {{document.disponible}}</p>
+
+    <div>
+        {% block documentDetails %}{% endblock %}
+    </div>
+
+{% endblock %}

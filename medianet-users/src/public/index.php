@@ -6,6 +6,7 @@ require_once('../../vendor/autoload.php');
 //controllers
 use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerUser;
+use medianet\controllers\ControllerDocument;
 
 //middlewares
 //use oxanaplay\middlewares\MiddlewareFlash;
@@ -42,6 +43,7 @@ $app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 
+$app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 
 $app->run();
 
