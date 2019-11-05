@@ -1,5 +1,11 @@
 <?php
+session_start();
+
 require_once('../../vendor/autoload.php');
+
+//controllers
+use medianet\controllers\ControllerHome;
+use medianet\controllers\ControllerStaff;
 
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -9,14 +15,16 @@ $capsule->bootEloquent();
 
 //loading settings from config/settings.php
 $settings = require_once "../config/settings.php";
-$container = new Slim\Container($settings);
+$container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
+
 
 /** Routes */
 //affichage de la page d'accueil
-$app->get('/', function($request, $response, $args) {
-    $response->getBody()->write('Hello World');
-    return $response;
-})->setName('home');
-
+//$app->get('/', ControllerHome::class.':index')->setName('home');
+$app->get('/', function(Request $request, Response $response){
+	return $response;getBody().write('r'); 
+});
 $app->run();
+?>
+
