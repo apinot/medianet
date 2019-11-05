@@ -22,6 +22,10 @@ return [
             $view->getEnvironment()->addFunction(new Twig_Function("est_connecte", Auth::class."::estConnecte"));
             $view->getEnvironment()->addFunction(new Twig_Function("auth_user", Auth::class."::getUser"));
 
+            //flashmessages
+            $view->getEnvironment()->addFunction(new Twig_Function("get_data", Flash::class."::get"));
+            $view->getEnvironment()->addTest(new Twig_Test("flashed", Flash::class."::has"));
+
             return $view;
     },
     'settings' => [

@@ -1,0 +1,22 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h2>Changer de mot de passe</h2>
+	<form method="POST" action="">
+		<div>
+			<label for="oldMdp">Ancien mot de passe</label>
+			<input type="text" id="oldMdp">
+		</div>
+		<div>
+			<label for="newMdp">Nouveau mot de passe</label>
+			<input type="text" id="newMdp">
+		</div>
+		<div>
+			<label for="confirmMdp">Confirmez ce mot de passe</label>
+			<input type="text" id="confirmMdp">
+		</div>
+		<div>
+			<input type="submit" value="Valider">
+		</div>
+	</form>
+{% endblock %}
