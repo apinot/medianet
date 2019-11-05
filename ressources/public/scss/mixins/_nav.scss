@@ -1,6 +1,6 @@
 $primary-color: #c10000 !default;
 $nav-color: white !default;
-$media-large-size: 25em !default;
+$media-large-size: 100em !default;
 
 @mixin nav($background: $primary-color, $color: $nav-color){
     background-color: $background;

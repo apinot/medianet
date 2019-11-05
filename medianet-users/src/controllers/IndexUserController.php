@@ -17,15 +17,7 @@ class IndexUserController extends Controller
     public function listMedia(Request $request, Response $response){
         $liste_media = [];
         $liste_documents = Document::all();
-        $liste_livre = Livre::all();
-        $liste_dvd = DVD::all();
-        $liste_cd = CD::all();
-
         $liste_media=$this->addToArray($liste_documents,$liste_media);
-        $liste_media=$this->addToArray($liste_livre,$liste_media);
-        $liste_media=$this->addToArray($liste_dvd,$liste_media);
-        $liste_media=$this->addToArray($liste_cd,$liste_media);
-
         return $this->view->render($response, 'index.html.twig', ['medias' => $liste_media]);
     }
 

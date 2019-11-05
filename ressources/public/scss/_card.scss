@@ -1,0 +1,25 @@
+@import "mixins/card";
+
+.card-deck{
+  @include card_deck($media-large-size);
+  &>.card{
+    @include card();
+    &>.card-img-top{
+    @include card_img();
+    }
+    &>.card-body {
+      @include card_body();
+      &>.card-title{
+        @include card_title();
+      }
+      &>.card-content{
+        &>.card-resume{
+          @include card_resume();
+        }
+        &>.card-items{
+          @include card_items();
+        }
+      }
+    }
+  }
+}
