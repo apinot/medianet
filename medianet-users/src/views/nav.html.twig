@@ -1,6 +1,6 @@
 <nav>
-    <h1 class="nav-title">Medianet</h1>
     <ul class="nav-items-group">
+        <li class="nav-item"><a href="{{ path_for('home') }}" class="nav-link">Medianet</a></li>
         {% if est_connecte() %}
             <li class="nav-item"><a href="{{ path_for('showProfil') }}" class="nav-link">Mon profil</a></li>
             <li class="nav-item"><a href="{{ path_for('execDeconnexion') }}" class="nav-link">Déconnexion</a></li>
