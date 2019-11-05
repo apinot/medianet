@@ -10,4 +10,8 @@ class Document extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nom', 'resumer', 'genre','disponible'];
     public $timestamps = true;
+
+    public function documentable() {
+        return $this->morphTo();
+    }
 }

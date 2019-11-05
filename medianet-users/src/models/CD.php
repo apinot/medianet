@@ -1,6 +1,4 @@
 <?php
-
-
 namespace medianet\models;
 
 
@@ -13,4 +11,8 @@ class CD extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['artsist', 'maison_disque'];
     public $timestamps = true;
+
+    public function document() {
+        $this->morphOne(Document::class);
+    }
 }
