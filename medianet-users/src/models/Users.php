@@ -1,4 +1,5 @@
 <?php
+
 namespace MedianetUser\models;
 
 use Illuminate\Database\Eloquent\Model;

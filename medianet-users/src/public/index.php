@@ -1,6 +1,11 @@
 <?php
 require_once('../../vendor/autoload.php');
 
+
+
+use MedianetUser\controllers\UserController;
+
+
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
 $capsule->addConnection(parse_ini_file('../config/db.conf.ini'));
@@ -18,5 +23,8 @@ $app->get('/', function($request, $response, $args) {
     $response->getBody()->write('Hello World');
     return $response;
 })->setName('home');
+
+
+$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
 
 $app->run();
