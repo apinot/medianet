@@ -1,0 +1,11 @@
+<nav>
+    <a>Medianet</a>
+    <ul>
+        {% if est_connecte() %}
+            <li>Deconnecion</li>
+            <li>Mon profil</li>
+        {% else %}
+            <li>Connecion</li>
+        {% endif %}
+    </ul>
+</nav>

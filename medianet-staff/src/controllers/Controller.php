@@ -1,5 +1,5 @@
 <?php
-namespace medianet\controllers;
+namespace MedianetUsers\controllers;
 
 abstract class Controller {
     protected $view;
