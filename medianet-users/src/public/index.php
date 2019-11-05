@@ -30,7 +30,6 @@ $app = new \Slim\App($container);
 //affichage de la page d'accueil
 
 
-$app->get('/', ControllerHome::class.':index')->setName('home');
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
 $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
