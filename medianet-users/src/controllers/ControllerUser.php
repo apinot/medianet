@@ -20,11 +20,11 @@ class ControllerUser extends Controller {
         $email = Utils::getFilteredPost($request,'email');
         $pwd = Utils::getFilteredPost($request, 'password');
         if(!Auth::connexion($email,$pwd)){
-            Flash::flashError('email ou mot de passe incorrecte');
+           // Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
         
-        FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
+        //FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
         return Utils::redirect($response, 'home');
     }
 
@@ -38,11 +38,16 @@ class ControllerUser extends Controller {
     /**
      * fenetre d'edition User
      */
-    public function afficherProfil(Request $request, Response $response, $args) {
+    public function afficherProfil(Request $request, Response $response) {
         $user = Auth::getUser();
         return $this->render($response, 'profil.html.twig', compact("user"));
     }
 
+    //changement du mot de passe
+    public function changePwd(Request $request, Response $response) {
+	    $user = Auth::getUser();
+	    return $this->render($response, 'changeMdp.html.twig', compact("user"));
+    }
 
     /**
     * 

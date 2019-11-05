@@ -8,7 +8,7 @@ use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerUser;
 
 //middlewares
-use oxanaplay\middlewares\MiddlewareFlash;
+//use oxanaplay\middlewares\MiddlewareFlash;
 
 
 //database connection with Eloquent
@@ -36,21 +36,12 @@ $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConne
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
+$app->get('/pwd', ControllerUser::class.':changePwd')->setName('updatePwd');
 
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 
 
-$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
-
-
-//$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
-//$app->get('/', ControllerHome::class.':index')->setName('home');
-
-//$app->get('/connexion', UserController::class.':afficherFomulaireConnexion')->setName('formConnexion');
-//$app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
-
-
 $app->run();
+
+

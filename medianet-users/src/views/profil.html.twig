@@ -10,9 +10,9 @@
 		<p>{{ user.adresse }}</p>
 		<p>{{ user.telephone }}</p>
 	<div>
-
 		<a href="{{ path_for('formUpdateUser') }}"> Modifier mes données personnels </a>
-		<a href=""> Changer de mot de passe </a>
+		<br>
+		<a href="{{ path_for('updatePwd') }}"> Changer de mot de passe </a>
 	</div>
 	<div>
 		<h2>Mes Emprunts</h2>
