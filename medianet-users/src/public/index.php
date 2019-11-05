@@ -14,9 +14,22 @@ $app = new \Slim\App($container);
 
 /** Routes */
 //affichage de la page d'accueil
-$app->get('/', function($request, $response, $args) {
-    $response->getBody()->write('Hello World');
-    return $response;
-})->setName('home');
+
+
+//Installation de twig
+$container['view'] = function($container) {
+    $view = new \Slim\Views\Twig('../views', []);
+    //Instantiate and add Slim specific extension
+    $router = $container->get('router');
+    $uri = \Slim\Http\Uri::createFromEnvironment(new \Slim\Http\Environment($_SERVER));
+    $view->addExtension(new \Slim\Views\TwigExtension($router, $uri));
+
+    return $view;
+};
+
+
+
+$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
+
 
 $app->run();
