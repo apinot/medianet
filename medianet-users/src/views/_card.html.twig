@@ -1,5 +1,10 @@
 <div id="card-{{ media.id }}" class="card">
-    <img class="card-img-top" src="https://www.slatkine.com/80701-large_default/book-07210910.jpg"  alt="">
+    {% if media.disponible == 0 %}
+        <img class="card-img-top disabled" src="https://www.slatkine.com/80701-large_default/book-07210910.jpg"  alt="">
+    {% else %}
+        <img class="card-img-top" src="https://www.slatkine.com/80701-large_default/book-07210910.jpg"  alt="">
+    {% endif %}
+
     <div class="card-body">
         {% if media.resume  is not null %}
             <div class="card-title">

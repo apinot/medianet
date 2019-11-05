@@ -1,8 +1,8 @@
-@mixin research($media-queries: $media-large-size){
+@mixin research($media-large-size){
   margin: 2%;
   display: flex;
   flex-direction: column;
-  @media (min-width: $media-queries) {
+  @media (min-width: $media-large-size) {
     display: flex;
     flex-direction: row;
 

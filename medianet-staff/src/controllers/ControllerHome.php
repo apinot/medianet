@@ -8,4 +8,3 @@ class ControllerHome extends Controller {
     }
 
 }
-?>
