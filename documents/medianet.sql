@@ -40,8 +40,6 @@ CREATE TABLE `cds` (
 
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
-  `document_id` int(11) NOT NULL,
-  `document_type` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
   `resume` text NOT NULL,
   `genre` varchar(255) NOT NULL,
