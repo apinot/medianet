@@ -1,0 +1,21 @@
+@import 'mixins/_nav';
+
+nav {
+    @include nav($primary-color, $nav-color);
+
+    .nav-title {
+        @include navTitle();
+    }
+
+    .nav-items-group {
+        @include navItemsGroup($media-large-size);
+
+        .nav-item {
+            @include navItem($primary-color);
+
+            .nav-link {
+                @include navLink($media-large-size);
+            }
+        }
+    }
+}

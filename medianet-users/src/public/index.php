@@ -5,7 +5,7 @@ require_once('../../vendor/autoload.php');
 
 //controllers
 use medianet\controllers\ControllerHome;
-use medianet\controllers\ControllerUser;
+//use medianet\controllers\ControllerUser;
 
 //database connection with Eloquent
 $capsule = new \Illuminate\Database\Capsule\Manager;
@@ -33,11 +33,11 @@ $container['view'] = function($container) {
 };
 
 
-//$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('acceuil');
 $app->get('/', ControllerHome::class.':index')->setName('home');
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
 $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
+
 
 $app->post('/profil/{id}', ControllerUser::class.':afficherProfil')->setName('');
 

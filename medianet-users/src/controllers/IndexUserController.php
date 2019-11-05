@@ -12,9 +12,8 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 
-class IndexUserController extends ControllerUser
+class IndexUserController extends Controller
 {
-
     public function listMedia(Request $request, Response $response){
         $liste_media = array();
         $liste_documents = Document::all();
@@ -36,7 +35,6 @@ class IndexUserController extends ControllerUser
 
         var_dump($liste_media);
         return $this->view->render($response, 'index.html.twig', ['medias' => $liste_media]);
-
     }
 
     public function addToArray($liste1,$liste2){
