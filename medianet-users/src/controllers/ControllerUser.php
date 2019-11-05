@@ -23,13 +23,13 @@ class ControllerUser extends Controller {
             Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
-        Flash::flashSuccess('Vous êtes connecté en tant que '.$email);
         return Utils::redirect($response, 'home');
     }
 
 
     public function deconnecter(Request $request, Response $response){
         Auth::deconnexion(); 
+        Flash::flashSuccess('Vous vous êtes deconnecté');
         return Utils::redirect($response, 'home');
     }
 
@@ -50,24 +50,26 @@ class ControllerUser extends Controller {
     //checks for a new user password
     public function changePwd(Request $request, Response $response){
 		$user = Auth::getUser();
-	    	$mdpUser = $user->mdp;
+	    $mdpUser = $user->mdp;
 		$old = Utils::getFilteredPost($request, 'oldMdp');
 		$new = Utils::getFilteredPost($request, 'newMdp');
 		$confirm = Utils::getFilteredPost($request, 'confirmMdp');
 
 		//Check the passwords entered
 		if(($old == null)||($new == null)||($confirm == null)){
-			echo 'emptys';
-		}else if(password_verify($old, $mdpUser)==false){
-			echo 'old bad';
-		}else if($new != $confirm){
-			echo 'no same';
-		}else{
-			$toInsert = password_hash($new, PASSWORD_DEFAULT);
-			$user->mdp = $toInsert;
-			$user->save();
-		 	return Utils::redirect($response, 'showProfil');
-		}
+            Flash::flashError("Des données sont manquantes");
+            return Utils::redirect($response, "updatePwd");
+        }
+        if ($new !== $confirm) {
+            Flash::flashError("Le mot de passe et sa confirmation ne correspondent pas");
+            return Utils::redirect($response, "updatePwd");
+        }
+        if (!Auth::modifierMdp($old, $new)) {
+            Flash::flashError("L'ancien mot de passe ne correspond pas");
+            return Utils::redirect($response, "formModifMdpAdmin");
+        }
+        Flash::flashSuccess("Le mot de passe a été changé");
+        return Utils::redirect($response, "formModifMdpAdmin");
     }
 
     //gestion d'un emprunt
