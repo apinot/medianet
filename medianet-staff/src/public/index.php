@@ -1,6 +1,4 @@
 <?php
-session_start();
-
 require_once('../../vendor/autoload.php');
 
 //controllers
@@ -18,13 +16,14 @@ $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
 $app = new \Slim\App($container);
 
-
 /** Routes */
 //affichage de la page d'accueil
-//$app->get('/', ControllerHome::class.':index')->setName('home');
-$app->get('/', function(Request $request, Response $response){
-	return $response;getBody().write('r'); 
-});
+$app->get('/', ControllerStaff::class.':accueil')->setName('home');
+
+$app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
+$app->post('/emprunt', ControllerStaff::class.':checkEmprunt')->setName('checkEmprunt');
+
 $app->run();
+
 ?>
 
