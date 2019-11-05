@@ -63,10 +63,6 @@ nav {
     .card-deck {
       display: grid;
       grid-template-columns: 25% 25% 25% 25%; } }
-  @media (min-width: 50em) and (max-width: 70em) {
-    .card-deck {
-      display: grid;
-      grid-template-columns: 50% 50%; } }
   .card-deck > .card {
     min-height: 400px;
     border: black solid 1px;
@@ -88,11 +84,6 @@ nav {
       margin: 2%;
       max-height: 200px;
       overflow: scroll; }
-      @media (min-width: 50em) and (max-width: 70em) {
-        .card-deck > .card > .card-body {
-          margin: 5%;
-          overflow: unset;
-          max-height: unset; } }
       .card-deck > .card > .card-body > .card-title {
         font-weight: bold; }
       .card-deck > .card > .card-body > .card-content > .card-resume {
@@ -118,8 +109,5 @@ nav {
 body, html {
   margin: 0;
   padding: 0; }
-
-.disabled {
-  filter: grayscale(1); }
 
 /*# sourceMappingURL=medianet.css.map */

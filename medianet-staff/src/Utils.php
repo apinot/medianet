@@ -36,20 +36,6 @@ class Utils {
         return self::sanitize($data);
     }
 
-    public static function getFilteredGet(ServerRequestInterface $request, string $key) {
-        $data = $request->getQueryParam($key, null);
-        
-        if($data === null) return null;
-        if(is_array($data)) {
-            foreach ($data as $key => $value) {
-                $data[$key] = self::sanitize($value);
-            }
-            return $data;
-        }
-
-        return self::sanitize($data);
-    }
-
    /**
     * Permet de sanitize une string (vis-à-vis de l'affichage HTML seulement)
     */

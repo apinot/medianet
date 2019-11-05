@@ -8,3 +8,6 @@ body, html {
     padding: 0;
 }
 
+.disabled{
+    filter: grayscale(1);
+}

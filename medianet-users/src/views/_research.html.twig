@@ -1,9 +1,9 @@
 <div class="research">
-    <form action="/filter" method="post">
-        <input name="mot_cle" type="text" placeholder="Veuillez entrer un mot clef ">
-        <input type="text" name="genre" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
-        <select name="type_media" id="type">
-            <option value="document">Tous</option>
+    <form action="{{path_for('filter')}}" method="get">
+        <input name="keyword" type="text" placeholder="Veuillez entrer un mot clef " autocomplete="off">
+        <input type="text" name="kind" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
+        <select name="doctype" id="type">
+            <option value="all" selected>Tous</option>
             <option value="dvd">DVD</option>
             <option value="cd">CD</option>
             <option value="livre">Livre</option>

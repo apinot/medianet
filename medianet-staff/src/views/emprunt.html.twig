@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<div>
+		<h2>Informations</h2>
+		<label for="reference">reference</label>
+		<input type="text" name="reference">
+		<label for="idAdherent">numéro d'adhérent</label>
+		<input type="text" name="idAdherent">
+		<a href="{{ path_for('checkEmprunt') }}"> valider</a>
+	</div>
+{% endblock %}

@@ -1,6 +1,7 @@
+$media-large-size:70em !default;
+$media-medium-size:50em !default;
 
-
-@mixin card_deck($media-queries: $media-large-size){
+@mixin card_deck($media-queries:$media-large-size,$media-queries-medium : $media-medium-size){
   margin-top: 2%;
   display: flex;
   flex-direction: column;
@@ -8,6 +9,10 @@
   @media (min-width: $media-queries) {
     display: grid;
     grid-template-columns: 25% 25% 25% 25%;
+  }
+  @media (min-width: $media-queries-medium) and (max-width: $media-queries) {
+    display: grid;
+    grid-template-columns: 50% 50%;
   }
 }
 @mixin card($media-queries: $media-large-size){
@@ -31,10 +36,15 @@
   margin: 2% auto;
 }
 
-@mixin card_body(){
+@mixin card_body($media-queries:$media-large-size,$media-queries-medium : $media-medium-size){
   margin:2%;
   max-height: 200px;
   overflow: scroll;
+  @media (min-width: $media-queries-medium) and (max-width: $media-queries) {
+    margin:5%;
+    overflow: unset;
+    max-height: unset;
+  }
 }
 
 @mixin card_title(){
