@@ -4,10 +4,14 @@ use Slim\Http\Environment;
 use Slim\Http\Uri;
 use \Slim\Views\Twig;
 
+
 use Slim\Views\TwigExtension;
 
 
 use medianet\controllers\Auth;
+
+
+
 
 
 return [
