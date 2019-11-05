@@ -24,7 +24,16 @@ class ControllerUser extends Controller {
             return Utils::redirect($response, 'formConnexion');
         }
         
-        Flash::flashSuccess('Vous êtes connecté en tant que '.$email);
-        return Utils::redirect($response, 'accueil');
+        FlashMessage::flashSuccess('Vous êtes connecté en tant que '.$email);
+        return Utils::redirect($response, 'home');
+    }
+
+
+    /**
+     * fenetre d'edition User
+     */
+    public function afficherProfil(Request $request, Response $response, $args) {
+        $user = User::find($request->getAttribute('id'));
+        return $this->views->render($response, 'profil.html.twig', $user);
     }
 }
