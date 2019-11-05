@@ -14,4 +14,8 @@ class Document extends Model
     public function documentable() {
         return $this->morphTo();
     }
+
+    public function emprunt(){
+		return $this->belongsTo(Emprunt::class);
+    }
 }

@@ -23,6 +23,7 @@ class ControllerUser extends Controller {
             Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
+        Flash::flashSuccess('Vous êtes connecté');
         return Utils::redirect($response, 'home');
     }
 
@@ -66,10 +67,10 @@ class ControllerUser extends Controller {
         }
         if (!Auth::modifierMdp($old, $new)) {
             Flash::flashError("L'ancien mot de passe ne correspond pas");
-            return Utils::redirect($response, "formModifMdpAdmin");
+            return Utils::redirect($response, "updatePwd");
         }
         Flash::flashSuccess("Le mot de passe a été changé");
-        return Utils::redirect($response, "formModifMdpAdmin");
+        return Utils::redirect($response, "showProfil");
     }
 
     /**
