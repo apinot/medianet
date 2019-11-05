@@ -62,7 +62,7 @@ class ControllerUser extends Controller {
 
         $user->nom = Utils::getFilteredPost($request, "nom");
         $user->prenom = Utils::getFilteredPost($request, "prenom");
-        $user->adresse = Utils::getFilteredPost($request, "adresse");
+        $user->adresse = filter_var(Utils::getFilteredPost($request, "adresse"), FILTER_VALIDATE_EMAIL);
         $user->email = Utils::getFilteredPost($request, "email");
         $user->telephone = Utils::getFilteredPost($request, "telephone");
 
