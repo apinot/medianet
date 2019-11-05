@@ -39,4 +39,6 @@ $app->get('/', ControllerHome::class.':index')->setName('home');
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
 $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
 
+$app->post('/profil/{id}', ControllerUser::class.':afficherProfil')->setName('');
+
 $app->run();
