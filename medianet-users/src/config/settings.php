@@ -5,6 +5,7 @@ use Slim\Http\Uri;
 use \Slim\Views\Twig;
 
 use medianet\controllers\Auth;
+use medianet\controllers\Flash;
 use Slim\Views\TwigExtension;
 
 return [

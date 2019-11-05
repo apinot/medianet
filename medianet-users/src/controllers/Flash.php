@@ -1,5 +1,4 @@
 <?php
-
 namespace medianet\controllers;
 
 use Psr\Http\Message\ServerRequestInterface;
@@ -65,9 +64,11 @@ class Flash {
     public static function flashInfo($value) {
         self::flash('info', $value);
     }
+
     public static function flashSuccess($value) {
         self::flash('success', $value);
     }
+
     public static function clear()
     {
         self::init();

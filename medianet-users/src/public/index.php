@@ -30,7 +30,7 @@ $app->add(FlashMiddleware::class);
 //affichage de la page d'accueil
 
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
-$app->post('/filter', \medianet\controllers\MediaController::class.':filter')->setName('filter');
+$app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
@@ -40,6 +40,9 @@ $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDe
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
+
+$app->get('/emprunt', ControllerUser::class.':empruntPage')->setName('pageEmprunt');
+$app->post('/emprunt', ControllerUser::class.':emprunt')->setName('Emprunt');
 
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');

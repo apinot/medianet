@@ -1,7 +1,0 @@
-driver=mysql
-username=A_REMPLIR
-password=A_REMPLIR
-host=localhost
-database=A_REMPLIR
-charset=utf8
-collation=utf8_unicode_ci
