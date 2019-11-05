@@ -3,6 +3,7 @@ namespace medianet\controllers;
 
 abstract class Controller {
     protected $view;
+    
     public function __construct(\Slim\Container $container) {
         $this->view = $container->view;
     }
