@@ -11,23 +11,23 @@ use medianet\models\Emprunt;
 
 
 class ControllerStaff extends Controller {
-
+	
 	//Renvoie vers l'accueil	
 	public function accueil(Request $request, Response $response, $args) {
 		return $this->render($response, 'base.html.twig');
 	}
-
+	
 	//page d'emprunt
 	public function pageEmprunt(Request $request, Response $response, $args) {
 		return $this->render($response, 'emprunt.html.twig');
 	}
-
+	
 	//page récapitulative des emprunts
 	public function pageRecap(Request $request, Response $response, $args) {
 		$emprunts = Emprunt::all();
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
-
+	
 	//permet d'entrer un id d'un utilisateur 
 	public function recapUser(Request $request, Response $response, $args){
 		$idUser = Utils::getFilteredPost($request, 'idUser');
@@ -35,71 +35,72 @@ class ControllerStaff extends Controller {
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
 	
-	//check les champs
-	public function which(Request $request, Response $response, $args) {    
-		//fuseau horaire 
-		$timezone = date_default_timezone_set('France');
-		$btn = $_POST['btn'];   
-		$reference = Utils::getFilteredPost($request, 'reference');
-		$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
-		if(($reference == null)||($idAdherent == null)){
-			Flash::flashError("champs vide");
-            return Utils::redirect($response, 'home');
+	//montre les emprunts
+	public function showData(Response $response, $emprunts){
+		foreach($emprunts as $emprunt){
+			echo "Référence: ".$emprunt->document_id.
+			" adhérent n°".$emprunt->user_id.
+			" date d'emprunt: ".$emprunt->date_emprunt.
+			" date limite: ".$emprunt->date_emprunt.
+			" date de retour: ".$emprunt->date_emprunt.
+			"<br>";
 		}
-		//vérifie si la référence et l'adhérent existent
-		$adherent = User::find($idAdherent);
-		$media = Document::find($reference);
-		$ok = 0;
-		if($adherent == null){
-			Flash::flashError("cet adhérent n'existe pas");
-			return Utils::redirect($response, 'home');
-		}elseif($media == null){
-			Flash::flashError("ce média n'existe pas");
-			return Utils::redirect($response, 'home');
-		}else{
-			if ($btn == "Emprunter"){
-				$ok = $this->emprunt($media, $reference, $idAdherent);
-			}elseif($btn == "Retourner"){
-				$ok = $this->retour($media, $idAdherent);
+		return $this->render($response, 'recap.html.twig');
+	}
+	
+	public function takeDocument(Request $request, Response $response, $args) { 
+		$userId = Utils::getFilteredPost($request, "user");
+		if($userId === null || $userId === "") {
+			Flash::flashInfo('Veuillez rensigner un numéro d\'adhérant');
+			return Utils::redirect($response, "home");
+		}
+		
+		$user = User::find($userId);
+		if($user == null){
+			Flash::flashError('L\'utilisateur n\'existe pas !');
+			return Utils::redirect($response, "home");
+		}
+		
+		$documentsId = Utils::getFilteredPost($request, 'documents');
+		$documents = [];
+		$hasIgnored = false;
+		foreach($documentsId as $idDoc) {
+			if($idDoc == "") continue;
+			$doc = Document::find($idDoc);
+			if($doc == null ) continue;
+			if(!$doc->disponible){
+				$hasIgnored = true;
+				continue;
 			}
+			$documents[] = $doc;
 		}
-		if($ok == 1){return Utils::redirect($response, 'home');}
-    	}
-
-	//Gère le retour
-	public function retour($media, $idAdherent){
-		$emprunt = Emprunt::where("document_id", "=", $media->id)->first();
-		if($emprunt == null){
-			echo "ce média n'a pas été emprunté";
-		}elseif($emprunt->user_id != $idAdherent){
-			echo "cet usager n'a pas réservé ce média";
-		}else{
-			$emprunt->delete();
-			$media->disponible = 1;
-			$media->save();
-			return 1;
+		
+		$docCount = count($documents);
+		if($docCount <= 0) {
+			Flash::flashError('Les documents n\'existent pas ou ne sont pas disponibles');
+			return Utils::redirect($response, "home");
 		}
-	}
-
-	//gère l'emprunt
-	public function emprunt($media, $reference, $idAdherent){
-		//check la disponibilité du média
-		if(($media->disponible) == 0){
-			echo "ce média n'est pas dispo";
-		}else{	
-			//insertion du nouvel emprunt dans la bdd
-			$emprunt = new Emprunt;
-			$emprunt->document_id = $reference;
-			$emprunt->user_id = $idAdherent;
-			$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
-			$emprunt->date_limite = date('Y/d/m h:i:s',time());
-			$emprunt->date_retour = date('Y/d/m h:i:s',time());
+		
+		$dateEmprunt = time();
+		$dateLimit = $dateEmprunt += 3600 * 24 * 14;
+		
+		foreach($documents as $document) {
+			$emprunt = new Emprunt();
+			$emprunt->date_emprunt = date('Y-m-d H:i:s', $dateEmprunt);
+			$emprunt->date_limite = date('Y-m-d H:i:s', $dateLimit);
+			$emprunt->user_id = $userId;
+			$emprunt->document_id = $document->id;
 			$emprunt->save();
-			//changement de la disponibilité du média
-			$media->disponible = 0;
-			$media->save();
-			return 1;
+			
+			$document->disponible = false;
+			$document->save();
 		}
-	}
+		
+		//TODO afficher un recap de l'emprunt actuel
+		Flash::flashSuccess($docCount.' documents ont été empruntés.');
+		if($hasIgnored) {
+			Flash::flashInfo("Certains documents ont été ignorés car ils n'existent pas ou ne sont pas disponibles !");
+		}
+		return Utils::redirect($response, 'home');
+	}	
 }
-
