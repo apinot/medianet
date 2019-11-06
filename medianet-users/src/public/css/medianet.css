@@ -6,7 +6,7 @@ nav {
   align-items: stretch;
   margin: 0;
   box-sizing: border-box;
-  padding: 0;
+  padding-top: 0.5rem;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -103,11 +103,14 @@ nav .nav-items-group .nav-item .nav-link {
 }
 .card-deck > .card > .card-body {
   margin: 2%;
+  max-height: 200px;
+  overflow: scroll;
 }
 @media (min-width: 30em) and (max-width: 60em) {
   .card-deck > .card > .card-body {
     margin: 5%;
     overflow: unset;
+    max-height: unset;
   }
 }
 .card-deck > .card > .card-body > .card-title {
