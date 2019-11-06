@@ -307,6 +307,13 @@ nav .nav-items-group .nav-item .nav-link {
   text-align: center;
 }
 
+td {
+  border: solid 2px black;
+  text-align: center;
+  padding: 20px;
+  width: 5%;
+}
+
 body, html {
   margin: 0;
   padding: 0;

@@ -4,6 +4,7 @@ namespace medianet\controllers;
 
 use Cassandra\Date;
 use Cassandra\Timestamp;
+use http\Params;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -56,6 +57,7 @@ class ControllerUser extends Controller {
             $new_user->email = $email;
             $new_user->mdp= $hashed_pass;
             $new_user->telephone = $telephone;
+
         }else{
             Flash::flashError("Email deja utilisé");
             return Utils::redirect($response, 'ajout_membre');
@@ -71,9 +73,14 @@ class ControllerUser extends Controller {
     public function delete(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
-        $user->delete();
-        Flash::flashSuccess("Le compte a été supprimé");
-		return Utils::redirect($response,'membres');
+        if ($user->emprunts()->first() == null){
+            $user->delete();
+            Flash::flashSuccess("Le compte a bien été supprimer");
+            return Utils::redirect($response,'membres');
+        }else{
+            Flash::flashError("Il reste encore des medias empruntés");
+            return Utils::redirect($response,'membres');
+        }
     }
 
     public function detailsMembers(Request $request, Response $response,$args){
