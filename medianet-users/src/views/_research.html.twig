@@ -1,10 +1,10 @@
 <div class="research">
     <form action="{{path_for('filter')}}" method="get">
-        <label>Mot-clef</label>
-        <input name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">
-        <label>Genre</label>
-        <input type="text" name="kind" value="{{query['genre']}}" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
-        <select name="doctype" id="type">
+        <label class="itemresearch">Mot-clef</label>
+        <input class="itemresearch" name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">
+        <label class="itemresearch">Genre</label>
+        <input class="itemresearch" type="text" name="kind" value="{{query['genre']}}" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
+        <select class="itemresearch" name="doctype" id="type">
             {% if query['type'] == 'cd' %}
                 <option value="all" >Tous</option>
                 <option value="dvd">DVD</option>
@@ -28,6 +28,6 @@
             {% endif %}
             
         </select>
-        <input class="btn" type="submit" value="Rechercher">
+        <input class="btn itemresearch" type="submit" value="Rechercher">
     </form>
 </div>

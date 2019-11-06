@@ -1,0 +1,29 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<div>
+		<h2>Informations de {{user.nom}}</h2>
+		<img src="" id="tete" alt="photo">
+	</div>
+		<p>{{ user.nom }} {{ user.prenom }}</p>
+		<p>{{ user.email }}</p>
+		<p>{{ user.adresse }}</p>
+		<p>{{ user.telephone }}</p>
+	<div>
+		<a class="btn" href="{{ path_for('formUpdateUser',{id:user.id}) }}"> Modifier les données de cet utilisateur </a>
+		<br>
+		<a  class="btn" href="{{ path_for('updatePwd',{id:user.id}) }}"> Changer son mot de passe </a>
+		<br>
+		<a  class="btn" href="{{ path_for('delete',{id:user.id}) }}"> Supprimer le compte </a>
+
+	</div>
+	<div>
+		<h2>Les Emprunts</h2>
+		<div class="card-deck">
+		{% for emprunt in user.emprunts %}
+			{% set media = emprunt.document %}
+			{% include "_card.html.twig" %}
+		{% endfor %}
+		</div>
+	</div>
+{% endblock %}

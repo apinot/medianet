@@ -4,5 +4,8 @@
   &>form{
     @include research($media-large-size);
   }
+}
 
+.itemresearch {
+  @include itemResearch();
 }
