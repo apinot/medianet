@@ -39,39 +39,45 @@ class ControllerStaff extends Controller {
 			echo "ce média n'existe pas";
 		}else{
 			if ($btn == "Emprunter"){
-				//check la disponibilité du média
-				if(($media->disponible) == 0){
-					echo "ce média n'est pas disponible";
-				}else{
-					$this->emprunt($media, $reference, $idAdherent);
-				}
+				$this->emprunt($response, $media, $reference, $idAdherent);
 			}elseif($btn == "Retourner"){
-				$this->retour();
+				$this->retour($response, $media);
 			}
-		//	return Utils::redirect($response, 'home');
 		}
     	}
 
 	//Gère le retour
-	public function retour($media){
-		//
-		$media->disponible = 1;
-		$media->save();
+	public function retour($response, $media){
+		if(($media->disponible) == 1){
+			echo "ce média n'a pas été emprunté";
+		}else{
+			$emprunt = Emprunt::where("document_id", "=", $media->id);
+			$emprunt->delete();
+			$media->disponible = 1;
+			$media->save();
+			return Utils::redirect($response, 'home');
+		}
 	}
 
 	//gère l'emprunt
-	public function emprunt($media, $reference, $idAdherent){
-		//insertion du nouvel emprunt dans la bdd
-		$emprunt = new Emprunt;
-		$emprunt->document_id = $reference;
-		$emprunt->id_user = $idAdherent;
-		$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
-		$emprunt->date_limite = date('Y/d/m h:i:s',time());
-		$emprunt->date_retour = date('Y/d/m h:i:s',time());
-		$emprunt->save();
-		//changement de la disponibilité du média
-		$media->disponible = 0;
-		$media->save();
+	public function emprunt($response, $media, $reference, $idAdherent){
+		//check la disponibilité du média
+		if(($media->disponible) == 0){
+			echo "ce média n'est pas dispo";
+		}else{	
+			//insertion du nouvel emprunt dans la bdd
+			$emprunt = new Emprunt;
+			$emprunt->document_id = $reference;
+			$emprunt->id_user = $idAdherent;
+			$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
+			$emprunt->date_limite = date('Y/d/m h:i:s',time());
+			$emprunt->date_retour = date('Y/d/m h:i:s',time());
+			$emprunt->save();
+			//changement de la disponibilité du média
+			$media->disponible = 0;
+			$media->save();
+			return Utils::redirect($response, 'home');
+		}
 	}
 }
 
