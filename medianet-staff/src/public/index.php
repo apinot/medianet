@@ -21,7 +21,7 @@ $app->get('/', ControllerStaff::class.':accueil')->setName('home');
 
 //emprunts
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
-$app->post('/emprunt', ControllerStaff::class.':checkEmprunt')->setName('lookEmprunt');
+$app->post('/emprunt', ControllerStaff::class.':which')->setName('lookEmprunt');
 
 $app->run();
 

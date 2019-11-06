@@ -11,34 +11,56 @@ use medianet\models\Emprunt;
 
 
 class ControllerStaff extends Controller {
-
-    public function accueil(Request $request, Response $response, $args) {
-        return $this->render($response, 'base.html.twig');
-    }
-
-    public function pageEmprunt(Request $request, Response $response, $args) {
-        return $this->render($response, 'emprunt.html.twig');
-    }
-    
-    public function checkEmprunt(Request $request, Response $response, $args) {    
-	//fuseau horaire 
-	$timezone = date_default_timezone_set('France');
-	$reference = Utils::getFilteredPost($request, 'reference');
-	$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
-	if(($reference == null)||($idAdherent == null)){
-		echo 'champs vide';
+	
+	public function accueil(Request $request, Response $response, $args) {
+		return $this->render($response, 'base.html.twig');
 	}
-	//vérifie si la référence et l'adhérent existent
-	$adherent = User::find($idAdherent);
-	$media = Document::find($reference);
-	if($adherent == null){
-		echo "cet adhérent n'existe pas";
-	}elseif($media == null){
-		echo "ce média n'existe pas";
-	//check la disponibilité du média
-	}elseif(($media->disponible) == 0){
-		echo "ce média n'est pas disponible";
-	}else{
+
+	public function pageEmprunt(Request $request, Response $response, $args) {
+		return $this->render($response, 'emprunt.html.twig');
+	}
+
+	//check les champs
+	public function which(Request $request, Response $response, $args) {    
+		//fuseau horaire 
+		$timezone = date_default_timezone_set('France');
+		$btn = $_POST['btn'];   
+		$reference = Utils::getFilteredPost($request, 'reference');
+		$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
+		if(($reference == null)||($idAdherent == null)){
+			echo 'champs vide';
+		}
+		//vérifie si la référence et l'adhérent existent
+		$adherent = User::find($idAdherent);
+		$media = Document::find($reference);
+		if($adherent == null){
+			echo "cet adhérent n'existe pas";
+		}elseif($media == null){
+			echo "ce média n'existe pas";
+		}else{
+			if ($btn == "Emprunter"){
+				//check la disponibilité du média
+				if(($media->disponible) == 0){
+					echo "ce média n'est pas disponible";
+				}else{
+					$this->emprunt($media, $reference, $idAdherent);
+				}
+			}elseif($btn == "Retourner"){
+				$this->retour();
+			}
+		//	return Utils::redirect($response, 'home');
+		}
+    	}
+
+	//Gère le retour
+	public function retour($media){
+		//
+		$media->disponible = 1;
+		$media->save();
+	}
+
+	//gère l'emprunt
+	public function emprunt($media, $reference, $idAdherent){
 		//insertion du nouvel emprunt dans la bdd
 		$emprunt = new Emprunt;
 		$emprunt->document_id = $reference;
@@ -50,9 +72,6 @@ class ControllerStaff extends Controller {
 		//changement de la disponibilité du média
 		$media->disponible = 0;
 		$media->save();
-        	return Utils::redirect($response, 'home');
 	}
-    }
-
 }
 
