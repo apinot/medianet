@@ -20,6 +20,7 @@ class ControllerStaff extends Controller {
 		return $this->render($response, 'emprunt.html.twig');
 	}
 
+
 	//check les champs
 	public function which(Request $request, Response $response, $args) {    
 		//fuseau horaire 
@@ -60,6 +61,7 @@ class ControllerStaff extends Controller {
 			return Utils::redirect($response, 'home');
 		}
 	}
+}
 
 	//gère l'emprunt
 	public function emprunt($response, $media, $reference, $idAdherent){

@@ -133,7 +133,7 @@ nav .nav-items-group .nav-item .nav-link {
 }
 @media (min-width: 60em) {
   .research > form {
-    display: grid;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -208,6 +208,14 @@ nav .nav-items-group .nav-item .nav-link {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+}
+
+.formular {
+  display: grid;
+  box-sizing: border-box;
+  grid-template-columns: repeat(1, 1fr);
+  grid-gap: 2em;
+  text-align: center;
 }
 
 body, html {
