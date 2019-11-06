@@ -133,7 +133,7 @@ nav .nav-items-group .nav-item .nav-link {
 }
 @media (min-width: 60em) {
   .research > form {
-    display: grid;
+    display: flex;
     flex-direction: row;
     justify-content: center;
     align-items: center;
