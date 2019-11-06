@@ -1,9 +1,27 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-<h2>Récapitulatif des emprunts</h2>
-<form action="{{ path_for('byUser') }}" method="post">
-	<input type="text" name="idUser">
-	<input type="submit" value="Rechercher">
-</form>
+	<h2>Récapitulatif des emprunts</h2>
+	<form action="{{ path_for('byUser') }}" method="post">
+		<input type="text" name="idUser">
+		<input type="submit" value="Rechercher">
+	</form>
+	<table>
+		<thead>
+			<th>Réference</th>
+			<th>n° d'adhérent</th>		
+			<th>Emprunt</th>		
+			<th>Limite</th>		
+			<th>Retour</th>		
+		</thead>
+	{% for emprunt in emprunts %}
+		<tr>
+			<td>{{ emprunt['document_id'] }}</td> 
+			<td>{{ emprunt['user_id'] }}</td>
+			<td>{{ emprunt['date_emprunt'] }}</td> 
+			<td>{{ emprunt['date_limite'] }}</td> 
+			<td>{{ emprunt['date_retour'] }}</td> 
+		</tr>
+	{% endfor %}
+	</table>
 {% endblock %}
