@@ -1,3 +1,4 @@
+$media-large-size:60em !default;
 $media-medium-size:30em !default;
 
 @mixin profil_container ($querie-medium: $media-medium-size){
@@ -6,6 +7,11 @@ $media-medium-size:30em !default;
     margin: 1em;
     row-gap: 1em;
     grid-template-columns: repeat(1, 1fr);
+
+    @media (min-width: $querie-medium) {
+        grid-template-columns: repeat(2, 1fr);
+        column-gap: 1em;
+    }
 }
 
 @mixin profil_group_style() {
@@ -29,10 +35,10 @@ $media-medium-size:30em !default;
     font-weight: bold;
 }
 
-@mixin profil_card_separator($size: 100%) {
+@mixin profil_card_separator() {
     border-color: lightgrey;    
     border-style: solid;
-    width: $size;
+    width: 10em;
     margin-top: 0.4em;
     margin-bottom: 0.8em;
 }
@@ -41,13 +47,12 @@ $media-medium-size:30em !default;
     @include profil_group_style();
 }
 
-@mixin profil_list() {
+@mixin profil_list($querie-medium: $media-medium-size) {
     @include profil_group_style();
 
-    display: flex;
-    flex-direction: column;
-    justify-content: flex-start;
-    align-items: stretch;
+    @media (min-width: $querie-medium) {
+        grid-column-end: span 2;
+    }
 }
 
 @mixin profil_document_list() {
@@ -70,6 +75,16 @@ $media-medium-size:30em !default;
     font-weight: bold;
     font-size: 1.2em;
     padding-bottom: 0.5em;
+}
+
+@mixin profil_document_content($querie-large: $media-large-size, $querie-medium: $media-medium-size) {
+    display: flex;
+    flex-direction: column;
+
+    @media (min-width: $querie-medium) {
+        flex-direction: row;
+        justify-content: space-between;
+    }
 }
 
 @mixin profil_document_action() {

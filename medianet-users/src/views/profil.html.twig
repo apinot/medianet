@@ -25,8 +25,10 @@
 			{% for emprunt in user.emprunts %}
 			<li class="document-item">
 				<div class="document-title">{{emprunt.document.type()}} : {{emprunt.document.nom}}</div>
-				<div class="document-date">Emprunté le : {{emprunt.date_emprunt}}</div>
-				<div class="document-date">A rendre avant : {{emprunt.date_limite}}</div>
+				<div class="document-content">
+					<div>Emprunté le : {{emprunt.date_emprunt}}</div>
+					<div>A rendre avant : {{emprunt.date_limite}}</div>
+				</div>
 				<div class="document-action">
 					<a class="btn" href="{{ path_for('showDocument', {id: emprunt.document.id}) }}"> Voir le document</a>
 				</div>
