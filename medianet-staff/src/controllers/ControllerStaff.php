@@ -5,6 +5,8 @@ namespace medianet\controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
+use medianet\models\User;
+use medianet\models\Document;
 
 
 class ControllerStaff extends Controller {
@@ -20,10 +22,21 @@ class ControllerStaff extends Controller {
     public function checkEmprunt(Request $request, Response $response, $args) {
 	$reference = Utils::getFilteredPost($request, 'reference');
 	$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
-	if(($reference == null)||($idAdherent)){
+	if(($reference == null)||($idAdherent == null)){
 		echo 'champs vide';
 	}
-        //return Utils::redirect($response, 'base.html.twig');
+	//vérifie si la référence et l'adhérent existent
+	$adherent = User::find($idAdherent);
+	$media = Document::find($reference);
+	if($adherent == null){
+		echo "cet adhérent n'existe pas";
+	}
+	elseif($media == null){
+		echo "ce média n'existe pas";
+	}
+	else{
+        	return Utils::redirect($response, 'home');
+	}
     }
 
 }
