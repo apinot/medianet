@@ -1,0 +1,22 @@
+
+{% if "error" is flashed %}
+<div class="danger">
+    <p>
+        {{ get_data("error") }}
+    </p>
+</div>
+
+{% elseif "success" is flashed %}
+<div class= "success">
+    <p>
+        {{ get_data("success") }}
+    </p>  
+</div>
+{% elseif "info" is flashed %}
+<div class="info">
+    <p>
+        {{ get_data("info") }}
+    </p>
+</div>
+
+{% endif %}

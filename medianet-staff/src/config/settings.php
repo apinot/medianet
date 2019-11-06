@@ -17,6 +17,10 @@ return [
             $uri = Uri::createFromEnvironment(new Environment($_SERVER));
             $view->addExtension(new TwigExtension($router, $uri));
 
+            //flashmessages
+            $view->getEnvironment()->addFunction(new Twig_Function("get_data", Flash::class."::get"));
+            $view->getEnvironment()->addTest(new Twig_Test("flashed", Flash::class."::has"));
+            
             return $view;
     },
     'settings' => [
