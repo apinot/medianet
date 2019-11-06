@@ -307,6 +307,13 @@ nav .nav-items-group .nav-item .nav-link {
   text-align: center;
 }
 
+td {
+  border: solid 2px black;
+  text-align: center;
+  padding: 10px;
+  margin: 5px;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -316,3 +323,5 @@ body, html {
 .disabled {
   filter: grayscale(1);
 }
+
+/*# sourceMappingURL=medianet.css.map */
