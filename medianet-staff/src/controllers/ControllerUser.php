@@ -66,6 +66,7 @@ class ControllerUser extends Controller {
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
         $user->delete();
+        Flash::flashSuccess("Le compte a été supprimé");
 		return Utils::redirect($response,'membres');
     }
 
