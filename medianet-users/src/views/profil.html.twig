@@ -10,9 +10,9 @@
 		<p>{{ user.adresse }}</p>
 		<p>{{ user.telephone }}</p>
 	<div>
-		<a href="{{ path_for('formUpdateUser') }}"> Modifier mes données personnels </a>
+		<a class="btn" href="{{ path_for('formUpdateUser') }}"> Modifier mes données personnels </a>
 		<br>
-		<a href="{{ path_for('updatePwd') }}"> Changer de mot de passe </a>
+		<a class="btn" href="{{ path_for('updatePwd') }}"> Changer de mot de passe </a>
 	</div>
 	<div>
 		<h2>Mes Emprunts</h2>
@@ -20,7 +20,6 @@
 		{% for emprunt in user.emprunts %}
 			{% set media = emprunt.document %}
 			{% include "_card.html.twig" %}
-			{{ emprunt.date_limite }}
 		{% endfor %}
 		</div>
 	</div>

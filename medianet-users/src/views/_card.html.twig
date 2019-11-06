@@ -4,7 +4,6 @@
     {% else %}
         <img class="card-img-top" src="https://www.slatkine.com/80701-large_default/book-07210910.jpg"  alt="">
     {% endif %}
-
     <div class="card-body">
         <div class="card-title">
             {{ media.type() }} {{ media.nom }}
@@ -12,9 +11,9 @@
         <hr>
         <div class="card-content">
             <div class="card-items">
-                <p>Genre : {{media.genre }}</p>
+                <p>Genre : {{ media.genre }}</p>
             </div> 
-            <a href="">Details</a>
+            <a class="btn" href="{{ path_for('showDocument', {id: media.id}) }}">Details</a>
             <div class="card-items">
                 {% if media.disponible == 0 %}
                     Non disponible
@@ -24,4 +23,7 @@
             </div>
         </div>
     </div>
+    {% if emprunt %}
+        {{ emprunt.date_limite }}
+    {% endif %}
 </div>
