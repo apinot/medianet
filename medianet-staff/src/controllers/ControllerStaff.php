@@ -11,31 +11,32 @@ use medianet\models\Emprunt;
 
 
 class ControllerStaff extends Controller {
-	
+
+	//Renvoie vers l'accueil	
 	public function accueil(Request $request, Response $response, $args) {
 		return $this->render($response, 'base.html.twig');
 	}
 
+	//page d'emprunt
 	public function pageEmprunt(Request $request, Response $response, $args) {
 		return $this->render($response, 'emprunt.html.twig');
 	}
 
+	//page récapitulative des emprunts
 	public function pageRecap(Request $request, Response $response, $args) {
 		$emprunts = Emprunt::all();
-		foreach($emprunts as $emprunt){
-			echo "Référence: ".$emprunt->document_id.
-				" adhérent n°".$emprunt->user_id.
-				" date d'emprunt: ".$emprunt->date_emprunt.
-				" date limite: ".$emprunt->date_emprunt.
-				" date de retour: ".$emprunt->date_emprunt.
-				"<br>";
-		}
-		return $this->render($response, 'recap.html.twig');
+		$this->showData($response, $emprunts);
 	}
 
+	//permet d'entrer un id d'un utilisateur 
 	public function recapUser(Request $request, Response $response, $args){
 		$idUser = Utils::getFilteredPost($request, 'idUser');
 		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
+		$this->showData($response, $emprunts);
+	}
+	
+	//montre les emprunts
+	public function showData(Response $response, $emprunts){
 		foreach($emprunts as $emprunt){
 			echo "Référence: ".$emprunt->document_id.
 				" adhérent n°".$emprunt->user_id.
@@ -46,7 +47,6 @@ class ControllerStaff extends Controller {
 		}
 		return $this->render($response, 'recap.html.twig');
 	}
-
 
 
 	//check les champs
