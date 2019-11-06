@@ -6,21 +6,30 @@
     {% endif %}
     <div class="card-body">
         <div class="card-title">
-            {{ media.type() }} {{ media.nom }}
+            {% if media.type() == 'CD' %}
+                <i class="fas fa-music"></i>
+            {% endif %}
+            {% if media.type() == 'DVD' %}
+                <i class="fas fa-video"></i>
+            {% endif %}
+            {% if media.type() == 'Livre' %}
+            <i class="fas fa-book"></i>
+            {% endif %}
+            
+            
+            {{ media.nom }}
         </div>
         <hr>
-        <div class="card-content">
-            <div class="card-items">
-                <p>Genre : {{ media.genre }}</p>
-            </div> 
+        <div class="card-item">
+            <p>Genre : {{ media.genre }}</p>
+        </div> 
+        <div class="card-bottom">
+            {% if media.disponible == 0 %}
+            <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
+            {% else %}
+                <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i> 
+            {% endif %}
             <a class="btn" href="{{ path_for('showDocument', {id: media.id}) }}">Details</a>
-            <div class="card-items">
-                {% if media.disponible == 0 %}
-                    Non disponible
-                {% else %}
-                    Disponible
-                {% endif %}
-            </div>
         </div>
     </div>
     {% if emprunt %}
