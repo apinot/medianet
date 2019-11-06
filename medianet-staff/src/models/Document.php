@@ -15,8 +15,8 @@ class Document extends Model
         return $this->morphTo();
     }
     
-    public function emprunt(){
-        return $this->belongsTo(Emprunt::class);
+    public function emprunts(){
+        return $this->hasMany(Emprunt::class);
     }
 
     public function type() {

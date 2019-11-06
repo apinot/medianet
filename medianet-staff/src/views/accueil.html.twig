@@ -4,7 +4,7 @@
 <div class="row">
 	<div class="col s6">
 		<h2 class="center">Emprunter</h2>
-		<form action="" method="post" id="takeForm">
+		<form action="{{path_for('execTake')}}" method="post" id="takeForm">
 			<label for="user">Id de l'adhérant</label>
 			<input class="itemref" type="text" pattern="\d+" id="user" name="user" placeholder="XXXXXX">
 			<div>
@@ -20,7 +20,7 @@
 
 	<div class="col s6">
 		<h2 class="center">Rendre</h2>
-		<form action="" method="post" id="returnForm">
+		<form action="{{path_for('execReturn')}}" method="post" id="returnForm">
 			<div>
 				<label>Références des documents rendu</label>
 				<div id="returnedDoc">

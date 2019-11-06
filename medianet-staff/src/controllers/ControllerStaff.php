@@ -82,7 +82,7 @@ class ControllerStaff extends Controller {
 		}
 		
 		$dateEmprunt = time();
-		$dateLimit = $dateEmprunt += 3600 * 24 * 14;
+		$dateLimit = $dateEmprunt + 3600 * 24 * 14;
 		
 		foreach($documents as $document) {
 			$emprunt = new Emprunt();
@@ -103,4 +103,41 @@ class ControllerStaff extends Controller {
 		}
 		return Utils::redirect($response, 'home');
 	}	
+
+	public function returnDocument($request, $response, $args) {
+		$documentsId = Utils::getFilteredPost($request, 'documents');
+
+		$documents = [];
+		foreach($documentsId as $idDoc) {
+			if($idDoc == "") continue;
+			$doc = Document::find($idDoc);
+			if($doc == null ) continue;
+			$documents[] = $doc;
+		}
+
+		$docCount = count($documents);
+		if($docCount <= 0) {
+			Flash::flashError('Les documents n\'existent pas');
+			return Utils::redirect($response, "home");
+		}
+
+		$dateRetour = time();
+
+		foreach($documents as $document) {
+			$emprunt = $document->emprunts()->whereNull('date_retour')->first();
+			if($emprunt === null) {
+				continue;
+			}
+
+			$emprunt->date_retour = date('Y-m-d H:i:s', $dateRetour);
+			$emprunt->save();
+			
+			$document->disponible = true;
+			$document->save();
+		}
+
+		Flash::flashSuccess('Les documents ont été rendus.');
+		//TODO aficher un récapitulatif
+		return Utils::redirect($response, 'home');
+	}
 }
