@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+
+    {% for user in users %}
+    <div>
+        {{user.nom}}
+        {{user.prenom}}
+        {{user.email}}
+        {{user.adresse}}
+        {{user.adhesion}}
+        <a href="{{ path_for('details_membre',{id:user.id}) }}" class="btn" name="id" value="{{ user.id }}">détails</a>    
+        {% endfor %}
+    </div>
+
+{% endblock %}

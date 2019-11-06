@@ -5,6 +5,7 @@ require_once('../../vendor/autoload.php');
 
 //controllers
 use medianet\controllers\ControllerStaff;
+use medianet\controllers\ControllerUser;
 
 //middlewares
 use medianet\middlewares\FlashMiddleware;
@@ -25,6 +26,18 @@ $app->add(FlashMiddleware::class);
 
 /** Routes */
 //affichage de la page d'accueil
+
+$app->get('/membres', ControllerUser::class.':membersList')->setName('membres');
+$app->get('/details/{id}', ControllerUser::class.':detailsMembers')->setName('details_membre');
+
+$app->get('/modifier/{id}', ControllerUser::class.':showUser')->setname('formUpdateUser');
+$app->post('/modifier/{id}', ControllerUser::class.':updateUser')->setName('execUpdateUser');
+
+$app->get('/delete/{id}', ControllerUser::class.':delete')->setName('delete');
+
+$app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
+$app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
+$app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 
 //emprunts et retour
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');

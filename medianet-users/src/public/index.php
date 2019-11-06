@@ -37,7 +37,7 @@ $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->se
 $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConnexion');
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
-$app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil');
+$app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil')->add(AuthMiddleware::class);
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 

@@ -1,5 +1,5 @@
-$media-large-size:70em !default;
-$media-medium-size:50em !default;
+$media-large-size:60em !default;
+$media-medium-size:30em !default;
 
 @mixin card_deck($media-queries:$media-large-size,$media-queries-medium : $media-medium-size){
     margin-top: 2%;
