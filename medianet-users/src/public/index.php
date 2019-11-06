@@ -41,9 +41,6 @@ $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProf
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
-$app->get('/emprunt', ControllerUser::class.':empruntPage')->setName('pageEmprunt');
-$app->post('/emprunt', ControllerUser::class.':emprunt')->setName('Emprunt');
-
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 
