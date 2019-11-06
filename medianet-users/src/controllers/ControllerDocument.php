@@ -4,6 +4,7 @@ namespace medianet\controllers;
 use medianet\models\Document;
 use medianet\models\Livre;
 use medianet\models\CD;
+use medianet\models\DVD;
 use Slim\Exception\NotFoundException;
 
 class ControllerDocument extends Controller {
