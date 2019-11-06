@@ -19,11 +19,15 @@ $app = new \Slim\App($container);
 //affichage de la page d'accueil
 $app->get('/', ControllerStaff::class.':accueil')->setName('home');
 
-//emprunts
+//emprunts et retour
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
 $app->post('/emprunt', ControllerStaff::class.':which')->setName('lookEmprunt');
 
+//Historique 
+$app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
+
 $app->run();
+
 
 ?>
 

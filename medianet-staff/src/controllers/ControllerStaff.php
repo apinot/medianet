@@ -20,6 +20,11 @@ class ControllerStaff extends Controller {
 		return $this->render($response, 'emprunt.html.twig');
 	}
 
+	public function watchRecap(Request $request, Response $response, $args) {
+		return $this->render($response, 'recap.html.twig');
+	}
+
+
 
 	//check les champs
 	public function which(Request $request, Response $response, $args) {    
