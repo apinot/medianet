@@ -25,6 +25,8 @@ $app->post('/emprunt', ControllerStaff::class.':which')->setName('lookEmprunt');
 
 //Historique 
 $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
+$app->post('/user', ControllerStaff::class.':recapUser')->setName('byUser');
+
 
 $app->run();
 

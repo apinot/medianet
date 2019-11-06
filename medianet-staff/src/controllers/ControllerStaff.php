@@ -31,7 +31,20 @@ class ControllerStaff extends Controller {
 				"<br>";
 		}
 		return $this->render($response, 'recap.html.twig');
+	}
 
+	public function recapUser(Request $request, Response $response, $args){
+		$idUser = Utils::getFilteredPost($request, 'idUser');
+		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
+		foreach($emprunts as $emprunt){
+			echo "Référence: ".$emprunt->document_id.
+				" adhérent n°".$emprunt->user_id.
+				" date d'emprunt: ".$emprunt->date_emprunt.
+				" date limite: ".$emprunt->date_emprunt.
+				" date de retour: ".$emprunt->date_emprunt.
+				"<br>";
+		}
+		return $this->render($response, 'recap.html.twig');
 	}
 
 
