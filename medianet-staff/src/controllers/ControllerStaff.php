@@ -9,7 +9,7 @@ use medianet\models\User;
 use medianet\models\Document;
 use medianet\models\Emprunt;
 
-
+//TODO nettoyer cette classe
 class ControllerStaff extends Controller {
 	
 	//Renvoie vers l'accueil	

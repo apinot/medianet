@@ -8,7 +8,7 @@
 			<label for="user">Id de l'adhérant</label>
 			<input class="itemref" type="text" pattern="\d+" id="user" name="user" placeholder="XXXXXX">
 			<div>
-				<label for="user">Références des documents empruntés</label>
+				<label>Références des documents empruntés</label>
 				<div id="takedDoc">
 					<input class="itemref" type="text" pattern="\d+" name="documents[]" placeholder="Référence">
 				</div>
@@ -20,17 +20,15 @@
 
 	<div class="col s6">
 		<h2 class="center">Rendre</h2>
-		<form action="" method="post" id="takeForm">
-			<label for="user">Id de l'adhérant</label>
-			<input class="itemref" type="text" pattern="\d+" id="user" name="user" placeholder="XXXXXX">
+		<form action="" method="post" id="returnForm">
 			<div>
-				<label for="user">Références des documents rendu</label>
-				<div id="takedDoc">
+				<label>Références des documents rendu</label>
+				<div id="returnedDoc">
 					<input class="itemref" type="text" pattern="\d+" name="documents[]" placeholder="Référence">
 				</div>
-				<input class="add" id="addTakedDocument" value="Ajouter un document">
+				<input class="add" id="addReturnedDocument" value="Ajouter un document">
 			</div>
-			<input class="btn center" type="submit" value="Valider les retours">
+			<input class="btn center" type="submit" value="Valider le retour">
 		</form>
 	</div>
 </div>
