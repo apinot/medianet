@@ -5,18 +5,20 @@
         {{ get_data("error") }}
     </p>
 </div>
+{% endif %}
 
-{% elseif "success" is flashed %}
+{% if "success" is flashed %}
 <div class= "success">
     <p>
         {{ get_data("success") }}
     </p>  
 </div>
-{% elseif "info" is flashed %}
+{% endif %}
+
+{% if "info" is flashed %}
 <div class="info">
     <p>
         {{ get_data("info") }}
     </p>
 </div>
-
 {% endif %}
