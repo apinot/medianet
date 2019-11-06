@@ -107,7 +107,7 @@ nav {
   flex-direction: column; }
   @media (min-width: 60em) {
     .research > form {
-      display: flex;
+      display: grid;
       flex-direction: row; } }
 
 .success {
