@@ -19,6 +19,7 @@ $app = new \Slim\App($container);
 //affichage de la page d'accueil
 $app->get('/', ControllerStaff::class.':accueil')->setName('home');
 
+//emprunts
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
 $app->post('/emprunt', ControllerStaff::class.':checkEmprunt')->setName('lookEmprunt');
 
