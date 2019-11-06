@@ -16,9 +16,14 @@ class ControllerStaff extends Controller {
     public function pageEmprunt(Request $request, Response $response, $args) {
         return $this->render($response, 'emprunt.html.twig');
     }
-
+    
     public function checkEmprunt(Request $request, Response $response, $args) {
-	    return Utils::redirect($response, 'home');
+	$reference = Utils::getFilteredPost($request, 'reference');
+	$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
+	if(($reference == null)||($idAdherent)){
+		echo 'champs vide';
+	}
+        //return Utils::redirect($response, 'base.html.twig');
     }
 
 }
