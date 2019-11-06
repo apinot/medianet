@@ -15,7 +15,8 @@ class Auth {
         return ($user != null && password_verify($mdp, $user->mdp)) ? $user : null;
     }
 
-    public static function modifierMdp(string $ancienMdp, string $nouveauMdp) : bool {    
+    public static function modifierMdp(string $ancienMdp, string $nouveauMdp) : bool {   
+        $user = self::getUser(); 
         $user = self::verifierMdp($user->email, $ancienMdp);
         if (!$user) { return false; }
         

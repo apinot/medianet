@@ -16,5 +16,12 @@
 	</div>
 	<div>
 		<h2>Mes Emprunts</h2>
+		<div class="card-deck">
+		{% for emprunt in user.emprunts %}
+			{% set media = emprunt.document %}
+			{% include "_card.html.twig" %}
+			{{ emprunt.date_limite }}
+		{% endfor %}
+		</div>
 	</div>
 {% endblock %}

@@ -10,14 +10,12 @@
             <div class="card-title">
                 {{media.nom}}
             </div>
+            <hr>
             <div class="card-content">
-                <div class="card-resume">
-                    <p>Resumer :</p><p>{{ media.resume }}</p>
-                </div>
                 <div class="card-items">
-                    <p>Type :</p><p>{{media.genre }}</p>
+                    <p>Genre : {{media.genre }}</p>
                 </div>
-
+                
                 <div class="card-items">
                     {% if media.disponible == 0 %}
                         Non disponible
@@ -33,10 +31,10 @@
             </div>
             <div class="card-content">
                 <div class="card-items">
-                    <p>Artiste :</p><p>{{ media.artistes }}</p>
+                    <p>Artiste : {{ media.artistes }}</p>
                 </div>
                 <div class="card-items">
-                    <p>Maison de disque :</p><p>{{media.maison_disque }}</p>
+                    <p>Maison de disque : {{media.maison_disque }}</p>
                 </div>
 
                 <div class="card-items">
@@ -54,10 +52,10 @@
             </div>
             <div class="card-content">
                 <div class="card-items">
-                    <p>Acteurs :</p><p>{{ media.acteurs }}</p>
+                    <p>Acteurs : {{ media.acteurs }}</p>
                 </div>
                 <div class="card-items">
-                    <p>Durée du DVD :</p><p>{{media.duree }}</p>
+                    <p>Durée du DVD : {{media.duree }}</p>
                 </div>
 
                 <div class="card-items">
@@ -75,10 +73,10 @@
             </div>
             <div class="card-content">
                 <div class="card-items">
-                    <p>Auteur :</p><p>{{ media.auteur }}</p>
+                    <p>Auteur : {{ media.auteur }}</p>
                 </div>
                 <div class="card-items">
-                    <p>Maison d'edition :</p><p>{{media.edition }}</p>
+                    <p>Maison d'edition : {{media.edition }}</p>
                 </div>
 
                 <div class="card-items">
