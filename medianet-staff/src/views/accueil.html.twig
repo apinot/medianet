@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+
+<h2>Emprunter</h2>
+<form action="{{path_for('execTake')}}" method="post" id="takeForm">
+	<label for="user">Id de l'adhérant</label>
+	<input type="number" id="user" name="user" placeholder="XXXXXX">
+	
+	<label for="user">Références des documents empruntés</label>
+	<div id="takedDoc">
+		<input type="text" name="documents[]" placeholder="Référence">		
+	</div>
+	
+	<input type="button" id="addTakedDocument" value="Ajouter un document">
+	
+	<input type="submit" value="Valider l'emprunt">
+</form>
+{% endblock %}
+
+
+{% block scripts %}
+	<script src="/js/emprunt.js"></script>
+{% endblock %}
