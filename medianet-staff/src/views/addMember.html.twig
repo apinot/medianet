@@ -1,0 +1,30 @@
+{% extends 'base.html.twig' %}
+
+{% block content%}
+    <form action="{{ path_for('verif_membre') }}" method="post">
+        <label>Nom:
+            <input type="text" name="nom" placeholder="Doe" value="">
+        </label>
+        <label>Prénom:
+            <input type="text" name="prenom" placeholder="Jonh" value="">
+        </label>
+        <label>Téléphone:
+            <input type="text" name="telephone" placeholder="06 06 06 06 06" value="">
+        </label>
+        <label>Adresse:
+            <input type="text" name="adresse" placeholder="5 rue du zinzin 54000" value="">
+        </label>
+        <label>Email:
+            <input type="text" name="email" placeholder="jonh.doe@gmail.com" value="">
+        </label>
+        <label>Mot de passe:
+            <input type="password" name="password"  value="">
+        </label>
+
+        <label>Comfimation du mot de passe:
+            <input type="password" name="confirm_pass"  value="">
+        </label>
+
+        <input class="btn" type="submit" value="Valider">
+    </form>
+{% endblock %}

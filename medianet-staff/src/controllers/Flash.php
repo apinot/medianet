@@ -58,7 +58,6 @@ class Flash {
     }
 
     public static function flashError($value) {
-        echo 'salut';
         self::flash('error', $value);
     }
     

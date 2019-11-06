@@ -4,6 +4,7 @@ session_start();
 require_once('../../vendor/autoload.php');
 
 //controllers
+use medianet\controllers\ControllerDocument;
 use medianet\controllers\ControllerStaff;
 use medianet\controllers\ControllerUser;
 
@@ -34,6 +35,9 @@ $app->get('/modifier/{id}', ControllerUser::class.':showUser')->setname('formUpd
 $app->post('/modifier/{id}', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 
 $app->get('/delete/{id}', ControllerUser::class.':delete')->setName('delete');
+$app->get('/ajout', ControllerUser::class.':addMember')->setName('ajout_membre');
+$app->post('/ajout', ControllerUser::class.':verifMember')->setName('verif_membre');
+
 
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');

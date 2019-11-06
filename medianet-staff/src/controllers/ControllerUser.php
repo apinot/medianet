@@ -2,6 +2,8 @@
 
 namespace medianet\controllers;
 
+use Cassandra\Date;
+use Cassandra\Timestamp;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -19,6 +21,44 @@ class ControllerUser extends Controller {
     public function afficherProfil(Request $request, Response $response,$args) {
         $id = Utils::sanitize($args['id']);
         return $this->render($response, 'profil.html.twig', compact("user"));
+    }
+
+    public function addMember(Request $request, Response $response,$args){
+        return $this->render($response, 'addMember.html.twig');
+    }
+
+    public function verifMember(Request $request, Response $response){
+        $nom = Utils::getFilteredPost($request,'nom');
+        $prenom = Utils::getFilteredPost($request,'prenom');
+        $adresse = Utils::getFilteredPost($request,'adresse');
+        $email = Utils::getFilteredPost($request,'email');
+        $telephone = Utils::getFilteredPost($request,'telephone');
+        $password = Utils::getFilteredPost($request,'password');
+        $confirm_pass = Utils::getFilteredPost($request,'confirm_pass');
+
+        var_dump($email);
+
+
+        if($nom == "" || $prenom=="" || $adresse== "" || $email=="" || $telephone=="" || $password==""){
+            Flash::flashError("Des champ de sont pas completer");
+            return Utils::redirect($response, 'ajout_membre');
+        }
+        if ($confirm_pass != $password){
+            Flash::flashError("Confirmation incorrect");
+            return Utils::redirect($response, 'ajout_membre');
+        }
+        $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
+        $new_user = new User();
+        $new_user->nom = $nom;
+        $new_user->prenom = $prenom;
+        $new_user->adresse = $adresse;
+        $new_user->email = $email;
+        $new_user->mdp= $hashed_pass;
+        $new_user->telephone = $telephone;
+
+        $new_user->save();
+
+        return Utils::redirect($response,'membres');
     }
 
 
@@ -60,7 +100,7 @@ class ControllerUser extends Controller {
     
 
     //checks for a new user password
-    public function changePwd(Request $request, Response $response){
+    public function changePwd(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
 	    $mdpUser = $user->mdp;
