@@ -35,20 +35,6 @@ class ControllerStaff extends Controller {
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
 	
-	//montre les emprunts
-	public function showData(Response $response, $emprunts){
-		foreach($emprunts as $emprunt){
-			echo "Référence: ".$emprunt->document_id.
-				" adhérent n°".$emprunt->user_id.
-				" date d'emprunt: ".$emprunt->date_emprunt.
-				" date limite: ".$emprunt->date_emprunt.
-				" date de retour: ".$emprunt->date_emprunt.
-				"<br>";
-		}
-		return $this->render($response, 'recap.html.twig');
-	}
-
-
 	//check les champs
 	public function which(Request $request, Response $response, $args) {    
 		//fuseau horaire 
