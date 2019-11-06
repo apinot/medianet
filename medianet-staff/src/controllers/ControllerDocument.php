@@ -33,6 +33,73 @@ class ControllerDocument extends Controller {
         return Utils::redirect($response,'listdoc');
     }
 
+    public function addDocument(Request $request, Response $response){
+        return $this->view->render($response,'ajouterDocument.html.twig');
+    }
+
+    public function verifAddDocument(Request $request, Response $response){
+        $type = Utils::getFilteredPost($request,'documentable_type');
+        $this->createDOc($type,$response,$request);
+        return Utils::redirect($response,'listdoc');
+
+    }
+
+    public function createDOc($type,$response,$request){
+        switch($type){
+            case "medianet\models\Livre":
+                $livre = new Livre();
+                $livre->auteur =  Utils::getFilteredPost($request,'auteur');
+                $livre->edition =  Utils::getFilteredPost($request,'edition');
+                $livre->save();
+
+                $document = new Document();
+                $document->reference = Utils::getFilteredPost($request,'reference');
+                $document->documentable_id = $livre->id;
+                $document->documentable_type = $type;
+                $document->nom = Utils::getFilteredPost($request,'nom');
+                $document->resume = Utils::getFilteredPost($request,'resume');
+                $document->genre = Utils::getFilteredPost($request,'genre');
+                $document->disponible = Utils::getFilteredPost($request,'disponible');
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
+            case "medianet\models\CD":
+                $cd = new CD();
+                $cd->artistes =  Utils::getFilteredPost($request,'artistes');
+                $cd->maison_disque =  Utils::getFilteredPost($request,'maison_disque');
+                $cd->save();
+
+                $document = new Document();
+                $document->reference = Utils::getFilteredPost($request,'reference');
+                $document->documentable_id = $cd->id;
+                $document->documentable_type = $type;
+                $document->nom = Utils::getFilteredPost($request,'nom');
+                $document->resume = Utils::getFilteredPost($request,'resume');
+                $document->genre = Utils::getFilteredPost($request,'genre');
+                $document->disponible = Utils::getFilteredPost($request,'disponible');
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
+            case "medianet\models\DVD":
+                $dvd = new DVD();
+                $dvd->acteurs =  Utils::getFilteredPost($request,'acteurs');
+                $dvd->duree =  Utils::getFilteredPost($request,'duree');
+                $dvd->save();
+
+                $document = new Document();
+                $document->reference = Utils::getFilteredPost($request,'reference');
+                $document->documentable_id = $dvd->id;
+                $document->documentable_type = $type;
+                $document->nom = Utils::getFilteredPost($request,'nom');
+                $document->resume = Utils::getFilteredPost($request,'resume');
+                $document->genre = Utils::getFilteredPost($request,'genre');
+                $document->disponible = Utils::getFilteredPost($request,'disponible');
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
+        }
+    }
+
     public function verif(Request $request, Response $response,$args)
     {
         $id = Utils::sanitize($args['id']);

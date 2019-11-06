@@ -44,9 +44,11 @@ $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
 $app->get('/documents/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 $app->get('/documents', \medianet\controllers\ControllerDocument::class.':listMedia')->setName('listdoc');
-$app->get('/documents/edit/{id}', \medianet\controllers\ControllerDocument::class.':edit')->setName('editDoc');
-$app->post('/documents/edit/{id}', \medianet\controllers\ControllerDocument::class.':verif')->setName('verifDoc');
-$app->get('/documents/delete/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
+$app->get('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':edit')->setName('editDoc');
+$app->post('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':verif')->setName('verifDoc');
+$app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
+$app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
+$app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
 
 //emprunts et retour
 $app->get('/', ControllerStaff::class.':pageEmprunt')->setName('home');
