@@ -41,45 +41,24 @@ class ControllerStaff extends Controller {
 			if ($btn == "Emprunter"){
 				$this->emprunt($response, $media, $reference, $idAdherent);
 			}elseif($btn == "Retourner"){
-				$this->retour($response, $media);
+				$this->retour($response, $media, $idAdherent);
 			}
 		}
     	}
 
 	//Gère le retour
-	public function retour($response, $media){
-		if(($media->disponible) == 1){
+	public function retour($response, $media, $idAdherent){
+		$emprunt = Emprunt::where("document_id", "=", $media->id)->first();
+		if($emprunt == null){
 			echo "ce média n'a pas été emprunté";
+		}elseif($emprunt->user_id != $idAdherent){
+			echo "cet usager n'a pas réservé ce média";
 		}else{
-			$emprunt = Emprunt::where("document_id", "=", $media->id);
 			$emprunt->delete();
 			$media->disponible = 1;
 			$media->save();
 			return Utils::redirect($response, 'home');
 		}
-		//vérifie si la référence et l'adhérent existent
-		$adherent = User::find($idAdherent)->first();
-		$media = Document::where('reference',$reference)->first();
-		if($adherent == null){
-			echo "cet adhérent n'existe pas";
-		}elseif($media == null){
-			echo "ce média n'existe pas";
-		//check la disponibilité du média
-		}elseif(($media->disponible) == 1){
-			echo "ce média n'est pas disponible";
-		}else{
-			//insertion du nouvel emprunt dans la bdd
-			$emprunt = new Emprunt();
-			$emprunt->document_id = $reference;
-			$emprunt->user_id = $idAdherent;
-			$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
-			$emprunt->date_limite = date('Y/d/m h:i:s',time());
-			$emprunt->date_retour = date('Y/d/m h:i:s',time());
-			$emprunt->save();
-			//changement de la disponibilité du média
-			$media->disponible = 1;
-			$media->save();
-			return Utils::redirect($response, 'home');
 	}
 
 	//gère l'emprunt
@@ -91,7 +70,7 @@ class ControllerStaff extends Controller {
 			//insertion du nouvel emprunt dans la bdd
 			$emprunt = new Emprunt;
 			$emprunt->document_id = $reference;
-			$emprunt->id_user = $idAdherent;
+			$emprunt->user_id = $idAdherent;
 			$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
 			$emprunt->date_limite = date('Y/d/m h:i:s',time());
 			$emprunt->date_retour = date('Y/d/m h:i:s',time());
