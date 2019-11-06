@@ -34,21 +34,23 @@ class ControllerStaff extends Controller {
 		//vérifie si la référence et l'adhérent existent
 		$adherent = User::find($idAdherent);
 		$media = Document::find($reference);
+		$ok = 0;
 		if($adherent == null){
 			echo "cet adhérent n'existe pas";
 		}elseif($media == null){
 			echo "ce média n'existe pas";
 		}else{
 			if ($btn == "Emprunter"){
-				$this->emprunt($response, $media, $reference, $idAdherent);
+				$ok = $this->emprunt($media, $reference, $idAdherent);
 			}elseif($btn == "Retourner"){
-				$this->retour($response, $media, $idAdherent);
+				$ok = $this->retour($media, $idAdherent);
 			}
 		}
+		if($ok == 1){return Utils::redirect($response, 'home');}
     	}
 
 	//Gère le retour
-	public function retour($response, $media, $idAdherent){
+	public function retour($media, $idAdherent){
 		$emprunt = Emprunt::where("document_id", "=", $media->id)->first();
 		if($emprunt == null){
 			echo "ce média n'a pas été emprunté";
@@ -58,13 +60,12 @@ class ControllerStaff extends Controller {
 			$emprunt->delete();
 			$media->disponible = 1;
 			$media->save();
-			return Utils::redirect($response, 'home');
+			return 1;
 		}
 	}
-}
 
 	//gère l'emprunt
-	public function emprunt($response, $media, $reference, $idAdherent){
+	public function emprunt($media, $reference, $idAdherent){
 		//check la disponibilité du média
 		if(($media->disponible) == 0){
 			echo "ce média n'est pas dispo";
@@ -80,7 +81,7 @@ class ControllerStaff extends Controller {
 			//changement de la disponibilité du média
 			$media->disponible = 0;
 			$media->save();
-			return Utils::redirect($response, 'home');
+			return 1;
 		}
 	}
 }
