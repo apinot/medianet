@@ -25,7 +25,7 @@ class ControllerDocument extends Controller {
             case CD::class:
             $twigUrl  = 'documents/cd.html.twig';
             break;
-            case CD::class:
+            case DVD::class:
             $twigUrl = 'documents/dvd.html.twig';
             break;
         }
@@ -39,13 +39,18 @@ class ControllerDocument extends Controller {
     
     public function filter($request, $response, $args)
     {
-        $mot_clef = Utils::getFilteredGet($request, 'keyword');
-        $type = Utils::getFilteredGet($request, 'doctype');
-        $genre = Utils::getFilteredGet($request, 'kind');
+        $queries = [];
+        $queries['motcle'] = Utils::getFilteredGet($request, 'keyword');
+        $queries['type'] = Utils::getFilteredGet($request, 'doctype');
+        $queries['genre'] = Utils::getFilteredGet($request, 'kind');
 
-        $req = Document::where(function ($query) use ($mot_clef) {
-            $query->where('nom', 'like', '%'.$mot_clef.'%')
-            ->orWhere('resume', 'like', '%'.$mot_clef.'%');
+        $motcle = $queries['motcle'];
+        $genre = $queries['genre'];
+        $type = $queries['type'];
+
+        $req = Document::where(function ($query) use ($motcle) {
+            $query->where('nom', 'like', '%'.$motcle.'%')
+            ->orWhere('resume', 'like', '%'.$motcle.'%');
         });
         
         if($genre !== null && $genre != "") {
@@ -58,6 +63,6 @@ class ControllerDocument extends Controller {
         
         $medias = $req->get();
         
-        return $this->view->render($response, 'index.html.twig', ['medias' => $medias]);
+        return $this->view->render($response, 'index.html.twig', ['medias' => $medias, 'query' => $queries]);
     }
 }

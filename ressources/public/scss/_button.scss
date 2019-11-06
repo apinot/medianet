@@ -1,0 +1,5 @@
+@import "mixins/_button";
+
+.btn {
+    @include button();
+}
