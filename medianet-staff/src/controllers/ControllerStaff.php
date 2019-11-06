@@ -25,30 +25,16 @@ class ControllerStaff extends Controller {
 	//page récapitulative des emprunts
 	public function pageRecap(Request $request, Response $response, $args) {
 		$emprunts = Emprunt::all();
-		$this->showData($response, $emprunts);
+		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
 
 	//permet d'entrer un id d'un utilisateur 
 	public function recapUser(Request $request, Response $response, $args){
 		$idUser = Utils::getFilteredPost($request, 'idUser');
 		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
-		$this->showData($response, $emprunts);
+		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
 	
-	//montre les emprunts
-	public function showData(Response $response, $emprunts){
-		foreach($emprunts as $emprunt){
-			echo "Référence: ".$emprunt->document_id.
-				" adhérent n°".$emprunt->user_id.
-				" date d'emprunt: ".$emprunt->date_emprunt.
-				" date limite: ".$emprunt->date_emprunt.
-				" date de retour: ".$emprunt->date_emprunt.
-				"<br>";
-		}
-		return $this->render($response, 'recap.html.twig');
-	}
-
-
 	//check les champs
 	public function which(Request $request, Response $response, $args) {    
 		//fuseau horaire 

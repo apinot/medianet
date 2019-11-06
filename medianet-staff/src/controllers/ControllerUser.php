@@ -47,14 +47,20 @@ class ControllerUser extends Controller {
             Flash::flashError("Confirmation incorrect");
             return Utils::redirect($response, 'ajout_membre');
         }
-        $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
-        $new_user = new User();
-        $new_user->nom = $nom;
-        $new_user->prenom = $prenom;
-        $new_user->adresse = $adresse;
-        $new_user->email = $email;
-        $new_user->mdp= $hashed_pass;
-        $new_user->telephone = $telephone;
+        if(Auth::verifEmail($email)){
+            $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
+            $new_user = new User();
+            $new_user->nom = $nom;
+            $new_user->prenom = $prenom;
+            $new_user->adresse = $adresse;
+            $new_user->email = $email;
+            $new_user->mdp= $hashed_pass;
+            $new_user->telephone = $telephone;
+        }else{
+            Flash::flashError("Email deja utilisé");
+            return Utils::redirect($response, 'ajout_membre');
+        }
+
 
         $new_user->save();
 
