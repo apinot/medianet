@@ -2,31 +2,40 @@
 
 {% block content %}
 	<form method="POST" action="{{ path_for('execUpdateUser',{id:user.id}) }}">
-		<div>
-			<img src="" id="tete">
-		</div>
-		<div>
-			<label for="Nom">Nom</label>
-			<input type="text" name="nom" type='text' value="{{ user.nom }}">
-		</div>
-		<div>
-			<label for="prenom">Prenom</label>
-			<input type="text" name="prenom" type='text' value="{{ user.prenom }}">
-		</div>
-		<div>
-			<label for="adresse">Adresse</label>
-			<input type="text" name="adresse" type='text' value="{{ user.adresse }}">
-		</div>
-		<div>
-			<label for="email">email</label>
-			<input type="email" name="email" type='text' value="{{ user.email }}">
-		</div>
-		<div>
-			<label for="telephone">Téléphone</label>
-			<input type="text" name="telephone" type='text' value="{{ user.telephone }}">
-		</div>
-		<div>
-			<input class="btn" type="submit" value="Valider">
+		<div class="formular">
+			<div>
+				<img src="" id="tete">
+			</div>
+			<div>
+				<label for="Nom">Nom</label>
+				<input type="text" name="nom" type='text' value="{{ user.nom }}">
+			</div>
+			<div>
+				<label for="prenom">Prenom</label>
+				<input type="text" name="prenom" type='text' value="{{ user.prenom }}">
+			</div>
+			<div>
+				<label for="adresse">Adresse</label>
+				<input type="text" name="adresse" type='text' value="{{ user.adresse }}">
+			</div>
+			<div>
+				<label for="email">email</label>
+				<input type="email" name="email" type='text' value="{{ user.email }}">
+			</div>
+			<div>
+				<label for="telephone">Téléphone</label>
+				<input type="text" name="telephone" type='text' value="{{ user.telephone }}">
+			</div>
+
+			<div>
+				<label>Photo</label>
+				<input id="iptPhoto" type="file" name='photo'>
+			</div>
+
+
+			<div>
+				<input class="btn" type="submit" value="Valider">
+			</div>
 		</div>
 	</form>
 {% endblock %}

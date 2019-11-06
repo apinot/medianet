@@ -4,6 +4,7 @@ namespace medianet\controllers;
 
 use Cassandra\Date;
 use Cassandra\Timestamp;
+use http\Params;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
@@ -47,28 +48,39 @@ class ControllerUser extends Controller {
             Flash::flashError("Confirmation incorrect");
             return Utils::redirect($response, 'ajout_membre');
         }
-        $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
-        $new_user = new User();
-        $new_user->nom = $nom;
-        $new_user->prenom = $prenom;
-        $new_user->adresse = $adresse;
-        $new_user->email = $email;
-        $new_user->mdp= $hashed_pass;
-        $new_user->telephone = $telephone;
+        if(Auth::verifEmail($email)){
+            $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
+            $new_user = new User();
+            $new_user->nom = $nom;
+            $new_user->prenom = $prenom;
+            $new_user->adresse = $adresse;
+            $new_user->email = $email;
+            $new_user->mdp= $hashed_pass;
+            $new_user->telephone = $telephone;
+
+        }else{
+            Flash::flashError("Email deja utilisé");
+            return Utils::redirect($response, 'ajout_membre');
+        }
+
 
         $new_user->save();
 
         return Utils::redirect($response,'membres');
     }
 
-
     public function delete(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
-        $user->delete();
-		return Utils::redirect($response,'membres');
+        if ($user->emprunts()->first() == null) {
+            $user->delete();
+            Flash::flashSuccess("Le compte a bien été supprimer");
+            return Utils::redirect($response, 'membres');
+        } else {
+            Flash::flashError("Il reste encore des medias empruntés");
+            return Utils::redirect($response, 'membres');
+        }
     }
-
     public function detailsMembers(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));

@@ -148,6 +148,7 @@ CREATE TABLE `users` (
   `mdp` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `adresse` varchar(255) NOT NULL,
+  `photo` varchar(255) DEFAULT NULL,
   `adhesion` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
@@ -159,9 +160,9 @@ CREATE TABLE `users` (
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
-(1, 'felix', 'leo', '$2y$10$nJYOe3fSP4XfoCx1EbG8u.hqoOPBYv9HKc82wJgAtBaDHKcL3nC8e', 'leofelix@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 14:49:04', NULL, '44466'),
-(2, 'test', 'test', '$2y$10$Ar5pJ880sAA6B4Ud/nAeduh8ZbVXbek.gJxUw4wA7531aeokSVeMC', 'test@gmail.com', 'test', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 14:21:48', NULL, '0');
+INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `photo`,`adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
+(1, 'felix', 'leo', '$2y$10$nJYOe3fSP4XfoCx1EbG8u.hqoOPBYv9HKc82wJgAtBaDHKcL3nC8e', 'leofelix@gmail.com', '2 B rue capucins','zinzin', NULL, '2019-11-05 09:17:00', '2019-11-05 14:49:04', NULL, '44466'),
+(2, 'test', 'test', '$2y$10$ETMqipzJc0bojpj8cHzqqOiD8JlcttOPPoK6bct2YDyuimzMRI2te', 'test@gmail.com', 'test','zinzin', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 14:21:48', NULL, '0');
 
 --
 -- Index pour les tables exportées
