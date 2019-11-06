@@ -19,7 +19,8 @@ class ControllerStaff extends Controller {
         return $this->render($response, 'emprunt.html.twig');
     }
     
-    public function checkEmprunt(Request $request, Response $response, $args) {
+    public function checkEmprunt(Request $request, Response $response, $args) {    
+	$timezone = date_default_timezone_set('France');
 	$reference = Utils::getFilteredPost($request, 'reference');
 	$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
 	if(($reference == null)||($idAdherent == null)){
@@ -35,6 +36,14 @@ class ControllerStaff extends Controller {
 		echo "ce média n'existe pas";
 	}
 	else{
+		//insertion du nouvel emprunt dans la bdd
+		$emprunt = new Emprunt;
+		$emprunt->document_id = $reference;
+		$emprunt->user_id = $idAdherent;
+		$emprunt->date_emprunt = date('m/d/Y',timezone());
+		$emprunt->date_limite = date('m/d/Y',timezone());
+		$emprunt->date_retour = date('m/d/Y',timezone());
+		$emprunt->save();
         	return Utils::redirect($response, 'home');
 	}
     }
