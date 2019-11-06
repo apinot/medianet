@@ -1,0 +1,5 @@
+@import "mixins/_table";
+
+td {
+    @include table();
+}
