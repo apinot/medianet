@@ -1,0 +1,15 @@
+@import 'mixins/flash';
+
+.success{
+    @include success();       
+}
+.info{
+    @include info();       
+}
+.danger{
+    @include danger();       
+}
+.warning{
+    @include warning();       
+}
+
