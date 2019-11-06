@@ -12,4 +12,8 @@ class Livre extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['auteur', 'edition'];
     public $timestamps = true;
+
+    public function document() {
+        return $this->morphOne(Document::class, 'documentable');
+    }
 }
