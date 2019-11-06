@@ -1,8 +1,6 @@
 <div class="research">
-    <form action="{{path_for('filter')}}" method="get">
-        <label>Mot-clef</label>
+    <form class="rsh" action="{{path_for('filter')}}" method="get">
         <input name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">
-        <label>Genre</label>
         <input type="text" name="kind" value="{{query['genre']}}" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
         <select name="doctype" id="type">
             {% if query['type'] == 'cd' %}

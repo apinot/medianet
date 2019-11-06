@@ -129,6 +129,7 @@ nav .nav-items-group .nav-item .nav-link {
 .research > form {
   margin: 2%;
   display: flex;
+
   flex-direction: column;
 }
 @media (min-width: 60em) {
@@ -137,6 +138,7 @@ nav .nav-items-group .nav-item .nav-link {
     flex-direction: row;
   }
 }
+
 
 .success {
   flex-grow: 1;
