@@ -69,20 +69,18 @@ class ControllerUser extends Controller {
         return Utils::redirect($response,'membres');
     }
 
-
     public function delete(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
-        if ($user->emprunts()->first() == null){
+        if ($user->emprunts()->first() == null) {
             $user->delete();
             Flash::flashSuccess("Le compte a bien été supprimer");
-            return Utils::redirect($response,'membres');
-        }else{
+            return Utils::redirect($response, 'membres');
+        } else {
             Flash::flashError("Il reste encore des medias empruntés");
-            return Utils::redirect($response,'membres');
+            return Utils::redirect($response, 'membres');
         }
     }
-
     public function detailsMembers(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $user = User::find(intval($id));
