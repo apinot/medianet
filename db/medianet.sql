@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `cds`
 --
-
+DROP TABLE IF EXISTS `cds`;
 CREATE TABLE `cds` (
   `id` int(11) NOT NULL,
   `artistes` varchar(255) NOT NULL,
@@ -45,7 +45,7 @@ INSERT INTO `cds` (`id`, `artistes`, `maison_disque`) VALUES
 --
 -- Structure de la table `documents`
 --
-
+DROP TABLE IF EXISTS `documents` ;
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
   `reference` varchar(256) DEFAULT NULL,
@@ -77,7 +77,7 @@ INSERT INTO `documents` (`id`, `reference`, `documentable_id`, `documentable_typ
 --
 -- Structure de la table `dvds`
 --
-
+DROP TABLE IF EXISTS `dvds` ;
 CREATE TABLE `dvds` (
   `id` int(11) NOT NULL,
   `acteurs` varchar(255) NOT NULL,
@@ -97,7 +97,7 @@ INSERT INTO `dvds` (`id`, `acteurs`, `duree`) VALUES
 --
 -- Structure de la table `emprunts`
 --
-
+DROP TABLE IF EXISTS `emprunts`;
 CREATE TABLE `emprunts` (
   `id` int(11) NOT NULL,
   `document_id` int(11) NOT NULL,
@@ -120,7 +120,7 @@ INSERT INTO `emprunts` (`id`, `document_id`, `date_emprunt`, `date_limite`, `dat
 --
 -- Structure de la table `livres`
 --
-
+DROP TABLE IF EXISTS `livres`;
 CREATE TABLE `livres` (
   `id` int(11) NOT NULL,
   `auteur` varchar(255) NOT NULL,
@@ -140,7 +140,7 @@ INSERT INTO `livres` (`id`, `auteur`, `edition`) VALUES
 --
 -- Structure de la table `users`
 --
-
+DROP TABLE IF EXISTS `users`;
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
