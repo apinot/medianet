@@ -3,15 +3,24 @@
 {% block content %}
     <a href="{{ path_for('ajout_membre') }}" class="btn">Ajouter un membre</a>
 
+
+        <div class="profil">
     {% for user in users %}
-    <div>
-        {{user.nom}}
-        {{user.prenom}}
-        {{user.email}}
-        {{user.adresse}}
-        {{user.adhesion}}
-        <a href="{{ path_for('details_membre',{id:user.id}) }}" class="btn">détails</a>
-        {% endfor %}
-    </div>
+            <div class="profil-card">
+                <h2 class="profil-card-title">Informations</h2>
+                <hr>
+                {# <img src="" id="tete" alt="photo"> #}
+                <p>{{ user.nom }} {{ user.prenom }}</p>
+                <p>{{ user.email }}</p>
+                <p>{{ user.adresse }}</p>
+                <p>{{ user.telephone }}</p>
+                <a href="{{ path_for('details_membre',{id:user.id}) }}" class="btn">détails</a>
+            </div>
+    {% endfor %}
+        </div>
+
+
+
+
 
 {% endblock %}
