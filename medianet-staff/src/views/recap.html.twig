@@ -1,0 +1,9 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+<h2>Récapitulatif des emprunts</h2>
+<form action="{{ path_for('byUser') }}" method="post">
+	<input type="text" name="idUser">
+	<input type="submit" value="Rechercher">
+</form>
+{% endblock %}
