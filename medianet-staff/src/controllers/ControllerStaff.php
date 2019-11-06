@@ -21,7 +21,17 @@ class ControllerStaff extends Controller {
 	}
 
 	public function pageRecap(Request $request, Response $response, $args) {
+		$emprunts = Emprunt::all();
+		foreach($emprunts as $emprunt){
+			echo "Référence: ".$emprunt->document_id.
+				" adhérent n°".$emprunt->user_id.
+				" date d'emprunt: ".$emprunt->date_emprunt.
+				" date limite: ".$emprunt->date_emprunt.
+				" date de retour: ".$emprunt->date_emprunt.
+				"<br>";
+		}
 		return $this->render($response, 'recap.html.twig');
+
 	}
 
 
