@@ -1,0 +1,78 @@
+$media-medium-size:30em !default;
+
+@mixin profil_container ($querie-medium: $media-medium-size){
+    box-sizing: border-box;
+    display: grid;
+    margin: 1em;
+    row-gap: 1em;
+    grid-template-columns: repeat(1, 1fr);
+}
+
+@mixin profil_group_style() {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0.5em;
+    border: lightgray solid 1px;
+    box-shadow: 3px 3px 3px grey;
+}
+
+@mixin profil_group_title() {
+    box-sizing: border-box;
+    font-size: 1.5em;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    font-weight: bold;
+}
+
+@mixin profil_card_separator($size: 100%) {
+    border-color: lightgrey;    
+    border-style: solid;
+    width: $size;
+    margin-top: 0.4em;
+    margin-bottom: 0.8em;
+}
+
+@mixin profil_card() {
+    @include profil_group_style();
+}
+
+@mixin profil_list() {
+    @include profil_group_style();
+
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: stretch;
+}
+
+@mixin profil_document_list() {
+    list-style-type: none;
+    padding: 0;
+    box-sizing: border-box;
+    margin: 0;
+}
+
+@mixin profil_document_list_item() {
+    padding: 0.5em;
+    border-bottom: lightgray solid 1px;
+
+    &:last-of-type {
+        border-bottom-color: transparent;
+    }
+}
+
+@mixin profil_document_title() {
+    font-weight: bold;
+    font-size: 1.2em;
+    padding-bottom: 0.5em;
+}
+
+@mixin profil_document_action() {
+    margin-top: 0.5em;
+    text-align: center;
+}

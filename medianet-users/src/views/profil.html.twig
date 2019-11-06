@@ -1,26 +1,38 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-	<div>
-		<h2>Informations</h2>
-		<img src="" id="tete" alt="photo">
-	</div>
+<div class="profil">
+	<div class="profil-card">
+		<h2 class="profil-card-title">Informations</h2>
+		<hr>
+		{# <img src="" id="tete" alt="photo"> #}
 		<p>{{ user.nom }} {{ user.prenom }}</p>
 		<p>{{ user.email }}</p>
 		<p>{{ user.adresse }}</p>
 		<p>{{ user.telephone }}</p>
-	<div>
+	</div>
+	<div class="profil-card">
+		<h2 class="profil-card-title">Gestions</h2>
+		<hr>
 		<a class="btn" href="{{ path_for('formUpdateUser') }}"> Modifier mes données personnels </a>
 		<br>
 		<a class="btn" href="{{ path_for('updatePwd') }}"> Changer de mot de passe </a>
 	</div>
-	<div>
-		<h2>Mes Emprunts</h2>
-		<div class="card-deck">
-		{% for emprunt in user.emprunts %}
-			{% set media = emprunt.document %}
-			{% include "_card.html.twig" %}
-		{% endfor %}
-		</div>
+	<div class="profil-list">
+		<h2 class="profil-card-title">Mes Emprunts</h2>
+		<hr>
+		<ul class="profil-document-list">
+			{% for emprunt in user.emprunts %}
+			<li class="document-item">
+				<div class="document-title">{{emprunt.document.type()}} : {{emprunt.document.nom}}</div>
+				<div class="document-date">Emprunté le : {{emprunt.date_emprunt}}</div>
+				<div class="document-date">A rendre avant : {{emprunt.date_limite}}</div>
+				<div class="document-action">
+					<a class="btn" href="{{ path_for('showDocument', {id: emprunt.document.id}) }}"> Voir le document</a>
+				</div>
+			</li>
+			{% endfor %}
+		</ul>
 	</div>
+</div>
 {% endblock %}

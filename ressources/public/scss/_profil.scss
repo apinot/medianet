@@ -1,0 +1,37 @@
+@import 'mixins/profil';
+
+.profil {
+    @include profil_container($media-medium-size);
+
+    .profil-card-title {
+        @include profil_group_title();
+    }
+
+    hr {
+        @include profil_card_separator(10em);
+    }
+
+    .profil-card {
+        @include profil_card();
+    }
+
+    .profil-list {
+        @include profil_list();
+
+        .profil-document-list {
+            @include profil_document_list();
+
+            .document-item {
+                @include profil_document_list_item();
+
+                .document-title {
+                    @include profil_document_title();
+                }
+
+                .document-action {
+                    @include profil_document_action();
+                }
+            }
+        }
+    }
+}
