@@ -12,13 +12,11 @@
       &>.card-title{
         @include card_title();
       }
-      &>.card-content{
-        &>.card-resume{
-          @include card_resume();
-        }
-        &>.card-items{
-          @include card_items();
-        }
+      &>.card-item{
+        @include card_items();
+      }
+      &>.card-bottom{
+         @include card_bottom();
       }
     }
   }
