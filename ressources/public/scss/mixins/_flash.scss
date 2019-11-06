@@ -1,0 +1,51 @@
+@mixin success(){
+    flex-grow: 1;
+    background-color: #D6F2D5;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    border-radius: 8px;
+    color : #0B8C43;
+    margin: 1%;
+    border: solid rgb(160, 243, 157) 0.2px;
+}
+
+@mixin danger(){
+    flex-grow: 1;
+    background-color: #F2D8DC;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    border-radius: 8px;
+    color : #A62648;
+    margin: 1%;
+    border: solid rgb(231, 136, 157) 0.2px;
+}
+
+
+@mixin warning(){
+    flex-grow: 1;
+    background-color: #F2F2DC;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    border-radius: 8px;
+    color : #907643;
+    margin: 1%;
+    border: solid rgb(235, 235, 157)
+}
+
+
+@mixin info(){
+    flex-grow: 1;
+    background-color: #D6ECF6;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    padding-left: 2%;
+    border-radius: 8px;
+    color : #3F7592;
+    margin: 1%;
+    border: solid rgb(129, 196, 157) 0.2px;
+}
+
+
