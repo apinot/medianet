@@ -19,7 +19,7 @@ class ControllerStaff extends Controller {
 
 	//page d'emprunt
 	public function pageEmprunt(Request $request, Response $response, $args) {
-		return $this->render($response, 'emprunt.html.twig');
+		return $this->render($response, 'accueil.html.twig');
 	}
 
 	//page récapitulative des emprunts
