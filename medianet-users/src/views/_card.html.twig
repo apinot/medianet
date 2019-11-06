@@ -6,87 +6,21 @@
     {% endif %}
 
     <div class="card-body">
-        {% if media.resume  is not null %}
-            <div class="card-title">
-                {{media.nom}}
+        <div class="card-title">
+            {{ media.type }} {{media.nom}}
+        </div>
+        <hr>
+        <div class="card-content">
+            <div class="card-items">
+                <p>Genre : {{media.genre }}</p>
+            </div> 
+            <div class="card-items">
+                {% if media.disponible == 0 %}
+                     Non disponible
+                {% else %}
+                    Disponible
+                {% endif %}
             </div>
-            <hr>
-            <div class="card-content">
-                <div class="card-items">
-                    <p>Genre : {{media.genre }}</p>
-                </div>
-                
-                <div class="card-items">
-                    {% if media.disponible == 0 %}
-                        Non disponible
-                    {% else %}
-                        Disponible
-                    {% endif %}
-                </div>
-            </div>
-        {% endif %}
-        {% if media.artistes  is not null %}
-            <div class="card-title">
-                Titre de l'album
-            </div>
-            <div class="card-content">
-                <div class="card-items">
-                    <p>Artiste : {{ media.artistes }}</p>
-                </div>
-                <div class="card-items">
-                    <p>Maison de disque : {{media.maison_disque }}</p>
-                </div>
-
-                <div class="card-items">
-                    {% if media.disponible == 0 %}
-                        Non disponible
-                    {% else %}
-                        Disponible
-                    {% endif %}
-                </div>
-            </div>
-        {% endif %}
-        {% if media.acteurs  is not null %}
-            <div class="card-title">
-                Titre du DVD
-            </div>
-            <div class="card-content">
-                <div class="card-items">
-                    <p>Acteurs : {{ media.acteurs }}</p>
-                </div>
-                <div class="card-items">
-                    <p>Durée du DVD : {{media.duree }}</p>
-                </div>
-
-                <div class="card-items">
-                    {% if media.disponible == 0 %}
-                        Non disponible
-                    {% else %}
-                        Disponible
-                    {% endif %}
-                </div>
-            </div>
-        {% endif %}
-        {% if media.auteur  is not null %}
-            <div class="card-title">
-                Titre de l'album
-            </div>
-            <div class="card-content">
-                <div class="card-items">
-                    <p>Auteur : {{ media.auteur }}</p>
-                </div>
-                <div class="card-items">
-                    <p>Maison d'edition : {{media.edition }}</p>
-                </div>
-
-                <div class="card-items">
-                    {% if media.disponible == 0 %}
-                        Non disponible
-                    {% else %}
-                        Disponible
-                    {% endif %}
-                </div>
-            </div>
-        {% endif %}
+        </div>
     </div>
 </div>
