@@ -1,8 +1,9 @@
 <?php
 
-use Slim\Http\Environment;
-use Slim\Http\Uri;
+use \Slim\Http\Environment;
+use \Slim\Http\Uri;
 use \Slim\Views\Twig;
+use \medianet\controllers\Flash;
 
 use Slim\Views\TwigExtension;
 
