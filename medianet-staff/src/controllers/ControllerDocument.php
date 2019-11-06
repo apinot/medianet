@@ -27,6 +27,12 @@ class ControllerDocument extends Controller {
 
     }
 
+    public function delete(Request $request, Response $response,$args){
+        $id = Utils::sanitize($args['id']);
+        $document = Document::find(intval($id))->delete();
+        return Utils::redirect($response,'listdoc');
+    }
+
     public function verif(Request $request, Response $response,$args)
     {
         $id = Utils::sanitize($args['id']);
@@ -49,9 +55,23 @@ class ControllerDocument extends Controller {
                 $document->save();
                 return Utils::redirect($response,'listdoc');
                 break;
+            case 'medianet\models\DVD':
+                $media = DVD::find($document->documentable_id)->first();
+                $media->acteurs=Utils::getFilteredPost($request,'acteurs');
+                $media->duree=Utils::getFilteredPost($request,'duree');
+                $media->save();
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
+            case 'medianet\models\Livre':
+                $media = Livre::find($document->documentable_id)->first();
+                $media->auteur=Utils::getFilteredPost($request,'auteur');
+                $media->edition=Utils::getFilteredPost($request,'edition');
+                $media->save();
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
         }
-
-
 
         return $this->view->render($response, 'editDocument.html.twig', ['document' => $document]);
 
