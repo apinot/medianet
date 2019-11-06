@@ -1,22 +1,25 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-	<h2>Changer de mot de passe</h2>
+	
 	<form method="POST" action="{{ path_for('lookPwd') }}">
-		<div>
-			<label for="oldMdp">Ancien mot de passe</label>
-			<input name="oldMdp" type='password' required>
-		</div>
-		<div>
-			<label for="newMdp">Nouveau mot de passe</label>
-			<input name="newMdp" type='password' required>
-		</div>
-		<div>
-			<label for="confirmMdp">Confirmez ce mot de passe</label>
-			<input name="confirmMdp" type='password' required>
-		</div>
-		<div>
-			<input class="btn" type="submit" value="Valider">
+		<div class="formular"> 
+			<h2>Changer de mot de passe</h2>
+			<div>
+				<label for="oldMdp">Ancien mot de passe</label>
+				<input name="oldMdp" type='password' required>
+			</div>
+			<div>
+				<label for="newMdp">Nouveau mot de passe</label>
+				<input name="newMdp" type='password' required>
+			</div>
+			<div>
+				<label for="confirmMdp">Confirmez ce mot de passe</label>
+				<input name="confirmMdp" type='password' required>
+			</div>
+			<div>
+				<input class="btn" type="submit" value="Valider">
+			</div>
 		</div>
 	</form>
 {% endblock %}
