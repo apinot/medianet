@@ -1,7 +1,7 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-
+    <a href="{{ path_for('ajout_membre') }}" class="btn">Ajouter un membre</a>
 
     {% for user in users %}
     <div>
@@ -10,7 +10,7 @@
         {{user.email}}
         {{user.adresse}}
         {{user.adhesion}}
-        <a href="{{ path_for('details_membre',{id:user.id}) }}" class="btn" name="id" value="{{ user.id }}">détails</a>    
+        <a href="{{ path_for('details_membre',{id:user.id}) }}" class="btn">détails</a>
         {% endfor %}
     </div>
 
