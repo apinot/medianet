@@ -8,7 +8,7 @@
     }
 
     hr {
-        @include profil_card_separator(10em);
+        @include profil_card_separator();
     }
 
     .profil-card {
@@ -26,6 +26,10 @@
 
                 .document-title {
                     @include profil_document_title();
+                }
+
+                .document-content {
+                    @include profil_document_content($media-large-size, $media-medium-size);
                 }
 
                 .document-action {
