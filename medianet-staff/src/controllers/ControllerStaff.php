@@ -7,6 +7,7 @@ use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 use medianet\models\User;
 use medianet\models\Document;
+use medianet\models\Emprunt;
 
 
 class ControllerStaff extends Controller {
@@ -39,10 +40,10 @@ class ControllerStaff extends Controller {
 		//insertion du nouvel emprunt dans la bdd
 		$emprunt = new Emprunt;
 		$emprunt->document_id = $reference;
-		$emprunt->user_id = $idAdherent;
-		$emprunt->date_emprunt = date('m/d/Y',timezone());
-		$emprunt->date_limite = date('m/d/Y',timezone());
-		$emprunt->date_retour = date('m/d/Y',timezone());
+		$emprunt->id_user = $idAdherent;
+		$emprunt->date_emprunt = date('Y/d/m h:i:s',time());
+		$emprunt->date_limite = date('Y/d/m h:i:s',time());
+		$emprunt->date_retour = date('Y/d/m h:i:s',time());
 		$emprunt->save();
         	return Utils::redirect($response, 'home');
 	}
