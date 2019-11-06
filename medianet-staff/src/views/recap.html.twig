@@ -18,9 +18,9 @@
 		<tr>
 			<td>{{ emprunt['document_id'] }}</td> 
 			<td>{{ emprunt['user_id'] }}</td>
-			<td>{{ emprunt['date_emprunt'] }}</td> 
-			<td>{{ emprunt['date_limite'] }}</td> 
-			<td>{{ emprunt['date_retour'] }}</td> 
+			<td>{{ emprunt['date_emprunt']|date('m/d/Y') }}</td> 
+			<td>{{ emprunt['date_limite']|date('m/d/Y')}}</td> 
+			<td>{{ emprunt['date_retour']|date('m/d/Y') }}</td> 
 		</tr>
 	{% endfor %}
 	</table>
