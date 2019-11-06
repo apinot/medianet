@@ -31,7 +31,7 @@ nav .nav-items-group {
   align-items: stretch;
   text-align: left;
 }
-@media (min-width: 70em) {
+@media (min-width: 30em) {
   nav .nav-items-group {
     flex-direction: row;
   }
@@ -56,7 +56,7 @@ nav .nav-items-group .nav-item .nav-link {
   height: 100%;
   text-align: center;
 }
-@media (min-width: 70em) {
+@media (min-width: 30em) {
   nav .nav-items-group .nav-item .nav-link {
     padding-left: 1rem;
     padding-right: 1rem;
@@ -66,20 +66,20 @@ nav .nav-items-group .nav-item .nav-link {
 
 .card-deck {
   margin-top: 2%;
-  display: flex;
-  flex-direction: column;
-  grid-template-columns: none;
+  display: grid;
+  grid-template-columns: repeat(1, 1fr);
+  column-gap: 1em;
+  margin-left: 1em;
+  margin-right: 1em;
 }
-@media (min-width: 70em) {
+@media (min-width: 30em) {
   .card-deck {
-    display: grid;
-    grid-template-columns: 25% 25% 25% 25%;
+    grid-template-columns: repeat(2, 1fr);
   }
 }
-@media (min-width: 50em) and (max-width: 70em) {
+@media (min-width: 60em) {
   .card-deck {
-    display: grid;
-    grid-template-columns: 50% 50%;
+    grid-template-columns: repeat(4, 1fr);
   }
 }
 .card-deck > .card {
@@ -89,7 +89,7 @@ nav .nav-items-group .nav-item .nav-link {
   margin-left: 1%;
   margin-bottom: 4%;
 }
-@media (min-width: 70em) {
+@media (min-width: 60em) {
   .card-deck > .card {
     min-height: 400px;
     margin-left: 3%;
@@ -106,7 +106,7 @@ nav .nav-items-group .nav-item .nav-link {
   max-height: 200px;
   overflow: scroll;
 }
-@media (min-width: 50em) and (max-width: 70em) {
+@media (min-width: 30em) and (max-width: 60em) {
   .card-deck > .card > .card-body {
     margin: 5%;
     overflow: unset;
@@ -134,7 +134,7 @@ nav .nav-items-group .nav-item .nav-link {
   display: flex;
   flex-direction: column;
 }
-@media (min-width: 70em) {
+@media (min-width: 60em) {
   .research > form {
     display: flex;
     flex-direction: row;

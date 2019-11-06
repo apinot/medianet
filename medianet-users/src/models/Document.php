@@ -10,12 +10,17 @@ class Document extends Model
     protected $primaryKey = 'id';
     protected $fillable = ['nom', 'resumer', 'genre','disponible'];
     public $timestamps = true;
-
+    
     public function documentable() {
         return $this->morphTo();
     }
-
+    
     public function emprunt(){
-		return $this->belongsTo(Emprunt::class);
+        return $this->belongsTo(Emprunt::class);
+    }
+
+    public function type() {
+        $array = explode('\\', $this->documentable_type);
+        return $array[count($array) - 1];
     }
 }
