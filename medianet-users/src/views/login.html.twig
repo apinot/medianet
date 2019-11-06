@@ -1,18 +1,20 @@
 {% extends "base.html.twig" %}
 
 {% block content %}
-    <h2>Connection</h2>
-    <form method="POST" action="{{ path_for('execConnexion') }}">
+<form method="POST" action="{{ path_for('execConnexion') }}">
+    <div class="formular">
+        <h2>Connexion</h2>
         <div>
-            <label for="email">Email</label>
+            <label for="email">Email:</label>
             <input id="email" type="text" name="email">
         </div>
         <div>
-            <label for="password">Password</label>
+            <label for="password">Password:</label>
             <input id="password" type="password" name="password">
         </div>
         <div>
-            <input btn="btn" type="submit" value="Connexion">
+            <input class="btn" type="submit" value="Connexion">
         </div>
-    </form>
+    </div>
+</form>
 {% endblock %}
