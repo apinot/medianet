@@ -2,7 +2,6 @@
 require_once('../../vendor/autoload.php');
 
 //controllers
-use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerStaff;
 
 //database connection with Eloquent
@@ -21,7 +20,7 @@ $app = new \Slim\App($container);
 $app->get('/', ControllerStaff::class.':accueil')->setName('home');
 
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
-$app->post('/emprunt', ControllerStaff::class.':checkEmprunt')->setName('checkEmprunt');
+$app->post('/emprunt', ControllerStaff::class.':checkEmprunt')->setName('lookEmprunt');
 
 $app->run();
 

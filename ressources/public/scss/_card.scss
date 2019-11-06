@@ -1,4 +1,4 @@
-@import "mixins/card";
+@import "mixins/_card";
 
 .card-deck{
   @include card_deck($media-large-size,$media-medium-size);

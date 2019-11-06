@@ -1,13 +1,33 @@
 <div class="research">
     <form action="{{path_for('filter')}}" method="get">
-        <input name="keyword" type="text" placeholder="Veuillez entrer un mot clef " autocomplete="off">
-        <input type="text" name="kind" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
+        <label>Mot-clef</label>
+        <input name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">
+        <label>Genre</label>
+        <input type="text" name="kind" value="{{query['genre']}}" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
         <select name="doctype" id="type">
-            <option value="all" selected>Tous</option>
-            <option value="dvd">DVD</option>
-            <option value="cd">CD</option>
-            <option value="livre">Livre</option>
+            {% if query['type'] == 'cd' %}
+                <option value="all" >Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd" selected>CD</option>
+                <option value="livre">Livre</option>
+            {% elseif query['type'] == 'dvd' %}
+                <option value="all" >Tous</option>
+                <option value="dvd" selected>DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre">Livre</option>    
+            {% elseif query['type'] == 'livre' %}
+                <option value="all" >Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre" selected>Livre</option>
+            {% else %}
+                <option value="all" selected>Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre">Livre</option>
+            {% endif %}
+            
         </select>
-        <input type="submit" value="Rechercher">
+        <input class="btn" type="submit" value="Rechercher">
     </form>
 </div>

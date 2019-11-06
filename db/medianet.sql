@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mar 05 Novembre 2019 à 15:08
+-- Généré le :  Mer 06 Novembre 2019 à 09:54
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -48,6 +48,7 @@ INSERT INTO `cds` (`id`, `artistes`, `maison_disque`) VALUES
 
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
+  `reference` varchar(256) DEFAULT NULL,
   `documentable_id` int(11) NOT NULL,
   `documentable_type` varchar(255) NOT NULL,
   `nom` varchar(255) NOT NULL,
@@ -56,21 +57,20 @@ CREATE TABLE `documents` (
   `disponible` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `deleted_at` timestamp NULL DEFAULT NULL,
-  `reference` varchar(256) DEFAULT NULL
+  `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Contenu de la table `documents`
 --
 
-INSERT INTO `documents` (`id`, `documentable_id`, `documentable_type`, `nom`, `resume`, `genre`, `disponible`, `created_at`, `updated_at`, `deleted_at`, `reference`) VALUES
-(1, 1, 'medianet\\models\\CD', 'Enfante lune', 'resume', 'rap', 1, '2019-11-05 13:12:36', '2019-11-05 13:12:36', NULL, '1245'),
-(2, 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 1, '2019-11-05 13:13:44', '2019-11-05 13:13:44', NULL, '7643'),
-(3, 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 1, '2019-11-05 13:16:17', '2019-11-05 13:16:17', NULL, '8763'),
-(4, 2, 'medianet\\models\\DVD', 'Rocky 2', 'ah ouais', 'drame', 1, '2019-11-05 13:17:01', '2019-11-05 13:17:01', NULL, '7544'),
-(5, 1, 'medianet\\models\\Livre', '100 jours en enfer', 'pauvre gamin', 'policier', 1, '2019-11-05 13:19:22', '2019-11-05 13:19:22', NULL, '4433'),
-(6, 2, 'medianet\\models\\Livre', 'trafic', 'oh la la pas bien', 'policer', 1, '2019-11-05 13:20:27', '2019-11-05 13:20:27', NULL, '6545');
+INSERT INTO `documents` (`id`, `reference`, `documentable_id`, `documentable_type`, `nom`, `resume`, `genre`, `disponible`, `created_at`, `updated_at`, `deleted_at`) VALUES
+(1, '1245', 1, 'medianet\\models\\CD', 'Enfante lune', 'resume', 'rap', 1, '2019-11-05 13:12:36', '2019-11-05 13:12:36', NULL),
+(2, '7643', 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 1, '2019-11-05 13:13:44', '2019-11-05 13:13:44', NULL),
+(3, '8763', 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 1, '2019-11-05 13:16:17', '2019-11-05 13:16:17', NULL),
+(4, '7544', 2, 'medianet\\models\\DVD', 'Rocky 2', 'ah ouais', 'drame', 1, '2019-11-05 13:17:01', '2019-11-05 13:17:01', NULL),
+(5, '4433', 1, 'medianet\\models\\Livre', '100 jours en enfer', 'pauvre gamin', 'policier', 1, '2019-11-05 13:19:22', '2019-11-05 13:19:22', NULL),
+(6, '6545', 2, 'medianet\\models\\Livre', 'trafic', 'oh la la pas bien', 'policer', 1, '2019-11-05 13:20:27', '2019-11-05 13:20:27', NULL);
 
 -- --------------------------------------------------------
 
@@ -103,8 +103,17 @@ CREATE TABLE `emprunts` (
   `document_id` int(11) NOT NULL,
   `date_emprunt` timestamp NULL DEFAULT NULL,
   `date_limite` timestamp NULL DEFAULT NULL,
-  `date_retour` timestamp NULL DEFAULT NULL
+  `date_retour` timestamp NULL DEFAULT NULL,
+  `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `emprunts`
+--
+
+INSERT INTO `emprunts` (`id`, `document_id`, `date_emprunt`, `date_limite`, `date_retour`, `user_id`) VALUES
+(1, 2, NULL, '2019-11-29 23:00:00', NULL, 1),
+(2, 3, NULL, '2019-11-29 23:00:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -143,7 +152,7 @@ CREATE TABLE `users` (
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `deleted_at` timestamp NULL DEFAULT NULL,
-  `telephone` int(11) DEFAULT NULL
+  `telephone` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -151,8 +160,8 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
-(1, 'felix', 'leo', '$2y$10$ae67THLNIu6IaCslhUmIFOxjoswK82HePDc1RtUNZmuo9sENpcvm2', 'leofelix@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 12:44:57', NULL, 44466),
-(2, 'test', 'test', '$2y$10$6ZgKvy80TmWW45O/6SO/WeCqTPUC23NLK6e8y73kkFx40853RoEUG', 'test@gmail.com', 'test', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 13:24:53', NULL, 0);
+(1, 'felix', 'leo', '$2y$10$nJYOe3fSP4XfoCx1EbG8u.hqoOPBYv9HKc82wJgAtBaDHKcL3nC8e', 'leofelix@gmail.com', '2 B rue capucins', NULL, '2019-11-05 09:17:00', '2019-11-05 14:49:04', NULL, '44466'),
+(2, 'test', 'test', '$2y$10$Ar5pJ880sAA6B4Ud/nAeduh8ZbVXbek.gJxUw4wA7531aeokSVeMC', 'test@gmail.com', 'test', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 14:21:48', NULL, '0');
 
 --
 -- Index pour les tables exportées
@@ -217,7 +226,7 @@ ALTER TABLE `dvds`
 -- AUTO_INCREMENT pour la table `emprunts`
 --
 ALTER TABLE `emprunts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 --
 -- AUTO_INCREMENT pour la table `livres`
 --
