@@ -57,16 +57,19 @@ class ControllerStaff extends Controller {
 		$reference = Utils::getFilteredPost($request, 'reference');
 		$idAdherent = Utils::getFilteredPost($request, 'idAdherent');
 		if(($reference == null)||($idAdherent == null)){
-			echo 'champs vide';
+			Flash::flashError("champs vide");
+            return Utils::redirect($response, 'home');
 		}
 		//vérifie si la référence et l'adhérent existent
 		$adherent = User::find($idAdherent);
 		$media = Document::find($reference);
 		$ok = 0;
 		if($adherent == null){
-			echo "cet adhérent n'existe pas";
+			Flash::flashError("cet adhérent n'existe pas");
+			return Utils::redirect($response, 'home');
 		}elseif($media == null){
-			echo "ce média n'existe pas";
+			Flash::flashError("ce média n'existe pas");
+			return Utils::redirect($response, 'home');
 		}else{
 			if ($btn == "Emprunter"){
 				$ok = $this->emprunt($media, $reference, $idAdherent);
