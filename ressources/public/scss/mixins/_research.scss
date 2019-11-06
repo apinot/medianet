@@ -3,7 +3,7 @@
   display: flex;
   flex-direction: column;
   @media (min-width: $media-large-size) {
-    display: flex;
+    display: grid;
     flex-direction: row;
     justify-content: center;
     align-items: center;
@@ -17,3 +17,4 @@
     margin: 0em 0em 0em 1em;
   }
 }
+

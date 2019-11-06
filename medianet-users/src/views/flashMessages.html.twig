@@ -1,14 +1,22 @@
 
 {% if "error" is flashed %}
-<p style="color: red;">
-    {{ get_data("error") }}
-</p>
+<div class="danger">
+    <p>
+        {{ get_data("error") }}
+    </p>
+</div>
+
 {% elseif "success" is flashed %}
-<p style="color: limegreen;">
-    {{ get_data("success") }}
-</p>
+<div class= "success">
+    <p>
+        {{ get_data("success") }}
+    </p>  
+</div>
 {% elseif "info" is flashed %}
-<p style="color: darkblue">
-    {{ get_data("info") }}
-</p>
+<div class="info">
+    <p>
+        {{ get_data("info") }}
+    </p>
+</div>
+
 {% endif %}
