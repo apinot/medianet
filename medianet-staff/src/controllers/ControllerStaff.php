@@ -16,9 +16,9 @@ class ControllerStaff extends Controller {
     public function pageEmprunt(Request $request, Response $response, $args) {
         return $this->render($response, 'emprunt.html.twig');
     }
-
+    
     public function checkEmprunt(Request $request, Response $response, $args) {
-	    return Utils::redirect($response, 'home');
+        return $this->render($response, 'base.html.twig');
     }
 
 }
