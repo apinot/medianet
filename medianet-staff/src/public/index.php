@@ -31,11 +31,18 @@ $app->get('/delete/{id}', ControllerUser::class.':delete')->setName('delete');
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
-//emprunts
+
+//emprunts et retour
 $app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
 $app->post('/emprunt', ControllerStaff::class.':which')->setName('lookEmprunt');
 
+//Historique 
+$app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
+$app->post('/user', ControllerStaff::class.':recapUser')->setName('byUser');
+
+
 $app->run();
+
 
 ?>
 

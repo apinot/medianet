@@ -1,0 +1,6 @@
+@import "mixins/_formular";
+
+
+.formular {
+    @include formular();
+}
