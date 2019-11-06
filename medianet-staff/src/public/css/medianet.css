@@ -90,25 +90,33 @@ nav {
           overflow: unset; } }
       .card-deck > .card > .card-body > .card-title {
         font-weight: bold; }
-      .card-deck > .card > .card-body > .card-content > .card-resume {
-        display: flex;
-        flex-direction: column;
-        max-height: 40%;
-        margin-bottom: 5%; }
-      .card-deck > .card > .card-body > .card-content > .card-items {
+      .card-deck > .card > .card-body > .card-item {
         max-height: 60%;
         padding-bottom: 5%;
         display: flex;
         flex-direction: row; }
+      .card-deck > .card > .card-body > .card-bottom {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center; }
 
 .research > form {
-  margin: 2%;
+  margin: 1em;
   display: flex;
   flex-direction: column; }
   @media (min-width: 60em) {
     .research > form {
-      display: grid;
-      flex-direction: row; } }
+      display: flex;
+      flex-direction: row;
+      justify-content: center;
+      align-items: center; } }
+
+.itemresearch {
+  margin: 0.3em 0 0.3em 0; }
+  @media (min-width: 60em) {
+    .itemresearch {
+      margin: 0em 0em 0em 1em; } }
 
 .success {
   flex-grow: 1;

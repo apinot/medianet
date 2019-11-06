@@ -1,10 +1,19 @@
 @mixin research($media-large-size){
-  margin: 2%;
+  margin: 1em;
   display: flex;
   flex-direction: column;
   @media (min-width: $media-large-size) {
-    display: grid;
+    display: flex;
     flex-direction: row;
-    }
+    justify-content: center;
+    align-items: center;
+  }
+}
+
+@mixin itemResearch() {
+  margin: 0.3em 0 0.3em 0;
+  @media (min-width: $media-large-size) {
+    margin: 0em 0em 0em 1em;
+  }
 }
 

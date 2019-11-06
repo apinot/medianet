@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mer 06 Novembre 2019 à 09:54
+-- Généré le :  Mer 06 Novembre 2019 à 11:15
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -66,8 +66,8 @@ CREATE TABLE `documents` (
 
 INSERT INTO `documents` (`id`, `reference`, `documentable_id`, `documentable_type`, `nom`, `resume`, `genre`, `disponible`, `created_at`, `updated_at`, `deleted_at`) VALUES
 (1, '1245', 1, 'medianet\\models\\CD', 'Enfante lune', 'resume', 'rap', 1, '2019-11-05 13:12:36', '2019-11-05 13:12:36', NULL),
-(2, '7643', 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 1, '2019-11-05 13:13:44', '2019-11-05 13:13:44', NULL),
-(3, '8763', 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 1, '2019-11-05 13:16:17', '2019-11-05 13:16:17', NULL),
+(2, '7643', 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 0, '2019-11-05 13:13:44', '2019-11-05 13:13:44', NULL),
+(3, '8763', 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 0, '2019-11-05 13:16:17', '2019-11-05 13:16:17', NULL),
 (4, '7544', 2, 'medianet\\models\\DVD', 'Rocky 2', 'ah ouais', 'drame', 1, '2019-11-05 13:17:01', '2019-11-05 13:17:01', NULL),
 (5, '4433', 1, 'medianet\\models\\Livre', '100 jours en enfer', 'pauvre gamin', 'policier', 1, '2019-11-05 13:19:22', '2019-11-05 13:19:22', NULL),
 (6, '6545', 2, 'medianet\\models\\Livre', 'trafic', 'oh la la pas bien', 'policer', 1, '2019-11-05 13:20:27', '2019-11-05 13:20:27', NULL);
