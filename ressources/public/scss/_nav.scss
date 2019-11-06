@@ -8,13 +8,13 @@ nav {
     }
 
     .nav-items-group {
-        @include navItemsGroup($media-large-size);
+        @include navItemsGroup($media-medium-size);
 
         .nav-item {
             @include navItem($primary-color);
 
             .nav-link {
-                @include navLink($media-large-size);
+                @include navLink($media-medium-size);
             }
         }
     }
