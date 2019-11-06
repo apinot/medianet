@@ -4,3 +4,7 @@
 .formular {
     @include formular();
 }
+
+.gestion {
+    @include gestionEmprunt();
+}

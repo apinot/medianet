@@ -1,0 +1,25 @@
+@import 'mixins/_gestionEmprunt.scss';
+
+.row {
+  @include row();
+}
+.col {
+  @include col();
+}
+@for $i from 1 through 12 { 
+  .s#{$i} {
+      @include size($i);
+  }
+}
+
+.itemref {
+  @include itemref();
+}
+
+.add {
+  @include add();
+}
+
+.center {
+  @include center();
+}

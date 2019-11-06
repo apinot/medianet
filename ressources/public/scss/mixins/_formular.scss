@@ -7,3 +7,11 @@
     text-align: center;
 }
 
+
+@mixin gestionEmprunt() {
+    display: grid;
+    box-sizing: border-box;
+    grid-template-columns: repeat(2,1fr);
+    grid-gap: 1em;
+    text-align: center;
+}

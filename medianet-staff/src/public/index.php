@@ -49,7 +49,8 @@ $app->post('/documents/edit/{id}', \medianet\controllers\ControllerDocument::cla
 
 //emprunts et retour
 $app->get('/', ControllerStaff::class.':pageEmprunt')->setName('home');
-$app->post('/update', ControllerStaff::class.':which')->setName('lookEmprunt');
+$app->post('/take', ControllerStaff::class.':takeDocument')->setName('execTake');
+$app->post('/return', ControllerStaff::class.':which')->setName('execReturn');
 
 //Historique 
 $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
