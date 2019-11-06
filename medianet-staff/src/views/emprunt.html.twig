@@ -4,15 +4,15 @@
 <form method="POST" action="{{ path_for('lookEmprunt') }}">
       <h2>Informations</h2>
 	<div>
-      		<label for = "reference">reference</label>
-      		<input type = "text" name="reference">
+      		<label for="reference">reference</label>
+      		<input type="text" name="reference">
 	</div>
 	<div>
-      		<label for = "idAdherent">numéro d'adhérent</label>
-      		<input type = "text" name="idAdherent">
+      		<label for="idAdherent">numéro d'adhérent</label>
+      		<input type="text" name="idAdherent">
 	</div><div>
-      		<input type = "submit" id = "emprunt" name = "btn" value="Emprunter">
-		<input type = "submit" id = "retour" name = "btn" value="Retourner">
+      		<input class="btn" type="submit" id="emprunt" name="btn" value="Emprunter">
+		<input  class="btn" type="submit" id="retour" name="btn" value="Retourner">
  	</div>
 </form>
 {% endblock %}

@@ -81,8 +81,6 @@ class ControllerUser extends Controller {
             Flash::flashError("Il reste encore des medias empruntés");
             return Utils::redirect($response,'membres');
         }
-
-
     }
 
     public function detailsMembers(Request $request, Response $response,$args){
