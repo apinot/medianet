@@ -4,10 +4,66 @@ namespace medianet\controllers;
 use medianet\models\Document;
 use medianet\models\Livre;
 use medianet\models\CD;
+use medianet\models\User;
+use medianet\models\DVD;
 use Slim\Exception\NotFoundException;
+use Slim\Http\Request;
+use Slim\Http\Response;
 
 class ControllerDocument extends Controller {
-    
+
+    public function listMedia(Request $request, Response $response){
+        $liste_media = [];
+        $liste_documents = Document::all();
+        $liste_media=$this->addToArray($liste_documents,$liste_media);
+        return $this->view->render($response, 'listDocument.html.twig', ['medias' => $liste_media]);
+    }
+
+    public function edit(Request $request, Response $response,$args)
+    {
+        $id = Utils::sanitize($args['id']);
+        $document = Document::find(intval($id));
+        return $this->view->render($response, 'editDocument.html.twig', ['document' => $document]);
+
+    }
+
+    public function verif(Request $request, Response $response,$args)
+    {
+        $id = Utils::sanitize($args['id']);
+        $document = Document::find(intval($id))->first();
+
+        $document->reference = Utils::getFilteredPost($request,'reference');
+        $document->documentable_id = Utils::getFilteredPost($request,'documentable_id');
+        $document->documentable_type = Utils::getFilteredPost($request,'documentable_type');
+        $document->nom = Utils::getFilteredPost($request,'nom');
+        $document->resume = Utils::getFilteredPost($request,'resume');
+        $document->genre = Utils::getFilteredPost($request,'genre');
+        $document->disponible = Utils::getFilteredPost($request,'disponible');
+
+        switch ($document->documentable_type){
+            case 'medianet\models\CD':
+                $media = CD::find($document->documentable_id)->first();
+                $media->artistes=Utils::getFilteredPost($request,'artistes');
+                $media->maison_disque=Utils::getFilteredPost($request,'maison_disque');
+                $media->save();
+                $document->save();
+                return Utils::redirect($response,'listdoc');
+                break;
+        }
+
+
+
+        return $this->view->render($response, 'editDocument.html.twig', ['document' => $document]);
+
+    }
+    public function addToArray($liste1,$liste2){
+        foreach ($liste1 as $doc) {
+            array_push($liste2, $doc);
+        }
+        return $liste2;
+    }
+
+
     public function showDocument($request, $response, $args) {
         $idDoc = Utils::sanitize($args['id']);
         $doc = Document::find($idDoc);

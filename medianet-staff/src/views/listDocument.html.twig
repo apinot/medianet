@@ -1,0 +1,13 @@
+{% extends 'base.html.twig' %}
+{% block title %}
+    Liste des medias
+{% endblock %}
+
+{% block content %}
+    {% include '_research.html.twig' %}
+    <div class="card-deck">
+        {% for media in medias %}
+            {% include '_card.html.twig' %}
+        {% endfor %}
+    </div>
+{% endblock %}

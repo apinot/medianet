@@ -42,6 +42,10 @@ $app->post('/ajout', ControllerUser::class.':verifMember')->setName('verif_membr
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
+$app->get('/documents', \medianet\controllers\ControllerDocument::class.':listMedia')->setName('listdoc');
+
+$app->get('/document/edit/{id}', \medianet\controllers\ControllerDocument::class.':edit')->setName('editDoc');
+$app->post('/documents/edit/{id}', \medianet\controllers\ControllerDocument::class.':verif')->setName('verifDoc');
 
 //emprunts et retour
 $app->get('/', ControllerStaff::class.':pageEmprunt')->setName('home');
@@ -50,6 +54,7 @@ $app->post('/update', ControllerStaff::class.':which')->setName('lookEmprunt');
 //Historique 
 $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
 $app->post('/user', ControllerStaff::class.':recapUser')->setName('byUser');
+$app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 
 $app->run();

@@ -1,0 +1,6 @@
+{% extends "documents/base.html.twig" %}
+
+{% block documentDetails %}
+    <p>Ecrit par: {{document.documentable.auteur}}</p>
+    <p>Edition: {{document.documentable.edition}}</p>
+{% endblock %}

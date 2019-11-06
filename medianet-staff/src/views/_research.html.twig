@@ -1,0 +1,33 @@
+<div class="research">
+    <form action="{{path_for('filter')}}" method="get">
+        <label class="itemresearch">Mot-clef</label>
+        <input class="itemresearch" name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">
+        <label class="itemresearch">Genre</label>
+        <input class="itemresearch" type="text" name="kind" value="{{query['genre']}}" placeholder="Veuillez entrer le genre du media : policier, drame etc ...">
+        <select class="itemresearch" name="doctype" id="type">
+            {% if query['type'] == 'cd' %}
+                <option value="all" >Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd" selected>CD</option>
+                <option value="livre">Livre</option>
+            {% elseif query['type'] == 'dvd' %}
+                <option value="all" >Tous</option>
+                <option value="dvd" selected>DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre">Livre</option>    
+            {% elseif query['type'] == 'livre' %}
+                <option value="all" >Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre" selected>Livre</option>
+            {% else %}
+                <option value="all" selected>Tous</option>
+                <option value="dvd">DVD</option>
+                <option value="cd">CD</option>
+                <option value="livre">Livre</option>
+            {% endif %}
+            
+        </select>
+        <input class="btn itemresearch" type="submit" value="Rechercher">
+    </form>
+</div>
