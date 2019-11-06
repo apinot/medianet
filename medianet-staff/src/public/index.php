@@ -40,8 +40,8 @@ $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 
 //emprunts et retour
-$app->get('/emprunt', ControllerStaff::class.':pageEmprunt')->setName('emprunter');
-$app->post('/emprunt', ControllerStaff::class.':which')->setName('lookEmprunt');
+$app->get('/', ControllerStaff::class.':pageEmprunt')->setName('home');
+$app->post('/update', ControllerStaff::class.':which')->setName('lookEmprunt');
 
 //Historique 
 $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
