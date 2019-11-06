@@ -29,8 +29,8 @@ class ControllerStaff extends Controller {
 		echo 'champs vide';
 	}
 	//vérifie si la référence et l'adhérent existent
-	$adherent = User::find($idAdherent)->first();
-	$media = Document::where('reference',$reference)->first();
+	$adherent = User::find($idAdherent);
+	$media = Document::where('reference',$reference);
 	if($adherent == null){
 		echo "cet adhérent n'existe pas";
 	}elseif($media == null){
