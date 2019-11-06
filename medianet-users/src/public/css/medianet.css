@@ -103,14 +103,11 @@ nav .nav-items-group .nav-item .nav-link {
 }
 .card-deck > .card > .card-body {
   margin: 2%;
-  max-height: 200px;
-  overflow: scroll;
 }
 @media (min-width: 30em) and (max-width: 60em) {
   .card-deck > .card > .card-body {
     margin: 5%;
     overflow: unset;
-    max-height: unset;
   }
 }
 .card-deck > .card > .card-body > .card-title {
@@ -139,6 +136,54 @@ nav .nav-items-group .nav-item .nav-link {
     display: flex;
     flex-direction: row;
   }
+}
+
+.success {
+  flex-grow: 1;
+  background-color: #D6F2D5;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  border-radius: 8px;
+  color: #0B8C43;
+  margin: 1%;
+  border: solid #a0f39d 0.2px;
+}
+
+.info {
+  flex-grow: 1;
+  background-color: #D6ECF6;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  border-radius: 8px;
+  color: #3F7592;
+  margin: 1%;
+  border: solid #81c49d 0.2px;
+}
+
+.danger {
+  flex-grow: 1;
+  background-color: #F2D8DC;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  border-radius: 8px;
+  color: #A62648;
+  margin: 1%;
+  border: solid #e7889d 0.2px;
+}
+
+.warning {
+  flex-grow: 1;
+  background-color: #F2F2DC;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  padding-left: 2%;
+  border-radius: 8px;
+  color: #907643;
+  margin: 1%;
+  border: solid #ebeb9d;
 }
 
 .btn {
