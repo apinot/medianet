@@ -25,7 +25,7 @@ class ControllerDocument extends Controller {
             case CD::class:
             $twigUrl  = 'documents/cd.html.twig';
             break;
-            case CD::class:
+            case DVD::class:
             $twigUrl = 'documents/dvd.html.twig';
             break;
         }
