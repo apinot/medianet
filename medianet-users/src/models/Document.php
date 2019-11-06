@@ -8,7 +8,7 @@ class Document extends Model
     use SoftDeletes;
     protected $table = 'documents';
     protected $primaryKey = 'id';
-    protected $fillable = ['nom', 'resumer', 'genre','disponible'];
+    protected $fillable = ['nom', 'resumer', 'genre','disponible','documentable_type','documentable_id'];
     public $timestamps = true;
     
     public function documentable() {
@@ -20,7 +20,7 @@ class Document extends Model
     }
 
     public function type() {
-        $array = explode('\\', $this->documentable_type);
-        return $array[count($array) - 1];
+        $res = explode('\\',$this->documentable_type);
+        return $res[count($res)-1];
     }
 }
