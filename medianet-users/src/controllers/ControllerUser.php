@@ -96,14 +96,12 @@ class ControllerUser extends Controller {
 	
     	//page adhésion
 	public function showAdhesion(Request $request, Response $response){
-		$user = Auth::getUser(); 
-		return $this->render($response, 'adhesion.html.twig',['user'=>$user]);
+		return $this->render($response, 'adhesion.html.twig');
 	}
 
     	public function adhesion(Request $request, Response $response){
-		$user = Auth::getUser();
-		$user->demande_adhesion = date('Y-m-d H:i:s');
-		$user->save();
+		//$user->demande_adhesion = date('Y-m-d H:i:s');
+		//$user->save();
 		return Utils::redirect($response, 'adhesionUser');
 	}
 }
