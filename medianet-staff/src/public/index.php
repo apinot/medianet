@@ -7,6 +7,7 @@ require_once('../../vendor/autoload.php');
 use medianet\controllers\ControllerDocument;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
+use medianet\controllers\ControllerStaff;
 
 //middlewares
 use medianet\middlewares\FlashMiddleware;
@@ -63,7 +64,7 @@ $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 //demandes d'adhésions
 $app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
-$app->post('/adhesions', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
+$app->post('/adhesions/{id}', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
 
 $app->run();
 

@@ -31,7 +31,8 @@ class ControllerStaff extends Controller {
 		$this->render($response, 'adhesions.html.twig', ['users' => $users]);
 	}
 
-	public function doAdhesion(Request $request, Response $response){
+	public function doAdhesion(Request $request, Response $response, $args){
+		$idUser = Utils::sanitize($args['id']);
 		return Utils::redirect($response, "listAdhesions");
 	}	
 }
