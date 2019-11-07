@@ -6,7 +6,6 @@ use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
 
-
 class ControllerUser extends Controller {
 
     public function afficherFomulaireConnexion(Request $request, Response $response, $args) {
@@ -94,8 +93,17 @@ class ControllerUser extends Controller {
         $user->save();
         return Utils::redirect($response, 'showProfil');
     }
-
+	
+    	//page adhésion
 	public function showAdhesion(Request $request, Response $response){
+		$user = Auth::getUser(); 
 		return $this->render($response, 'adhesion.html.twig',['user'=>$user]);
+	}
+
+    	public function adhesion(Request $request, Response $response){
+		$user = Auth::getUser();
+		$user->demande_adhesion = date('Y-m-d H:i:s');
+		$user->save();
+		return Utils::redirect($response, 'adhesionUser');
 	}
 }
