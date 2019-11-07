@@ -4,18 +4,22 @@
 	<h2>Demandes d'adhésion</h2>
 	<table>
 		<thead>
-			<th>n° d'adhérent</th>		
+			<th>n° d'adhérent</th>	
+			<th>Nom prénom</th>	
+			<th>Email</th>	
 			<th>Emission de la demande</th>		
 		</thead>
 	{% for user in users %}
 		<tr>
-			{% if user['demande_adhesion'] != NULL %}
-				<td>{{ user['id'] }}</td>
-				<td>{{ user['demande_adhesion']|date('d/m/Y') }}</td> 
+			{% if user.demande_adhesion != NULL %}
+				<td>{{ user.id }}</td>
+				<td>{{ user.demande_adhesion | date('d/m/Y') }}</td> 
+				<td>{{ user.nom }} {{ user.prenom }}</td>
+				<td>{{ user.email }}</td>
 				<td>
-				<form action="{{ path_for('handleAdhesions', {id:user['id']}) }}" method="POST">
-					<input type="submit" name="valider" value="valider">
-					<input type="submit" name="refuser" value="refuser">
+				<form action="{{ path_for('handleAdhesions', {id:user.id}) }}" method="POST">
+					<input class="btn" type="submit" name="valider" value="valider">
+					<input class="btn" type="submit" name="refuser" value="refuser">
 				</form>
 				</td>
 			{% endif %}
