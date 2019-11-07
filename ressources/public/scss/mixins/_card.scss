@@ -58,7 +58,8 @@ $media-medium-size:30em !default;
 
 @mixin card_items(){
     max-height: 60%;
-    padding-bottom: 5%;
+    margin-top: 1em;
+    margin-bottom: 1em;
     display: flex;
     flex-direction: row;
 }

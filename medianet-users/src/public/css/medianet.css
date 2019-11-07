@@ -116,7 +116,8 @@ nav .nav-items-group .nav-item .nav-link {
 }
 .card-deck > .card > .card-body > .card-item {
   max-height: 60%;
-  padding-bottom: 5%;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   display: flex;
   flex-direction: row;
 }
@@ -209,6 +210,8 @@ nav .nav-items-group .nav-item .nav-link {
   text-decoration: none;
   display: inline-block;
   font-size: 16px;
+  margin: 0.5em;
+  cursor: pointer;
 }
 
 .profil {
@@ -322,6 +325,168 @@ td {
   width: 5%;
 }
 
+.row {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: row;
+  flex-wrap: wrap;
+  flex-shrink: 0;
+  justify-content: flex-start;
+  margin-bottom: 3px;
+  padding: 10px;
+}
+
+.col {
+  flex-grow: 0;
+  flex-shrink: 0;
+  box-sizing: border-box;
+  margin-left: 0;
+}
+.col + .col {
+  margin-left: 1.2%;
+}
+
+.s1 {
+  width: 7.2333333333%;
+}
+.s1 + .s1 {
+  margin-left: 1.2%;
+}
+
+.s2 {
+  width: 15.6666666667%;
+}
+.s2 + .s2 {
+  margin-left: 1.2%;
+}
+
+.s3 {
+  width: 24.1%;
+}
+.s3 + .s3 {
+  margin-left: 1.2%;
+}
+
+.s4 {
+  width: 32.5333333333%;
+}
+.s4 + .s4 {
+  margin-left: 1.2%;
+}
+
+.s5 {
+  width: 40.9666666667%;
+}
+.s5 + .s5 {
+  margin-left: 1.2%;
+}
+
+.s6 {
+  width: 49.4%;
+}
+.s6 + .s6 {
+  margin-left: 1.2%;
+}
+
+.s7 {
+  width: 57.8333333333%;
+}
+.s7 + .s7 {
+  margin-left: 1.2%;
+}
+
+.s8 {
+  width: 66.2666666667%;
+}
+.s8 + .s8 {
+  margin-left: 1.2%;
+}
+
+.s9 {
+  width: 74.7%;
+}
+.s9 + .s9 {
+  margin-left: 1.2%;
+}
+
+.s10 {
+  width: 83.1333333333%;
+}
+.s10 + .s10 {
+  margin-left: 1.2%;
+}
+
+.s11 {
+  width: 91.5666666667%;
+}
+.s11 + .s11 {
+  margin-left: 1.2%;
+}
+
+.s12 {
+  width: 100%;
+}
+.s12 + .s12 {
+  margin-left: 1.2%;
+}
+
+.itemref {
+  display: flex;
+  box-sizing: border-box;
+  flex-direction: column;
+  width: 100%;
+  margin: 0.2em 0 0.2em 0;
+  padding: 0.5em;
+}
+
+.add {
+  background-color: transparent;
+  box-sizing: border-box;
+  border: solid 1px gray;
+  color: #1e1e1e;
+  box-shadow: 1px 1px 1px gray;
+  padding: 7px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 0.5em 0 0.5em 0;
+  width: 100%;
+  cursor: pointer;
+}
+
+.center {
+  text-align: center;
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 3fr 2fr 2fr 2fr;
+  text-align: center;
+  row-gap: 0;
+}
+
+.griditem {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  padding: 1em 0 1em 0;
+}
+
+.griditemlink {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  padding: 1em 0 1em 0;
+  margin: 0;
+  text-decoration: none;
+  color: black;
+}
+
+.griditemlink:hover {
+  background: gray;
+}
+
 body, html {
   margin: 0;
   padding: 0;
@@ -336,3 +501,5 @@ img {
   max-width: 100%;
   max-height: 20em;
 }
+
+/*# sourceMappingURL=medianet.css.map */

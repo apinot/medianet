@@ -116,7 +116,8 @@ nav .nav-items-group .nav-item .nav-link {
 }
 .card-deck > .card > .card-body > .card-item {
   max-height: 60%;
-  padding-bottom: 5%;
+  margin-top: 0.25em;
+  margin-bottom: 0.25em;
   display: flex;
   flex-direction: row;
 }
@@ -500,3 +501,5 @@ img {
   max-width: 100%;
   max-height: 20em;
 }
+
+/*# sourceMappingURL=medianet.css.map */
