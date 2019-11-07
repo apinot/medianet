@@ -61,6 +61,9 @@ $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
 $app->post('/user', ControllerStaff::class.':recapUser')->setName('byUser');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
+//demandes d'adhésions
+$app->get('/adhesions', ControllerDocument::class.':watchAdhesions')->setName('Adhesions');
+
 
 $app->run();
 
