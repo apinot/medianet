@@ -25,8 +25,10 @@ class ControllerStaff extends Controller {
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
 
+	//montre toutes les demandes d'adhésions
 	public function showAdhesions(Request $request, Response $response){
-		$this->render($response, 'adhesions.html.twig', ['emprunts' => $emprunts]);
+		$users = User::all();
+		$this->render($response, 'adhesions.html.twig', ['users' => $users]);
 	}
 	
 }
