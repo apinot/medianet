@@ -94,4 +94,8 @@ class ControllerUser extends Controller {
         $user->save();
         return Utils::redirect($response, 'showProfil');
     }
+
+	public function showAdhesion(Request $request, Response $response){
+		return $this->render($response, 'adhesion.html.twig',['user'=>$user]);
+	}
 }
