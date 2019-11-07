@@ -45,6 +45,11 @@ class ControllerDocument extends Controller {
     }
 
     public function createDOc($type,$response,$request){
+        $document = new Document();
+        $document->nom = Utils::getFilteredPost($request,'nom');
+        $document->resume = Utils::getFilteredPost($request,'resume');
+        $document->genre = Utils::getFilteredPost($request,'genre');
+        $document->disponible = 1;
         switch($type){
             case "medianet\models\Livre":
                 $livre = new Livre();
@@ -52,14 +57,9 @@ class ControllerDocument extends Controller {
                 $livre->edition =  Utils::getFilteredPost($request,'edition');
                 $livre->save();
 
-                $document = new Document();
-                $document->reference = Utils::getFilteredPost($request,'reference');
                 $document->documentable_id = $livre->id;
                 $document->documentable_type = $type;
-                $document->nom = Utils::getFilteredPost($request,'nom');
-                $document->resume = Utils::getFilteredPost($request,'resume');
-                $document->genre = Utils::getFilteredPost($request,'genre');
-                $document->disponible = Utils::getFilteredPost($request,'disponible');
+                
                 $document->save();
                 return Utils::redirect($response,'listdoc');
                 break;
@@ -69,14 +69,8 @@ class ControllerDocument extends Controller {
                 $cd->maison_disque =  Utils::getFilteredPost($request,'maison_disque');
                 $cd->save();
 
-                $document = new Document();
-                $document->reference = Utils::getFilteredPost($request,'reference');
                 $document->documentable_id = $cd->id;
                 $document->documentable_type = $type;
-                $document->nom = Utils::getFilteredPost($request,'nom');
-                $document->resume = Utils::getFilteredPost($request,'resume');
-                $document->genre = Utils::getFilteredPost($request,'genre');
-                $document->disponible = Utils::getFilteredPost($request,'disponible');
                 $document->save();
                 return Utils::redirect($response,'listdoc');
                 break;
@@ -86,15 +80,10 @@ class ControllerDocument extends Controller {
                 $dvd->duree =  Utils::getFilteredPost($request,'duree');
                 $dvd->save();
 
-                $document = new Document();
-                $document->reference = Utils::getFilteredPost($request,'reference');
                 $document->documentable_id = $dvd->id;
                 $document->documentable_type = $type;
-                $document->nom = Utils::getFilteredPost($request,'nom');
-                $document->resume = Utils::getFilteredPost($request,'resume');
-                $document->genre = Utils::getFilteredPost($request,'genre');
-                $document->disponible = Utils::getFilteredPost($request,'disponible');
                 $document->save();
+
                 return Utils::redirect($response,'listdoc');
                 break;
         }
@@ -103,44 +92,44 @@ class ControllerDocument extends Controller {
     public function verif(Request $request, Response $response,$args)
     {
         $id = Utils::sanitize($args['id']);
-        $document = Document::find(intval($id))->first();
-
-        $document->reference = Utils::getFilteredPost($request,'reference');
-        $document->documentable_id = Utils::getFilteredPost($request,'documentable_id');
-        $document->documentable_type = Utils::getFilteredPost($request,'documentable_type');
+        $document = Document::find(intval($id));
         $document->nom = Utils::getFilteredPost($request,'nom');
         $document->resume = Utils::getFilteredPost($request,'resume');
         $document->genre = Utils::getFilteredPost($request,'genre');
         $document->disponible = Utils::getFilteredPost($request,'disponible');
-
         switch ($document->documentable_type){
             case 'medianet\models\CD':
-                $media = CD::find($document->documentable_id)->first();
+                $media = $document->documentable;
                 $media->artistes=Utils::getFilteredPost($request,'artistes');
                 $media->maison_disque=Utils::getFilteredPost($request,'maison_disque');
                 $media->save();
                 $document->save();
+                Flash::flashSuccess('Modification effectué');
                 return Utils::redirect($response,'listdoc');
                 break;
             case 'medianet\models\DVD':
-                $media = DVD::find($document->documentable_id)->first();
+                $media = $document->documentable;
                 $media->acteurs=Utils::getFilteredPost($request,'acteurs');
                 $media->duree=Utils::getFilteredPost($request,'duree');
                 $media->save();
                 $document->save();
+                Flash::flashSuccess('Modification effectué');
                 return Utils::redirect($response,'listdoc');
                 break;
             case 'medianet\models\Livre':
-                $media = Livre::find($document->documentable_id)->first();
+                
+                $media = $document->documentable;
                 $media->auteur=Utils::getFilteredPost($request,'auteur');
                 $media->edition=Utils::getFilteredPost($request,'edition');
                 $media->save();
-                $document->save();
+                $document->save(); 
+                Flash::flashSuccess('Modification effectué');
                 return Utils::redirect($response,'listdoc');
                 break;
         }
 
-        return $this->view->render($response, 'editDocument.html.twig', ['document' => $document]);
+        Flash::flashError('Erreur');
+        return Utils::redirect($response,'listdoc');
 
     }
     public function addToArray($liste1,$liste2){
