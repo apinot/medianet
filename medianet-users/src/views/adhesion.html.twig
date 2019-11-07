@@ -1,0 +1,12 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h2>Mon adhesion</h2>
+	{% for user in users %}
+		{% if (user['adhesion'] == null) %}
+			<p>Vous n'êtes pas un adhérent</p>
+		{% else %}
+			<p>Vous êtes adhérent</p>
+		{% endif %}
+	{% endfor %}
+{% endblock %}
