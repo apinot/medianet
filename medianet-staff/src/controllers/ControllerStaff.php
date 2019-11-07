@@ -12,11 +12,6 @@ use medianet\models\Emprunt;
 //TODO nettoyer cette classe
 class ControllerStaff extends Controller {
 	
-	//Renvoie vers l'accueil	
-	public function accueil(Request $request, Response $response, $args) {
-		return $this->render($response, 'base.html.twig');
-	}
-	
 	//page récapitulative des emprunts
 	public function pageRecap(Request $request, Response $response, $args) {
 		$emprunts = Emprunt::all();

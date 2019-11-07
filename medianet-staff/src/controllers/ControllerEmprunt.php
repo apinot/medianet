@@ -65,7 +65,6 @@ class ControllerEmprunt extends Controller {
 			$document->save();
 		}
 		
-		//TODO afficher un recap de l'emprunt actuel
 		if($hasIgnored) {
 			Flash::flashInfo("Certains documents ont été ignorés car ils n'existent pas ou ne sont pas disponibles !");
 		}
