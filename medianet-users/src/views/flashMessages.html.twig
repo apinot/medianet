@@ -1,20 +1,20 @@
 
 {% if "error" is flashed %}
-<div class="danger">
+<div class="flash danger">
     <p>
         {{ get_data("error") }}
     </p>
     <i class="fas fa-times"></i>
 </div>
 
-{% elseif "success" is flashed %}
+{% elseif "flash success" is flashed %}
 <div class= "success">
     <p>
         {{ get_data("success") }}
     </p>
     <i class="fas fa-times"></i>  
 </div>
-{% elseif "info" is flashed %}
+{% elseif "flash info" is flashed %}
 <div class="info">
     <p>
         {{ get_data("info") }}
