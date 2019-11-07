@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h2>Demandes d'adhésion</h2>
+	<table>
+		<thead>
+			<th>n° d'adhérent</th>		
+			<th>Emission de la demande</th>		
+		</thead>
+	{% for user in users %}
+		<tr>
+			<td>{{ user['id'] }}</td>
+			<td>{{ user['demande_adhesion']|date('d/m/Y') }}</td> 
+			<td>
+			<form action="{{ path_for('handleAdhesions') }}" method="POST">
+				<input type="submit" value="valider">
+				<input type="submit" value="refuser">	
+			</form>
+			</td>
+
+		</tr>
+	{% endfor %}
+	</table>
+{% endblock %}
