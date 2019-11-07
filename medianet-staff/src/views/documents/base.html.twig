@@ -17,10 +17,10 @@
         {% block documentDetails %}{% endblock %}
     </div>
     <div>
-        {% if media.disponible == 0 %}
-        <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
+        {% if document.disponible == 0 %}
+            <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
         {% else %}
-        <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
+            <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
         {% endif %}
     </div>
 </div>
