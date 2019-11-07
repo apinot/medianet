@@ -9,8 +9,9 @@
 }
 .griditemlink {
     @include itemgrid();
+    @include itemgridlink();
    
 }
 .griditemlink:hover {
-    @include itemgridlink();
+    @include itemgridlinkhover();
 }

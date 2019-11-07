@@ -12,9 +12,12 @@
     padding: 1em 0 1em 0;
 }
 
-@mixin itemgridlink {
+@mixin itemgridlink() {
     margin: 0;
     text-decoration: none;
     color: black;
+}
+
+@mixin  itemgridlinkhover(){
     background: gray;
 }

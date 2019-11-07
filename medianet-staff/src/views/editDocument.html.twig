@@ -6,48 +6,48 @@
         <div class="formular">
             <div>
                 <label for="">Nom :</label>
-                <input type="text" name="nom" value="{{ document.nom }}">
+                <input type="text" name="nom" value="{{ document.nom }}" required>
             </div>
             <div>
                 <label for="">Resumer :</label>
-                <input type="text" name="resume" value="{{ document.resume }}">
+                <input type="text" name="resume" value="{{ document.resume }}" required>
             </div>
             <div>
                 <label for="">Genre :</label> 
-                <input type="text" name="genre" value="{{ document.genre }}">
+                <input type="text" name="genre" value="{{ document.genre }}" required>
             </div>
             <div>
                 <label for="">Disponible :</label>
-                <input type="text" name="disponible" value="{{ document.disponible }}">
+                <input type="text" name="disponible" value="{{ document.disponible }}" required>
             </div>
             {% if document.type() == 'CD' %}
             <div>
                 <label for="">Artistes: </label>
-                <input type="text" name="artistes" value="{{ document.documentable.artistes }}">
+                <input type="text" name="artistes" value="{{ document.documentable.artistes }}" required>
             </div>
             <div>
                 <label for="">Maison de disque :</label>
-                <input type="text" name="maison_disque" value="{{ document.documentable.maison_disque }}">
+                <input type="text" name="maison_disque" value="{{ document.documentable.maison_disque }}" required>
             </div>
             {% endif %}
             {% if document.type() == 'DVD' %}
             <div>
                 <label for="">Acteurs :</label>
-                <input type="text" name="acteurs" value="{{ document.documentable.acteurs }}">
+                <input type="text" name="acteurs" value="{{ document.documentable.acteurs }}" required>
             </div>
             <div>
                 <label for="">Durée :</label>
-                <input type="text" patern="\d+" name="duree"value="{{ document.documentable.duree }}">
+                <input type="text" patern="\d+" name="duree"value="{{ document.documentable.duree }}" required>
             </div>
             {% endif %}
             {% if document.type() == 'Livre' %}
             <div>
                 <label for="">Auteur :</label>
-                <input type="text" name="auteur" value="{{ document.documentable.auteur }}">
+                <input type="text" name="auteur" value="{{ document.documentable.auteur }}" required>
             </div>
             <div>
                 <label for="">Edition :</label>
-                <input type="text" name="edition" value="{{ document.documentable.edition }}">
+                <input type="text" name="edition" value="{{ document.documentable.edition }}" required>
             </div>
             {% endif %}
             <div>

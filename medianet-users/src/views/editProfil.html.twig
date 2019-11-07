@@ -8,23 +8,23 @@
 			</div>
 			<div>
 				<label for="Nom">Nom</label>
-				<input type="text" name="nom" type='text' value="{{ user.nom }}">
+				<input type="text" name="nom" type='text' value="{{ user.nom }}" required>
 			</div>
 			<div>
 				<label for="prenom">Prenom</label>
-				<input type="text" name="prenom" type='text' value="{{ user.prenom }}">
+				<input type="text" name="prenom" type='text' value="{{ user.prenom }}" required>
 			</div>
 			<div>
 				<label for="adresse">Adresse</label>
-				<input type="text" name="adresse" type='text' value="{{ user.adresse }}">
+				<input type="text" name="adresse" type='text' value="{{ user.adresse }}" required>
 			</div>
 			<div>
 				<label for="email">email</label>
-				<input type="email" name="email" type='text' value="{{ user.email }}">
+				<input type="email" name="email" type='text' value="{{ user.email }}" required>
 			</div>
 			<div>
 				<label for="telephone">Téléphone</label>
-				<input type="text" name="telephone" type='text' value="{{ user.telephone }}">
+				<input type="text" pattern="\d+" name="telephone" type='text' value="{{ user.telephone }}" required>
 			</div>
 			<div>
 				<input class="btn" type="submit" value="Valider">

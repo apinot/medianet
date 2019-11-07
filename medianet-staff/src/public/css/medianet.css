@@ -477,12 +477,12 @@ td {
   margin: 0;
   border: 1px solid black;
   padding: 1em 0 1em 0;
-}
-
-.griditemlink:hover {
   margin: 0;
   text-decoration: none;
   color: black;
+}
+
+.griditemlink:hover {
   background: gray;
 }
 
