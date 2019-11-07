@@ -25,8 +25,7 @@ class ControllerStaff extends Controller {
 			$adherent->demande_adhesion = null;
 			$adherent->adhesion = date('Y-m-d H:i:s');
 		}elseif(isset($_POST['refuser'])){
-			$adherent->demande_adhesion = null;
-			$adherent->adhesion = null;
+			$adherent->delete();
 		}
 		$adherent->save();
 		return Utils::redirect($response, "listAdhesions");
