@@ -14,6 +14,7 @@ use Slim\Views\Twig;
 
 class IndexUserController extends Controller
 {
+    //TODO nettoyer
     public function listMedia(Request $request, Response $response){
         $liste_media = [];
         $liste_documents = Document::all();

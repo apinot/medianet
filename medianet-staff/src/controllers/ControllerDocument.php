@@ -181,8 +181,14 @@ class ControllerDocument extends Controller {
         $type = $queries['type'];
 
         $req = Document::where(function ($query) use ($motcle) {
-            $query->where('nom', 'like', '%'.$motcle.'%')
-            ->orWhere('resume', 'like', '%'.$motcle.'%');
+            $motTab = explode(" ", $motcle);
+
+            foreach($motTab as $mot) {
+                $query->where(function($subquery) use ($mot) {
+                    $subquery->where('nom', 'like', '%'.$mot.'%')
+                    ->orWhere('resume', 'like', '%'.$mot.'%');
+                });
+            }
         });
         
         if($genre !== null && $genre != "") {
