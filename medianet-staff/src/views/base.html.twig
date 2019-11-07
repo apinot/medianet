@@ -9,15 +9,16 @@
 </head>
 <body>
     {% include "nav.html.twig" %}
-
     {% include "flashMessages.html.twig" %}
 
     <div id="content">
-        {% block content %}
 
+
+        {% block content %}
         {% endblock %}
     </div>
 
-    {% block scripts %}{% endblock %}
 </body>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+{% block scripts %}{% endblock %}
 </html>

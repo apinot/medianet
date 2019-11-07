@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block content %}
+    <form action="{{ path_for('verif_add_doc') }}" method="post">
+        <label for="">reference: </label><input type="text" name="reference" id="" value="{{ document.references }}">
+        <input type="hidden" name="documentable_type" id="" value="{{ document.documentable_type }}">
+        <label for="">Nom :</label><input type="text" name="nom" id="" value="{{ document.nom }}">
+        <label for="">Resumer :</label><input type="text" name="resume" id="" value="{{ document.resume }}">
+        <label for="">Genre :</label> <input type="text" name="genre" id="" value="{{ document.genre }}">
+        <label for="">Disponible :</label><input type="text" name="disponible" id="" value="{{ document.disponible }}">
+
+            <div id="cd_div" >
+                <label for="">Artistes: </label><input type="text" name="artistes" id="" value="{{ document.artistes }}">
+                <label for="">Maison de disque :</label><input type="text" name="maison_disque" id="" value="{{ document.maison_disque }}">
+            </div>
+
+
+            <div id="dvd_div" >
+                <label for="">Acteurs :</label><input type="text" name="acteurs" id="" value="{{ document.acteurs }}">
+                <label for="">Durée :</label><input type="number" name="duree" id="" value="{{ document.duree }}">
+            </div>
+
+
+            <div id="livre_div">
+                <label for="">Auteur :</label><input type="text" name="auteur" id="" value="{{ document.auteur }}">
+                <label for="">Edition :</label><input type="text" name="edition" id="" value="{{ document.edition }}">
+            </div>
+
+
+        <select name="documentable_type" id="type">
+            <option id="livre" value="medianet\models\Livre">Livre</option>
+            <option id="cd" value="medianet\models\CD">CD</option>
+            <option id="dvd" value="medianet\models\DVD">DVD</option>
+        </select>
+
+        <input type="submit" value="Modifier">
+    </form>
+
+{% endblock %}
+
+{% block scripts %}
+    <script src="/js/ajout_document.js"></script>
+{% endblock %}
