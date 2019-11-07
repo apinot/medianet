@@ -1,0 +1,24 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{parent()}} - Emprunts
+{% endblock %}
+
+{% block content %}
+<p>L'adhérant {{user.prenom}} {{user.nom}} (Réf : {{user.id}}) a rendu {{documents.length}} documents.</p>
+
+<ul>
+    {% for doc in documents %}
+        <li>Ref : {{doc.id}} - ({{doc.type()}}) Titre : {{doc.nom}}</li>
+    {% endfor %}
+</ul>
+
+<p>Liste des documents encore en posséssion de l'adhérent</p>
+<ul>
+    {% for emprunt in empruntsRestant %}
+        <li>Ref : {{emprunt.document.id}} - ({{emprunt.document.type()}}) Titre : {{emprunt.document.nom}}</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{{path_for('home')}}">Retour à l'accueil</a>
+{% endblock %}

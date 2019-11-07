@@ -195,6 +195,6 @@ class ControllerDocument extends Controller {
         
         $medias = $req->get();
         
-        return $this->view->render($response, 'index.html.twig', ['medias' => $medias, 'query' => $queries]);
+        return $this->view->render($response, 'listDocument.html.twig', ['medias' => $medias, 'query' => $queries]);
     }
 }

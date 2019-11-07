@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %}
+    {{parent()}} - Emprunts
+{% endblock %}
+
+{% block content %}
+<p>L'adhérant {{user.prenom}} {{user.nom}} (Réf : {{user.id}}) a emprunté {{documents.length}} documents.</p>
+
+<ul>
+    {% for doc in documents %}
+        <li>Ref : {{doc.id}} - ({{doc.type()}}) Titre : {{doc.nom}}</li>
+    {% endfor %}
+</ul>
+
+<a class="btn" href="{{path_for('home')}}">Retour à l'accueil</a>
+{% endblock %}

@@ -21,6 +21,7 @@ $capsule->bootEloquent();
 //loading settings from config/settings.php
 $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
+$container["rootDir"] = __DIR__;
 $app = new \Slim\App($container);
 
 //global middlewares

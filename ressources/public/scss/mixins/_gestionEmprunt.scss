@@ -36,9 +36,9 @@ $gutterSize: 1.2% !default;
     flex-direction: column;
     width: 100%;
     margin: 0.2em 0  0.2em 0;
+    padding: 0.5em;
 }
 
-//TODO Regernerer
 @mixin add(){
     background-color: transparent; 
     box-sizing: border-box;
