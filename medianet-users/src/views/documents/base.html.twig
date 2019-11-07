@@ -3,10 +3,11 @@
 {% block title %}{{Parent}} - document.nom{% endblock %}
 
 {% block content %}
+    {% if user is not null %}
     <div>
         <a class="btn" href="{{ path_for('dispo_switch',{id:document.id}) }}">Réserver</a>
     </div>
-
+    {% endif %}
 <div class="formular">
     <div>
         <img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_960_720.png" alt="">

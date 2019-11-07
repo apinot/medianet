@@ -43,10 +43,11 @@ class ControllerDocument extends Controller {
     public function setDisponible(Request $request, Response $response, $args){
         $idDoc = Utils::sanitize($args['id']);
         $doc = Document::find($idDoc);
+        $user = Auth::getUser();
         var_dump($doc);
         $doc->disponible = 2;
         $doc->save();
-        return Utils::redirect($response, 'home');
+        return Utils::redirect($response, 'home',compact($user));
     }
     
     public function filter($request, $response, $args)
