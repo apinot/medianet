@@ -45,4 +45,14 @@ class Auth {
         if(!static::estConnecte()) return null;
         return User::find($_SESSION['user']['id']);
     }
+
+    public function verifEmail($email){
+        $user = User::where('email','=',$email)->first();
+        if ($user == null){
+            return true;
+        }else{
+            return false;
+        }
+    }
+
 }

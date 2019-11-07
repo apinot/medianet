@@ -23,6 +23,11 @@ class ControllerUser extends Controller {
             Flash::flashError('email ou mot de passe incorrecte');
             return Utils::redirect($response, 'formConnexion');
         }
+        $user = User::where('email','=',$email)->first();
+        if($user->adhesion === null){
+            Flash::flashError("Votre compte n'a pas été validé");
+            return Utils::redirect($response, 'formConnexion');
+        }
         Flash::flashSuccess('Vous êtes connecté');
         return Utils::redirect($response, 'home');
     }
@@ -100,17 +105,23 @@ class ControllerUser extends Controller {
 		return $this->render($response, 'adhesion.html.twig');
 	}
 
-    	public function adhesion(Request $request, Response $response){
+    public function adhesion(Request $request, Response $response) {
+        $email = Utils::getfilteredPost($request, 'email');
+        if(!Auth::verifEmail($email)) {
+            Flash::flashError("L'email est déjà utilisé");
+            return Utils::redirect($response, "adhesionUser");
+        }
 		$newUser = new User;
 		$newUser->nom = Utils::getfilteredPost($request, 'nom');
 		$newUser->prenom = Utils::getfilteredPost($request, 'prenom');
 		$newMdp = Utils::getfilteredPost($request, 'mdp');
 		$newUser->mdp = password_hash($newMdp, PASSWORD_DEFAULT);
-		$newUser->email = Utils::getfilteredPost($request, 'email');
+		$newUser->email = $email;
 		$newUser->adresse = Utils::getfilteredPost($request, 'adresse');
 		$newUser->telephone = Utils::getfilteredPost($request, 'telephone');
 		$newUser->demande_adhesion = date('Y-m-d H:i:s');
-		$newUser->save();
+        $newUser->save();
+        Flash::flashSuccess("Votre demande d'inscription a bien été envoyé");
 		return Utils::redirect($response, 'home');
 	}
 }
