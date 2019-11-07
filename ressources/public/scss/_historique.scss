@@ -1,0 +1,17 @@
+@import 'mixins/_historique.scss';
+
+.grid {
+    @include grid();
+}
+
+.griditem{
+    @include itemgrid();
+}
+.griditemlink {
+    @include itemgrid();
+    @include itemgridlink();
+   
+}
+.griditemlink:hover {
+    @include itemgridlinkhover();
+}

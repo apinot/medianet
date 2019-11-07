@@ -5,6 +5,7 @@ namespace medianet\controllers;
 use Psr\Http\Message\ResponseInterface as Response;
 use Psr\Http\Message\ServerRequestInterface as Request;
 use Slim\Views\Twig;
+use medianet\models\User;
 
 class ControllerUser extends Controller {
 
@@ -96,14 +97,19 @@ class ControllerUser extends Controller {
 	
     	//page adhésion
 	public function showAdhesion(Request $request, Response $response){
-		$user = Auth::getUser(); 
-		return $this->render($response, 'adhesion.html.twig',['user'=>$user]);
+		return $this->render($response, 'adhesion.html.twig');
 	}
 
     	public function adhesion(Request $request, Response $response){
-		$user = Auth::getUser();
-		$user->demande_adhesion = date('Y-m-d H:i:s');
-		$user->save();
-		return Utils::redirect($response, 'adhesionUser');
+		$newUser = new User;
+		$newUser->nom = Utils::getfilteredPost($request, 'nom');
+		$newUser->prenom = Utils::getfilteredPost($request, 'prenom');
+		$newMdp = Utils::getfilteredPost($request, 'mdp');
+		$newUser->mdp = password_hash($newMdp, PASSWORD_DEFAULT);
+		$newUser->email = Utils::getfilteredPost($request, 'email');
+		$newUser->adresse = Utils::getfilteredPost($request, 'adresse');
+		$newUser->telephone = Utils::getfilteredPost($request, 'telephone');
+		$newUser->save();
+		return Utils::redirect($response, 'home');
 	}
 }

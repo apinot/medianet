@@ -8,6 +8,7 @@
 @import '_formular.scss';
 @import '_table.scss';
 @import '_gestionEmprunt.scss';
+@import '_historique.scss';
 
 body, html {
     margin: 0;
@@ -15,7 +16,7 @@ body, html {
     font-family: Raleway, sans-serif;
 }
 
-.disabled{
+.disabled {
     filter: grayscale(1);
 }
 

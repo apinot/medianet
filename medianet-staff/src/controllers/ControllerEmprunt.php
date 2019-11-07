@@ -29,6 +29,11 @@ class ControllerEmprunt extends Controller {
 			Flash::flashError('L\'utilisateur n\'existe pas !');
 			return Utils::redirect($response, "home");
 		}
+		//vérifie que l'utilisateur est un adhérent
+		if($user->adhesion == null){
+			Flash::flashError('Vous devez être adhérent pour emprunter !');
+			return Utils::redirect($response, "home");
+		}
 		
 		$documentsId = Utils::getFilteredPost($request, 'documents');
 		$documents = [];
