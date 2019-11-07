@@ -10,19 +10,6 @@ use medianet\models\Emprunt;
 
 //TODO nettoyer cette classe
 class ControllerStaff extends Controller {
-	
-	//page récapitulative des emprunts
-	public function pageRecap(Request $request, Response $response, $args) {
-		$emprunts = Emprunt::all();
-		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
-	}
-	
-	//permet d'entrer un id d'un utilisateur 
-	public function recapUser(Request $request, Response $response, $args){
-		$idUser = Utils::getFilteredPost($request, 'idUser');
-		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
-		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
-	}
 
 	//montre toutes les demandes d'adhésions
 	public function showAdhesions(Request $request, Response $response){
