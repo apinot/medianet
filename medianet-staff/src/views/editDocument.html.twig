@@ -3,27 +3,57 @@
 {% block content %}
 
     <form action="{{ path_for('verifDoc',{id:document.id}) }}" method="post">
-        <label for="">reference: </label><input type="text" name="reference" id="" value="">
-        <input type="hidden" name="documentable_type" id="" value="">
-        <input type="hidden" name="documentable_id" id="" value="">
-        <label for="">Nom :</label><input type="text" name="nom" id="" value="">
-        <label for="">Resumer :</label><input type="text" name="resume" id="" value="">
-        <label for="">Genre :</label> <input type="text" name="genre" id="" value="">
-        <label for="">Disponible :</label><input type="text" name="disponible" id="" value="">
-        {% if document.type() == 'CD' %}
-            <label for="">Artistes: </label><input type="text" name="artistes" id="" value="">
-            <label for="">Maison de disque :</label><input type="text" name="maison_disque" id="" value="">
-        {% endif %}
-        {% if document.type() == 'DVD' %}
-            <label for="">Acteurs :</label><input type="text" name="acteurs" id="" value="">
-            <label for="">Durée :</label><input type="number" name="duree" id="" value="">
-        {% endif %}
-        {% if document.type() == 'Livre' %}
-            <label for="">Auteur :</label><input type="text" name="auteur" id="" value="">
-            <label for="">Edition :</label><input type="text" name="edition" id="" value="">
-        {% endif %}
-
-        <input type="submit" value="Modifier">
+        <div class="formular">
+            <div>
+                <label for="">Nom :</label>
+                <input type="text" name="nom" value="{{ document.nom }}">
+            </div>
+            <div>
+                <label for="">Resumer :</label>
+                <input type="text" name="resume" value="{{ document.resume }}">
+            </div>
+            <div>
+                <label for="">Genre :</label> 
+                <input type="text" name="genre" value="{{ document.genre }}">
+            </div>
+            <div>
+                <label for="">Disponible :</label>
+                <input type="text" name="disponible" value="{{ document.disponible }}">
+            </div>
+            {% if document.type() == 'CD' %}
+            <div>
+                <label for="">Artistes: </label>
+                <input type="text" name="artistes" value="{{ document.documentable.artistes }}">
+            </div>
+            <div>
+                <label for="">Maison de disque :</label>
+                <input type="text" name="maison_disque" value="{{ document.documentable.maison_disque }}">
+            </div>
+            {% endif %}
+            {% if document.type() == 'DVD' %}
+            <div>
+                <label for="">Acteurs :</label>
+                <input type="text" name="acteurs" value="{{ document.documentable.acteurs }}">
+            </div>
+            <div>
+                <label for="">Durée :</label>
+                <input type="text" patern="\d+" name="duree"value="{{ document.documentable.duree }}">
+            </div>
+            {% endif %}
+            {% if document.type() == 'Livre' %}
+            <div>
+                <label for="">Auteur :</label>
+                <input type="text" name="auteur" value="{{ document.documentable.auteur }}">
+            </div>
+            <div>
+                <label for="">Edition :</label>
+                <input type="text" name="edition" value="{{ document.documentable.edition }}">
+            </div>
+            {% endif %}
+            <div>
+                <input class="btn" type="submit" value="Modifier">
+            </div>
+        </div>
     </form>
 
 {% endblock %}

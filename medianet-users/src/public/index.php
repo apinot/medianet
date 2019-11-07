@@ -21,6 +21,7 @@ $capsule->bootEloquent();
 //loading settings from config/settings.php
 $settings = require_once "../config/settings.php";
 $container = new \Slim\Container($settings);
+$container["rootDir"] = __DIR__;
 $app = new \Slim\App($container);
 
 //global middlewares
@@ -52,6 +53,7 @@ $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName(
 
 //Adhesion utilisateur
 $app->get('/adhesion', ControllerUser::class.':showAdhesion')->setname('adhesionUser');
+$app->post('/adhesion', ControllerUser::class.':adhesion')->setname('sendAdhesion');
 
 $app->run();
 

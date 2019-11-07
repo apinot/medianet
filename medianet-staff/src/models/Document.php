@@ -8,7 +8,7 @@ class Document extends Model
     use SoftDeletes;
     protected $table = 'documents';
     protected $primaryKey = 'id';
-    protected $fillable = ['nom', 'resumer', 'genre','disponible','documentable_type','documentable_id'];
+    protected $fillable = ['nom', 'resume', 'genre','disponible','documentable_type','documentable_id'];
     public $timestamps = true;
     
     public function documentable() {

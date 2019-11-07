@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Mer 06 Novembre 2019 à 11:15
+-- Généré le :  Jeu 07 Novembre 2019 à 08:58
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -25,7 +25,7 @@ SET time_zone = "+00:00";
 --
 -- Structure de la table `cds`
 --
-DROP TABLE IF EXISTS `cds`;
+
 CREATE TABLE `cds` (
   `id` int(11) NOT NULL,
   `artistes` varchar(255) NOT NULL,
@@ -45,7 +45,7 @@ INSERT INTO `cds` (`id`, `artistes`, `maison_disque`) VALUES
 --
 -- Structure de la table `documents`
 --
-DROP TABLE IF EXISTS `documents` ;
+
 CREATE TABLE `documents` (
   `id` int(11) NOT NULL,
   `reference` varchar(256) DEFAULT NULL,
@@ -56,7 +56,7 @@ CREATE TABLE `documents` (
   `genre` varchar(255) NOT NULL,
   `disponible` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -77,7 +77,7 @@ INSERT INTO `documents` (`id`, `reference`, `documentable_id`, `documentable_typ
 --
 -- Structure de la table `dvds`
 --
-DROP TABLE IF EXISTS `dvds` ;
+
 CREATE TABLE `dvds` (
   `id` int(11) NOT NULL,
   `acteurs` varchar(255) NOT NULL,
@@ -97,7 +97,7 @@ INSERT INTO `dvds` (`id`, `acteurs`, `duree`) VALUES
 --
 -- Structure de la table `emprunts`
 --
-DROP TABLE IF EXISTS `emprunts`;
+
 CREATE TABLE `emprunts` (
   `id` int(11) NOT NULL,
   `document_id` int(11) NOT NULL,
@@ -120,7 +120,7 @@ INSERT INTO `emprunts` (`id`, `document_id`, `date_emprunt`, `date_limite`, `dat
 --
 -- Structure de la table `livres`
 --
-DROP TABLE IF EXISTS `livres`;
+
 CREATE TABLE `livres` (
   `id` int(11) NOT NULL,
   `auteur` varchar(255) NOT NULL,
@@ -140,7 +140,7 @@ INSERT INTO `livres` (`id`, `auteur`, `edition`) VALUES
 --
 -- Structure de la table `users`
 --
-DROP TABLE IF EXISTS `users`;
+
 CREATE TABLE `users` (
   `id` int(11) NOT NULL,
   `nom` varchar(255) NOT NULL,
@@ -151,7 +151,7 @@ CREATE TABLE `users` (
   `photo` varchar(255) DEFAULT NULL,
   `adhesion` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `telephone` varchar(256) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -160,9 +160,9 @@ CREATE TABLE `users` (
 -- Contenu de la table `users`
 --
 
-INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `photo`,`adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
-(1, 'felix', 'leo', '$2y$10$nJYOe3fSP4XfoCx1EbG8u.hqoOPBYv9HKc82wJgAtBaDHKcL3nC8e', 'leofelix@gmail.com', '2 B rue capucins','zinzin', NULL, '2019-11-05 09:17:00', '2019-11-05 14:49:04', NULL, '44466'),
-(2, 'test', 'test', '$2y$10$ETMqipzJc0bojpj8cHzqqOiD8JlcttOPPoK6bct2YDyuimzMRI2te', 'test@gmail.com', 'test','zinzin', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 14:21:48', NULL, '0');
+INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `photo`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`) VALUES
+(1, 'felix', 'leo', '$2y$10$nJYOe3fSP4XfoCx1EbG8u.hqoOPBYv9HKc82wJgAtBaDHKcL3nC8e', 'leofelix@gmail.com', '2 B rue capucins', 'zinzin', NULL, '2019-11-05 09:17:00', '2019-11-05 14:49:04', NULL, '44466'),
+(2, 'test', 'test', '$2y$10$ETMqipzJc0bojpj8cHzqqOiD8JlcttOPPoK6bct2YDyuimzMRI2te', 'test@gmail.com', 'test', 'zinzin', '2019-11-06 23:00:00', '2019-11-05 13:24:53', '2019-11-05 14:21:48', NULL, '0');
 
 --
 -- Index pour les tables exportées
