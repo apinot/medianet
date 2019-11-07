@@ -2,11 +2,16 @@
 
 {% block content %}
 	<h2>Mon adhesion</h2>
-	{% for user in users %}
-		{% if (user['adhesion'] == null) %}
-			<p>Vous n'êtes pas un adhérent</p>
+	{% if user['adhesion'] == null %}
+		<p>Vous n'êtes pas un adhérent {{ user['email'] }} </p>
+		{% if user['demande_adhesion'] == null %}
+			<form action = "{{ path_for('sendAdhesion') }}" method= POST >
+				<input type="submit" value="Cliquez ici pour adhérer">
+			</form>
 		{% else %}
-			<p>Vous êtes adhérent</p>
+			<p>Mais vous avez déjà émis une demande d'adhésion :)</p>
 		{% endif %}
-	{% endfor %}
+	{% else %}
+		<p>Vous êtes adhérent {{ user['email'] }} </p>
+	{% endif %}
 {% endblock %}
