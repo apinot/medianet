@@ -3,6 +3,9 @@
 {% block title %}{{Parent}} - document.nom{% endblock %}
 
 {% block content %}
+    <div>
+        <a class="btn" href="{{ path_for('dispo_switch',{id:document.id}) }}">Réserver</a>
+    </div>
 
 <div class="formular">
     <div>
@@ -15,11 +18,14 @@
         {% block documentDetails %}{% endblock %}
     </div>
     <div>
-        {% if media.disponible == 0 %}
-        <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
-        {% else %}
-        <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
+        {% if document.disponible == 0 %}
+            <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
+        {% elseif document.disponible == 1 %}
+            <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
+        {% elseif document.disponible == 2%}
+            <i class="fas fa-times-circle" style="color: #FF0000;"> réserver</i>
         {% endif %}
     </div>
+
 </div>
 {% endblock %}
