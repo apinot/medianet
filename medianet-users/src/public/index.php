@@ -31,6 +31,7 @@ $app->add(FlashMiddleware::class);
 //affichage de la page d'accueil
 $app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
+$app->get('/reserver/{id}', ControllerDocument::class.':setDisponible')->setName('dispo_switch');
 
 //Connexions et déconnexions
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
