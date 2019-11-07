@@ -6,6 +6,7 @@ require_once('../../vendor/autoload.php');
 //controllers
 use medianet\controllers\ControllerDocument;
 use medianet\controllers\ControllerStaff;
+use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
 
 //middlewares
@@ -42,7 +43,7 @@ $app->post('/ajout', ControllerUser::class.':verifMember')->setName('verif_membr
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
-$app->get('/documents/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
+$app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 $app->get('/documents', \medianet\controllers\ControllerDocument::class.':listMedia')->setName('listdoc');
 $app->get('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':edit')->setName('editDoc');
 $app->post('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':verif')->setName('verifDoc');
@@ -51,9 +52,9 @@ $app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setNa
 $app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
 
 //emprunts et retour
-$app->get('/', ControllerStaff::class.':pageEmprunt')->setName('home');
-$app->post('/take', ControllerStaff::class.':takeDocument')->setName('execTake');
-$app->post('/return', ControllerStaff::class.':returnDocument')->setName('execReturn');
+$app->get('/', ControllerEmprunt::class.':pageEmprunt')->setName('home');
+$app->post('/take', ControllerEmprunt::class.':takeDocument')->setName('execTake');
+$app->post('/return', ControllerEmprunt::class.':returnDocument')->setName('execReturn');
 
 //Historique 
 $app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
