@@ -19,8 +19,10 @@
     <div>
         {% if document.disponible == 0 %}
             <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
-        {% else %}
+        {% elseif document.disponible == 1 %}
             <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
+        {% elseif document.disponible == 2%}
+            <i class="fas fa-times-circle" style="color: #FF0000;"> réserver</i>
         {% endif %}
     </div>
 </div>
