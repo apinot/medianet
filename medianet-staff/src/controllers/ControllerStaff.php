@@ -24,17 +24,15 @@ class ControllerStaff extends Controller {
 		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
-	
-	//montre les emprunts
-	public function showData(Response $response, $emprunts){
-		foreach($emprunts as $emprunt){
-			echo "Référence: ".$emprunt->document_id.
-			" adhérent n°".$emprunt->user_id.
-			" date d'emprunt: ".$emprunt->date_emprunt.
-			" date limite: ".$emprunt->date_emprunt.
-			" date de retour: ".$emprunt->date_emprunt.
-			"<br>";
-		}
-		return $this->render($response, 'recap.html.twig');
+
+	//montre toutes les demandes d'adhésions
+	public function showAdhesions(Request $request, Response $response){
+		$users = User::all();
+		$this->render($response, 'adhesions.html.twig', ['users' => $users]);
 	}
+
+	public function doAdhesion(Request $request, Response $response, $args){
+		$idUser = Utils::sanitize($args['id']);
+		return Utils::redirect($response, "listAdhesions");
+	}	
 }

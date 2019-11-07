@@ -137,4 +137,9 @@ class ControllerUser extends Controller {
         return Utils::redirect($response, "showProfil");
     }
 
+    public function recapUser(Request $request, Response $response, $args){
+		$idUser = Utils::getFilteredPost($request, 'idUser');
+		$emprunts = Emprunt::where("user_id" ,"=", $idUser)->get();
+		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
+	}
 }

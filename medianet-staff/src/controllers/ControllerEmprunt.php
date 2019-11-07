@@ -113,4 +113,11 @@ class ControllerEmprunt extends Controller {
 
 		return $this->render($response, 'finRendu.html.twig', ['user' => $user, 'documents' => $documents, 'empruntsRestant' => $possession]);
 	}
+
+		//page récapitulative des emprunts
+		public function recapAll($request, $response, $args) {
+			$emprunts = Emprunt::all();
+			$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
+		}
+		
 }
