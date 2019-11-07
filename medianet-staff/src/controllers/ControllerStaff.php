@@ -30,5 +30,8 @@ class ControllerStaff extends Controller {
 		$users = User::all();
 		$this->render($response, 'adhesions.html.twig', ['users' => $users]);
 	}
-	
+
+	public function doAdhesion(Request $request, Response $response){
+		return Utils::redirect($response, "listAdhesions");
+	}	
 }

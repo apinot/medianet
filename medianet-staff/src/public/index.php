@@ -63,7 +63,7 @@ $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 //demandes d'adhésions
 $app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
-
+$app->post('/adhesions', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
 
 $app->run();
 
