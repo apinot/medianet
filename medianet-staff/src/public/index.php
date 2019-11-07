@@ -5,7 +5,6 @@ require_once('../../vendor/autoload.php');
 
 //controllers
 use medianet\controllers\ControllerDocument;
-use medianet\controllers\ControllerStaff;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
 
@@ -28,6 +27,7 @@ $app->add(FlashMiddleware::class);
 
 /** Routes */
 //affichage de la page d'accueil
+//TODO nettoyer
 
 $app->get('/membres', ControllerUser::class.':membersList')->setName('membres');
 $app->get('/details/{id}', ControllerUser::class.':detailsMembers')->setName('details_membre');
@@ -44,9 +44,9 @@ $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
 $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
-$app->get('/documents', \medianet\controllers\ControllerDocument::class.':listMedia')->setName('listdoc');
-$app->get('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':edit')->setName('editDoc');
-$app->post('/documents/modifier/{id}', \medianet\controllers\ControllerDocument::class.':verif')->setName('verifDoc');
+$app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdoc');
+$app->get('/documents/modifier/{id}', ControllerDocument::class.':edit')->setName('editDoc');
+$app->post('/documents/modifier/{id}', ControllerDocument::class.':verif')->setName('verifDoc');
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
 $app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
 $app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
@@ -57,8 +57,8 @@ $app->post('/take', ControllerEmprunt::class.':takeDocument')->setName('execTake
 $app->post('/return', ControllerEmprunt::class.':returnDocument')->setName('execReturn');
 
 //Historique 
-$app->get('/recap', ControllerStaff::class.':pageRecap')->setName('watchRecap');
-$app->post('/user', ControllerStaff::class.':recapUser')->setName('byUser');
+$app->get('/recap', ControllerEmprunt::class.':recapAll')->setName('watchRecap');
+$app->post('/user', ControllerUSer::class.':recapUser')->setName('byUser');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 
