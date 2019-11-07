@@ -109,6 +109,7 @@ class ControllerUser extends Controller {
 		$newUser->email = Utils::getfilteredPost($request, 'email');
 		$newUser->adresse = Utils::getfilteredPost($request, 'adresse');
 		$newUser->telephone = Utils::getfilteredPost($request, 'telephone');
+		$newUser->demande_adhesion = date('Y-m-d H:i:s');
 		$newUser->save();
 		return Utils::redirect($response, 'home');
 	}
