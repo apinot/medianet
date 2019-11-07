@@ -4,19 +4,22 @@
     <p>
         {{ get_data("error") }}
     </p>
+    <i class="fas fa-times"></i>
 </div>
 
 {% elseif "success" is flashed %}
 <div class= "success">
     <p>
         {{ get_data("success") }}
-    </p>  
+    </p>
+    <i class="fas fa-times"></i>  
 </div>
 {% elseif "info" is flashed %}
 <div class="info">
     <p>
         {{ get_data("info") }}
     </p>
+    <i class="fas fa-times"></i>
 </div>
 
 {% endif %}

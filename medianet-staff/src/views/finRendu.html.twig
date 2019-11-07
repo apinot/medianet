@@ -5,20 +5,18 @@
 {% endblock %}
 
 {% block content %}
-<p>L'adhérant {{user.prenom}} {{user.nom}} (Réf : {{user.id}}) a rendu {{documents.length}} documents.</p>
+<div class="formular">
+    <p>L'adhérant {{user.prenom}} {{user.nom}} (Réf : {{user.id}}) a rendu {{ documents | length }} document(s).</p>
+        {% for doc in documents %}
+            <p>Ref : {{doc.id}} - ({{doc.type()}}) Titre : {{doc.nom}}</p>
+        {% endfor %}
 
-<ul>
-    {% for doc in documents %}
-        <li>Ref : {{doc.id}} - ({{doc.type()}}) Titre : {{doc.nom}}</li>
-    {% endfor %}
-</ul>
-
-<p>Liste des documents encore en posséssion de l'adhérent</p>
-<ul>
-    {% for emprunt in empruntsRestant %}
-        <li>Ref : {{emprunt.document.id}} - ({{emprunt.document.type()}}) Titre : {{emprunt.document.nom}}</li>
-    {% endfor %}
-</ul>
-
-<a class="btn" href="{{path_for('home')}}">Retour à l'accueil</a>
+        <p>l'adhérent possède encore {{ empruntsRestant | length }} document(s)</p>
+        {% for emprunt in empruntsRestant %}
+            <p>Ref : {{emprunt.document.id}} - ({{emprunt.document.type()}}) Titre : {{emprunt.document.nom}}</li>
+        {% endfor %}
+        <div>
+            <a class="btn" href="{{path_for('home')}}">Retour à l'accueil</a>
+        </div>
+</div>
 {% endblock %}
