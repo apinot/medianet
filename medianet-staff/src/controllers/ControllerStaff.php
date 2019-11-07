@@ -34,8 +34,13 @@ class ControllerStaff extends Controller {
 	public function doAdhesion(Request $request, Response $response, $args){
 		$idUser = Utils::sanitize($args['id']);
 		$adherent = User::find($idUser);
-		$adherent->demande_adhesion = null;
-		$adherent->adhesion = date('Y-m-d H:i:s');
+		if(isset($_POST['valider'])){
+			$adherent->demande_adhesion = null;
+			$adherent->adhesion = date('Y-m-d H:i:s');
+		}elseif(isset($_POST['refuser'])){
+			$adherent->demande_adhesion = null;
+			$adherent->adhesion = null;
+		}
 		$adherent->save();
 		return Utils::redirect($response, "listAdhesions");
 	}	

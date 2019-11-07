@@ -14,7 +14,8 @@
 				<td>{{ user['demande_adhesion']|date('d/m/Y') }}</td> 
 				<td>
 				<form action="{{ path_for('handleAdhesions', {id:user['id']}) }}" method="POST">
-					<input type="submit" value="valider">
+					<input type="submit" name="valider" value="valider">
+					<input type="submit" name="refuser" value="refuser">
 				</form>
 				</td>
 			{% endif %}
