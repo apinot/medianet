@@ -458,6 +458,34 @@ td {
   text-align: center;
 }
 
+.grid {
+  display: grid;
+  grid-template-columns: 1fr 3fr 1fr 3fr 2fr 2fr 2fr;
+  text-align: center;
+  row-gap: 0;
+}
+
+.griditem {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  padding: 1em 0 1em 0;
+}
+
+.griditemlink {
+  box-sizing: border-box;
+  margin: 0;
+  border: 1px solid black;
+  padding: 1em 0 1em 0;
+}
+
+.griditemlink:hover {
+  margin: 0;
+  text-decoration: none;
+  color: black;
+  background: gray;
+}
+
 body, html {
   margin: 0;
   padding: 0;

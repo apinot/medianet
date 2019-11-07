@@ -6,26 +6,29 @@
 		<input type="text" name="idUser">
 		<input type="submit" value="Rechercher">
 	</form>
-	<table>
-		<thead>
-			<th>Réference</th>
-			<th>n° d'adhérent</th>		
-			<th>Emprunt</th>		
-			<th>Limite</th>		
-			<th>Retour</th>		
-		</thead>
+	<div class="grid">
+		<p class="griditem">Réference</p>
+		<p class="griditem">Titre</p>
+		<p class="griditem">n° d'adhérent</p>	
+		<p class="griditem">Nom prénom</p>
+		<p class="griditem">Emprunt</p>		
+		<p class="griditem">Limite</p>		
+		<p class="griditem">Retour</p>		
 	{% for emprunt in emprunts %}
-		<tr>
-			<td>{{ emprunt['document_id'] }}</td> 
-			<td>{{ emprunt['user_id'] }}</td>
-			<td>{{ emprunt['date_emprunt']|date('d/m/Y') }}</td> 
-			{% if (emprunt['date_limite'] >= emprunt['date_emprunt']) %}  
-				<td style="border: solid 3px red;"> {{emprunt['date_limite']|date('d/m/Y')}} </td> 
-			{% else %}
-				<td style="border: solid 2px black;"> {{emprunt['date_limite']|date('d/m/Y')}} </td> 
-			{% endif %}
-			<td> {{emprunt['date_retour']|date('d/m/Y')}} </td> 
-		</tr>
+		<a class="griditemlink" href="{{ path_for('showDocument',{id: emprunt.document.id}) }}">{{ emprunt['document_id'] }}</a>
+		<p class="griditem"> {{ emprunt.document.nom }} </p>
+		{% if emprunt.user.trashed() %}
+			<p class="griditem">{{ emprunt['user_id'] }}</p>
+			<p class="griditem">{{ emprunt.user.nom }} {{ emprunt.user.prenom }} <i>(supprimé)</i>
+		{% else %}
+			<a class="griditemlink" href="{{ path_for('details_membre',{id: emprunt.user.id}) }}">{{ emprunt['user_id'] }}</a>
+			<p class="griditem">{{ emprunt.user.nom }} {{ emprunt.user.prenom }}
+		{% endif %}
+
+		</p>
+		<p class="griditem"> {{ emprunt['date_emprunt']|date('d/m/Y') }}</p> 
+		<p class="griditem"> {{ emprunt['date_limite']|date('d/m/Y') }}</p> 
+		<p class="griditem"> {{ emprunt['date_retour']|date('d/m/Y') }}</p> 
 	{% endfor %}
-	</table>
+	</div>
 {% endblock %}
