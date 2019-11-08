@@ -54,7 +54,8 @@ $app->post('/documents/modifier/{id}', ControllerDocument::class.':verif')->setN
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
 $app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
 $app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
-$app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('indispobinle_doc');
+$app->get('/documents/statusIndis/{id}', ControllerDocument::class.':modifStatusDocumentIndispo')->setName('indisponible_doc');
+$app->get('/documents/statusDis/{id}', ControllerDocument::class.':modifStatusDocumentDispo')->setName('disponible_doc');
 
 
 //emprunts et retour
