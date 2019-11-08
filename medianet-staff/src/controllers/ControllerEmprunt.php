@@ -20,18 +20,18 @@ class ControllerEmprunt extends Controller {
 	public function takeDocument($request, $response, $args) { 
 		$userId = Utils::getFilteredPost($request, "user");
 		if($userId === null || $userId === "") {
-			Flash::flashInfo('Veuillez rensigner un numéro d\'adhérant');
+			Flash::flashInfo("Veuillez rensigner un numéro d\'adhérant");
 			return Utils::redirect($response, "home");
 		}
 		
 		$user = User::find($userId);
 		if($user == null){
-			Flash::flashError('L\'utilisateur n\'existe pas !');
+			Flash::flashError("L'utilisateur n'existe pas !");
 			return Utils::redirect($response, "home");
 		}
 		//vérifie que l'utilisateur est un adhérent
 		if($user->adhesion == null){
-			Flash::flashError('Vous devez être adhérent pour emprunter !');
+			Flash::flashError("l'adhérent n'existe pas");
 			return Utils::redirect($response, "home");
 		}
 		
@@ -51,7 +51,7 @@ class ControllerEmprunt extends Controller {
 		
 		$docCount = count($documents);
 		if($docCount <= 0) {
-			Flash::flashError('Les documents n\'existent pas ou ne sont pas disponibles');
+			Flash::flashError("Les documents n'existent pas ou ne sont pas disponibles");
 			return Utils::redirect($response, "home");
 		}
 		
@@ -60,8 +60,8 @@ class ControllerEmprunt extends Controller {
 		
 		foreach($documents as $document) {
 			$emprunt = new Emprunt();
-			$emprunt->date_emprunt = date('Y-m-d H:i:s', $dateEmprunt);
-			$emprunt->date_limite = date('Y-m-d H:i:s', $dateLimit);
+			$emprunt->date_emprunt = date("Y-m-d H:i:s", $dateEmprunt);
+			$emprunt->date_limite = date("Y-m-d H:i:s", $dateLimit);
 			$emprunt->user_id = $userId;
 			$emprunt->document_id = $document->id;
 			$emprunt->save();
@@ -73,14 +73,14 @@ class ControllerEmprunt extends Controller {
 		if($hasIgnored) {
 			Flash::flashInfo("Certains documents ont été ignorés car ils n'existent pas ou ne sont pas disponibles !");
 		}
-		return $this->render($response, 'finEmprunts.html.twig', ['user' =>$user, 'documents' => $documents]);
+		return $this->render($response, "finEmprunts.html.twig", ['user' =>$user, 'documents' => $documents]);
 	}	
 
     /**
      * Méthode pour rendre des documents
      */
 	public function returnDocument($request, $response, $args) {
-		$documentsId = Utils::getFilteredPost($request, 'documents');
+		$documentsId = Utils::getFilteredPost($request, "documents");
 
 		$documents = [];
 		foreach($documentsId as $idDoc) {
@@ -92,7 +92,7 @@ class ControllerEmprunt extends Controller {
 
 		$docCount = count($documents);
 		if($docCount <= 0) {
-			Flash::flashError('Les documents n\'existent pas ou ne sont pas empruntés');
+			Flash::flashError("Les documents n'existent pas ou ne sont pas empruntés");
 			return Utils::redirect($response, "home");
 		}
 

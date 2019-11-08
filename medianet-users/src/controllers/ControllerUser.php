@@ -114,8 +114,13 @@ class ControllerUser extends Controller {
 		$newUser = new User;
 		$newUser->nom = Utils::getfilteredPost($request, 'nom');
 		$newUser->prenom = Utils::getfilteredPost($request, 'prenom');
-		$newMdp = Utils::getfilteredPost($request, 'mdp');
-		$newUser->mdp = password_hash($newMdp, PASSWORD_DEFAULT);
+        $newMdp = Utils::getfilteredPost($request, 'mdp');
+        $confMdp = Utils::getfilteredPost($request, 'mdpConf');
+        if ($newMdp !== $confMdp) {
+            Flash::flashError("Les mots de passes ne sont pas identique");
+            return Utils::redirect($response, "adhesionUser");
+        }
+        $newUser->mdp = password_hash($newMdp, PASSWORD_DEFAULT);
 		$newUser->email = $email;
 		$newUser->adresse = Utils::getfilteredPost($request, 'adresse');
 		$newUser->telephone = Utils::getfilteredPost($request, 'telephone');
