@@ -12,6 +12,7 @@ nav {
   flex-direction: column;
   justify-content: flex-start;
   align-items: stretch;
+  max-width: 100%;
 }
 nav .nav-title {
   font-size: 2rem;
@@ -31,6 +32,7 @@ nav .nav-items-group {
   justify-content: flex-start;
   align-items: stretch;
   text-align: left;
+  flex-wrap: wrap;
 }
 @media (min-width: 30em) {
   nav .nav-items-group {
@@ -204,6 +206,10 @@ nav .nav-items-group .nav-item .nav-link {
   font-size: 16px;
   margin: 0.5em;
   cursor: pointer;
+  transition: background-color 500ms;
+}
+.btn:hover {
+  background: #444444;
 }
 
 .profil {
@@ -477,6 +483,11 @@ td {
 
 .griditemlink:hover {
   background: gray;
+}
+
+.itemgridbtn {
+  background: gray;
+  padding: 1%;
 }
 
 body, html {

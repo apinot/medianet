@@ -13,4 +13,9 @@ $color: #1e1e1e;
     font-size: 16px;
     margin: 0.5em;
     cursor: pointer;
+    transition: background-color 500ms;
+
+    &:hover {
+      background: lighten($color: $color, $amount: 15%);
+    }
   }
