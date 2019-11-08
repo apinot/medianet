@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 08 Novembre 2019 à 09:59
+-- Généré le :  Ven 08 Novembre 2019 à 15:13
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -160,7 +160,6 @@ CREATE TABLE `reservations` (
   `document_id` int(11) NOT NULL,
   `emprunt_id` int(11) DEFAULT NULL,
   `date_reservation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-  `date_debut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_limite` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -168,8 +167,8 @@ CREATE TABLE `reservations` (
 -- Contenu de la table `reservations`
 --
 
-INSERT INTO `reservations` (`id`, `user_id`, `document_id`, `emprunt_id`, `date_reservation`, `date_debut`, `date_limite`) VALUES
-(1, 2, 2, NULL, '2019-11-08 08:42:59', '2019-11-08 08:21:44', '2019-11-20 23:00:00');
+INSERT INTO `reservations` (`id`, `user_id`, `document_id`, `emprunt_id`, `date_reservation`, `date_limite`) VALUES
+(1, 2, 2, NULL, '2019-11-08 08:42:59', '2019-11-20 23:00:00');
 
 -- --------------------------------------------------------
 
