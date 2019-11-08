@@ -5,6 +5,7 @@
 {% block content %}
     <a href="{{ path_for('editDoc',{id:document.id}) }}" class="btn">Modifier</a>
     <a class="btn" href="{{ path_for('delete_doc', {id: document.id}) }}">Supprimer</a>
+    <a class="btn" href="{{ path_for('indispobinle_doc', {id: document.id}) }}">Rendre indisponible</a>
 
     <div class="formular">
     <div>

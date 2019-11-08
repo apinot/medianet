@@ -5,6 +5,7 @@ require_once('../../vendor/autoload.php');
 
 //controllers
 use medianet\controllers\ControllerDocument;
+use medianet\controllers\ControllerReservation;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
 use medianet\controllers\ControllerStaff;
@@ -53,6 +54,8 @@ $app->post('/documents/modifier/{id}', ControllerDocument::class.':verif')->setN
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
 $app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
 $app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
+$app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('indispobinle_doc');
+
 
 //emprunts et retour
 $app->get('/', ControllerEmprunt::class.':pageEmprunt')->setName('home');
@@ -67,6 +70,8 @@ $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 //demandes d'adhésions
 $app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
 $app->post('/adhesions/{id}', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
+
+$app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
 
 $app->run();
 
