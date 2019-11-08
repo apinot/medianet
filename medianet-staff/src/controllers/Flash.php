@@ -84,6 +84,8 @@ class Flash {
             $_SESSION['flash'] = self::$flashedData;
             self::$flashedData = [];
             self::$validated = true;
+        }else{
+            $_SESSION['flash'] = [];
         }
     }
 }
