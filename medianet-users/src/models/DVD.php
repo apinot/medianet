@@ -10,7 +10,7 @@ class DVD extends Model
     protected $table = 'dvds';
     protected $primaryKey = 'id';
     protected $fillable = ['acteurs', 'duree'];
-    public $timestamps = true;
+    public $timestamps = false;
 
     public function document() {
         $this->morphOne(Document::class);

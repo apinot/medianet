@@ -37,8 +37,8 @@ class ControllerUser extends Controller {
         $password = Utils::getFilteredPost($request,'password');
         $confirm_pass = Utils::getFilteredPost($request,'confirm_pass');
 
-        if($nom == "" || $prenom=="" || $adresse== "" || $email=="" || $telephone=="" || $password==""){
-            Flash::flashError("Des champ de sont pas completer");
+        if($nom == "" || $prenom == "" || $adresse=="" || $email=="" || $telephone=="" || $password==""){
+            Flash::flashError("Des champs de sont pas completer");
             return Utils::redirect($response, 'formUtilisateur');
         }
         if ($confirm_pass != $password){
@@ -46,24 +46,19 @@ class ControllerUser extends Controller {
             return Utils::redirect($response, 'formUtilisateur');
         }
 
-        if(Auth::verifEmail($email)){
-            $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
-            $new_user = new User();
-            $new_user->nom = $nom;
-            $new_user->prenom = $prenom;
-            $new_user->adresse = $adresse;
-            $new_user->email = $email;
-            $new_user->mdp= $hashed_pass;
-            $new_user->telephone = $telephone;
-
-        }else{
+        if(!Auth::verifEmail($email)){
             Flash::flashError("Email deja utilisé");
             return Utils::redirect($response, 'formUtilisateur');
         }
-
-
+        $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
+        $new_user = new User();
+        $new_user->nom = $nom;
+        $new_user->prenom = $prenom;
+        $new_user->adresse = $adresse;
+        $new_user->email = $email;
+        $new_user->mdp= $hashed_pass;
+        $new_user->telephone = $telephone;
         $new_user->save();
-
         return Utils::redirect($response,'membres');
     }
 
@@ -92,7 +87,7 @@ class ControllerUser extends Controller {
 
     public function updateUser(Request $request, Response $response, $args) {
         $id = Utils::sanitize($args['id']);
-        $user = User::find(intval($id))->first();
+        $user = User::find($id);
         $user->nom = Utils::getFilteredPost($request, "nom");
         $user->prenom = Utils::getFilteredPost($request, "prenom");
         $user->adresse = Utils::getFilteredPost($request, "adresse");

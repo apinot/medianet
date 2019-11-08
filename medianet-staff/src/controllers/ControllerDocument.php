@@ -101,7 +101,7 @@ class ControllerDocument extends Controller {
         }
     }
 
-    public function verif(Request $request, Response $response,$args)
+    public function updateDocument(Request $request, Response $response,$args)
     {
         $id = Utils::sanitize($args['id']);
         $document = Document::find(intval($id));
