@@ -22,6 +22,30 @@
 		<a  class="btn" href="{{ path_for('delete',{id:user.id}) }}"> Supprimer le compte </a>
 	</div>
 	<div class="profil-list">
+		<h2 class="profil-card-title">Ses reservations</h2>
+		<hr>
+		<ul class="profil-document-list">
+
+			{% for reservation in user.reservations %}
+				
+				{% if reservation.emprunt_id is null %}
+				{% if reservation.valide() %}
+					<li class="document-item">
+						<div class="document-title">{{reservation.document.type() }} : {{reservation.document.nom}}</div>
+						<div class="document-content">
+							<div>reservé le : {{reservation.date_reservation}}</div>
+							<div>A recupérer avant : {{reservation.date_limite}}</div>
+						</div>
+						<div class="document-action">
+							<a class="btn" href="{{ path_for('showDocument', {id: reservation.document.id}) }}"> Voir le document</a>
+						</div>
+					</li>
+				{% endif %}
+				{% endif %}
+			{% endfor %}
+		</ul>
+	</div>
+	<div class="profil-list">
 		<h2 class="profil-card-title">Ses Emprunts</h2>
 		<hr>
 		<ul class="profil-document-list">
