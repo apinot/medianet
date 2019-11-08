@@ -19,6 +19,10 @@ class User extends Model
 
     public function reservations(){
         return $this->hasMany(Reservation::class);
-  }
+    }
+
+    public function empruntsEnCours(){
+      return $this->emprunts()->whereNull('date_retour')->get();
+    }
 
 } 

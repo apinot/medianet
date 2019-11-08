@@ -64,8 +64,9 @@ class ControllerUser extends Controller {
 
     public function delete(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
-        $user = User::find(intval($id));
-        if ($user->emprunts()->first() == null) {
+        $user = User::find($id);
+
+        if (count($user->empruntsEnCours()) == 0) {
             $user->delete();
             Flash::flashSuccess("Le compte a bien été supprimer");
             return Utils::redirect($response, 'membres');
