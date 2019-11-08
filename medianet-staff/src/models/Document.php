@@ -15,12 +15,12 @@ class Document extends Model
         return $this->morphTo();
     }
     
-    public function emprunt(){
+    public function emprunts(){
         return $this->hasMany(Emprunt::class);
     }
 
     public function reservation() {
-        return $this->hasMany(reservation::class);
+        return $this->hasMany(Reservation::class);
     }
 
     public function type() {

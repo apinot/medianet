@@ -26,16 +26,16 @@
         <div class="card-item">
             Genre : {{ media.genre }}
         </div> 
-        {% if media.disponible == 0 %}
+        {% if media.disponible <= 0 %}
             <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
-        {% elseif media.disponible == 1 %}
+        {% else %}
             <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
-        {% elseif media.disponible == 2%}
-            <i class="fas fa-times-circle" style="color: #FF0000;"> réserver</i>
         {% endif %}
         <div class="card-bottom">
             <a class="btn" href="{{ path_for('showDocument', {id: media.id}) }}">Details</a>
-            <a class="btn" href="{{ path_for('showDocument', {id: media.id}) }}">Reserver</a>
+            {% if media.peutEtreReserver() %}
+              <a class="btn" href="{{ path_for('reserver', {id: media.id}) }}">Reserver</a>
+            {% endif %}           
         </div>
        
     </div>

@@ -27,7 +27,7 @@
            Genre : {{ media.genre }}
         </div> 
         <div class="card-bottom">
-            {% if media.disponible == 0 %}
+            {% if media.disponible <= 0 %}
             <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
             {% else %}
                 <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i> 

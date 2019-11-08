@@ -20,11 +20,15 @@ class Document extends Model
     }
 
     public function reservation() {
-        return $this->hasMany(reservation::class);
+        return $this->hasMany(Reservation::class);
     }
 
     public function type() {
         $res = explode('\\',$this->documentable_type);
         return $res[count($res)-1];
+    }
+
+    public function peutEtreReserver() {
+        return $this->disponible === 1;
     }
 }
