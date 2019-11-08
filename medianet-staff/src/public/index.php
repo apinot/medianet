@@ -8,7 +8,6 @@ use medianet\controllers\ControllerDocument;
 use medianet\controllers\ControllerReservation;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
-use medianet\controllers\ControllerStaff;
 
 //middlewares
 use medianet\middlewares\FlashMiddleware;
@@ -68,8 +67,8 @@ $app->post('/user', ControllerUSer::class.':recapUser')->setName('byUser');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 //demandes d'adhésions
-$app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
-$app->post('/adhesions/{id}', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
+$app->get('/adhesions', ControllerUser::class.':showAdhesions')->setName('listAdhesions');
+$app->post('/adhesions/{id}', ControllerUser::class.':doAdhesion')->setName('handleAdhesions');
 
 $app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
 

@@ -32,9 +32,6 @@ class ControllerReservation extends Controller {
         $reservation->date_limite = $dateLimite;
         $reservation->save();
 
-        $document->disponible = -1;
-        $document->save();
-
         Flash::flashSuccess('Vous avez réservé le document');
         return Utils::redirect($response, 'showDocument', ['id' => $docid]);
     }
