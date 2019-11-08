@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 08 Novembre 2019 à 08:41
+-- Généré le :  Ven 08 Novembre 2019 à 09:59
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -151,16 +151,25 @@ INSERT INTO `livres` (`id`, `auteur`, `edition`) VALUES
 -- --------------------------------------------------------
 
 --
--- Structure de la table `reservation`
+-- Structure de la table `reservations`
 --
 
-CREATE TABLE `reservation` (
+CREATE TABLE `reservations` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
   `document_id` int(11) NOT NULL,
-  `date_debut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `emprunt_id` int(11) DEFAULT NULL,
+  `date_reservation` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `date_debut` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
   `date_limite` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Contenu de la table `reservations`
+--
+
+INSERT INTO `reservations` (`id`, `user_id`, `document_id`, `emprunt_id`, `date_reservation`, `date_debut`, `date_limite`) VALUES
+(1, 2, 2, NULL, '2019-11-08 08:42:59', '2019-11-08 08:21:44', '2019-11-20 23:00:00');
 
 -- --------------------------------------------------------
 
@@ -228,6 +237,12 @@ ALTER TABLE `livres`
   ADD PRIMARY KEY (`id`);
 
 --
+-- Index pour la table `reservations`
+--
+ALTER TABLE `reservations`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `users`
 --
 ALTER TABLE `users`
@@ -262,6 +277,11 @@ ALTER TABLE `emprunts`
 --
 ALTER TABLE `livres`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+--
+-- AUTO_INCREMENT pour la table `reservations`
+--
+ALTER TABLE `reservations`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT pour la table `users`
 --

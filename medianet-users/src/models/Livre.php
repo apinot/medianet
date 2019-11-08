@@ -1,8 +1,6 @@
 <?php
 
-
 namespace medianet\models;
-
 
 use Illuminate\Database\Eloquent\Model;
 
