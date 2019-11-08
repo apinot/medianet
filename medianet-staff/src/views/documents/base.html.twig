@@ -5,8 +5,11 @@
 {% block content %}
     <a href="{{ path_for('editDoc',{id:document.id}) }}" class="btn">Modifier</a>
     <a class="btn" href="{{ path_for('delete_doc', {id: document.id}) }}">Supprimer</a>
-    <a class="btn" href="{{ path_for('indispobinle_doc', {id: document.id}) }}">Rendre indisponible</a>
-
+    {% if document.disponible == 1 %}
+        <a class="btn" href="{{ path_for('updateDispo', {id: document.id}) }}">Rendre indisponible</a>
+    {% else %}
+        <a class="btn" href="{{ path_for('updateDispo', {id: document.id}) }}">Rendre disponible</a>
+    {% endif %}
     <div class="formular">
     <div>
         <img src="https://cdn.pixabay.com/photo/2016/01/23/16/02/book-1157658_960_720.png" alt="">
