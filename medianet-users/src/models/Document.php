@@ -16,7 +16,11 @@ class Document extends Model
     }
     
     public function emprunt(){
-        return $this->belongsTo(Emprunt::class);
+        return $this->hasMany(Emprunt::class);
+    }
+
+    public function reservation() {
+        return $this->hasMany(reservation::class);
     }
 
     public function type() {
