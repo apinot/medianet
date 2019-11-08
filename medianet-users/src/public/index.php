@@ -7,6 +7,7 @@ require_once('../../vendor/autoload.php');
 use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerUser;
 use medianet\controllers\ControllerDocument;
+use medianet\controllers\ControllerReservation;
 
 //middlewares
 use medianet\middlewares\FlashMiddleware;
@@ -50,6 +51,7 @@ $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdat
 
 //Documents
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
+$app->get('/document/{id}/reserver', ControllerReservation::class.':reserver')->setName('showDocument')->add(AuthMiddleware::class);
 
 //Adhesion utilisateur
 $app->get('/adhesion', ControllerUser::class.':showAdhesion')->setname('adhesionUser');

@@ -2,6 +2,7 @@
 namespace medianet\controllers;
 
 use \medianet\models\Reservation;
+use \medianet\models\Document;
 
 class ControllerReservation extends Controller {
     
@@ -15,11 +16,11 @@ class ControllerReservation extends Controller {
             return Utils::redirect($response, 'home');
         }
 
-        if(!peutEtreReserver()) {
+        if(!$document->peutEtreReserver()) {
             Flash::flashInfo('Ce document ne peut pas être réservé pour le moment');
             return Utils::redirect($response, 'showDocument', ['id' => $docid]);
         }
-        $emprunt = $document->emprunts()->whereNull('date_retour')->first();
+        $emprunt = $document->emprunt()->whereNull('date_retour')->first();
 
         $dateActuelle = date("Y-m-d H:i:s");
         $dateFinEmprunt = ( $emprunt !== null ? $emprunt->date_limite : $dateActuelle);
@@ -31,10 +32,13 @@ class ControllerReservation extends Controller {
         $reservation->document_id = $docid;
         $reservation->date_reservation = $dateActuelle;
         $reservation->date_debut = $dateFinEmprunt;
-        $reservation->date_fin = $dateLimite;
+        $reservation->date_limite = $dateLimite;
         $reservation->save();
 
         $document->disponible = false;
         $document->save();
+
+        Flash::flashSuccess('Vous avez réservé le document');
+        return Utils::redirect($response, 'showDocument', ['id' => $docid]);
     }
 }

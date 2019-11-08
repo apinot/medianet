@@ -20,7 +20,7 @@ class Document extends Model
     }
 
     public function reservation() {
-        return $this->hasMany(reservation::class);
+        return $this->hasMany(Reservation::class);
     }
 
     public function type() {
