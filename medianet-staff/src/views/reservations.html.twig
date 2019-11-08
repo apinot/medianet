@@ -1,0 +1,23 @@
+{% extends "base.html.twig" %}
+
+{% block content %}
+	<h2>Liste des réservations en cours</h2>
+	<div class="grid">
+		<p class="griditem">Réference</p>
+		<p class="griditem">Titre</p>
+		<p class="griditem">n° d'adhérent</p>	
+		<p class="griditem">Nom prénom</p>
+		<p class="griditem">date reservation</p>		
+		<p class="griditem">date début</p>	
+		<p class="griditem">Limite</p>
+	{% for reservation in reservations %}
+		<p class="griditem"> {{ reservation.document.id }} </p>
+		<p class="griditem"> {{ reservation.document.nom }} </p>
+		<p class="griditem"> {{ reservation.user.id }}</p> 
+		<p class="griditem"> {{ reservation.user.nom }} {{ reservation.user.prenom }}</p> 
+		<p class="griditem"> {{ reservation.date_reservation }}</p> 
+		<p class="griditem"> {{ reservation.date_debut }}</p> 
+		<p class="griditem"> {{ reservation.date_limite }}</p>
+	{% endfor %}
+	</div>
+{% endblock %}
