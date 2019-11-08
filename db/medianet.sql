@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Client :  localhost:3306
--- Généré le :  Ven 08 Novembre 2019 à 15:13
+-- Généré le :  Ven 08 Novembre 2019 à 16:51
 -- Version du serveur :  5.7.27-0ubuntu0.18.04.1
 -- Version de PHP :  7.2.24-0ubuntu0.18.04.1
 
@@ -37,8 +37,9 @@ CREATE TABLE `cds` (
 --
 
 INSERT INTO `cds` (`id`, `artistes`, `maison_disque`) VALUES
-(1, 'Gringe', 'disney'),
-(2, 'Jean michel patoche', 'les zinzins\r\n');
+(1, 'Gringe', 'Wargram'),
+(2, 'Berthe Syla', 'Nostalgie Record'),
+(3, 'Orelsan, Gringe', 'Wargram');
 
 -- --------------------------------------------------------
 
@@ -64,12 +65,16 @@ CREATE TABLE `documents` (
 --
 
 INSERT INTO `documents` (`id`, `documentable_id`, `documentable_type`, `nom`, `resume`, `genre`, `disponible`, `created_at`, `updated_at`, `deleted_at`) VALUES
-(1, 1, 'medianet\\models\\CD', 'aaaaaaaaaaaaaaa', 'aaaaa', 'aaaa', 1, '2019-11-05 13:12:36', '2019-11-07 14:10:55', NULL),
-(2, 2, 'medianet\\models\\CD', 'le petit bonhome en mousse', 'oh non pas encore', 'payarde', 1, '2019-11-05 13:13:44', '2019-11-07 14:10:55', NULL),
-(3, 1, 'medianet\\models\\DVD', 'Rocky', 'pas besoin de resume', 'Drame', 0, '2019-11-05 13:16:17', '2019-11-07 14:10:47', NULL),
-(4, 2, 'medianet\\models\\DVD', 'Rocky 2', 'ah ouais', 'drame', 1, '2019-11-05 13:17:01', '2019-11-07 12:58:50', NULL),
-(5, 1, 'medianet\\models\\Livre', '100 jours en enfer', 'pauvre gamin', 'policier', 1, '2019-11-05 13:19:22', '2019-11-05 13:19:22', NULL),
-(6, 2, 'medianet\\models\\Livre', 'trafic oh oui', 'oh la la pas bien', 'policer', 1, '2019-11-05 13:20:27', '2019-11-07 09:16:46', NULL);
+(1, 1, 'medianet\\models\\Livre', 'Les misérables', 'Jean Valjean est un personnage aussi fantastique que Quasimodo. Mais il est fait, lui aussi, de ce beau fantastique des poètes qui part de la réalité, qui l\'exalte, l\'amplifie, la magnifie. Au début, Jean Valjean est un innocent qui a volé un pain et qui ne rencontre pas un président Magnaud pour le sauver du bagne.', 'Roman', 1, '2019-11-08 15:34:26', '2019-11-08 15:34:26', NULL),
+(2, 2, 'medianet\\models\\Livre', 'Cherub 1 : 100 jours en enfer', 'James n\'a que 12 ans lorsque sa vie tourne au cauchemar. Placé dans un orphelinat à la mort de sa mère, il glisse vers la délinquance. Il est alors recruté par CHERUB, une mystérieuse organisation gouvernementale.', 'Policier', 1, '2019-11-08 15:35:19', '2019-11-08 15:35:19', NULL),
+(3, 3, 'medianet\\models\\Livre', 'Harry potter 1', 'Orphelin, le jeune Harry Potter peut enfin quitter ses tyranniques oncle et tante Dursley lorsqu\'un curieux messager lui révèle qu\'il est un sorcier. À 11 ans, Harry va enfin pouvoir intégrer la légendaire école de sorcellerie de Poudlard, y trouver une famille digne de ce nom et des amis.', 'Fantasy', 1, '2019-11-08 15:36:56', '2019-11-08 15:36:56', NULL),
+(4, 1, 'medianet\\models\\CD', 'Enfant Lune', 'Enfant lune est le premier album studio solo du rappeur français Gringe, produit par Wagram Music. Originellement prévu pour le 19 octobre', 'Rap', 1, '2019-11-08 15:37:36', '2019-11-08 15:37:36', NULL),
+(5, 2, 'medianet\\models\\CD', 'Le Lilas blanc', 'Elle naquit par un dimanche Du plus joli des mois de mai Quand le printemps à chaque branche ', 'Dramatique', 0, '2019-11-08 15:38:59', '2019-11-08 15:46:38', NULL),
+(6, 3, 'medianet\\models\\CD', 'Casseur Flowter', 'Casseurs Flowters est un groupe de hip-hop français, originaire de Caen, dans le Calvados. Formé par Orelsan et Gringe.', 'hip hop', 1, '2019-11-08 15:39:52', '2019-11-08 15:48:09', NULL),
+(7, 1, 'medianet\\models\\DVD', 'Rocky', 'Rocky est une série cinématographique écrite par Sylvester Stallone, dont il incarne le personnage principal.', 'Drame', 1, '2019-11-08 15:40:26', '2019-11-08 15:48:09', NULL),
+(8, 2, 'medianet\\models\\DVD', 'Rocky 2', 'Rocky 2 : La Revanche (Rocky II) est un film américain écrit et réalisé par Sylvester Stallone, sorti en 1979.', 'Drame', 1, '2019-11-08 15:41:13', '2019-11-08 15:41:13', NULL),
+(9, 3, 'medianet\\models\\DVD', 'Rocky 3', 'Rocky 3 : L\'Œil du tigre (Rocky III) est un film américain, écrit et réalisé par Sylvester Stallone, sorti en 1982. C\'est le troisième opus de la saga Rocky.', 'Drame', 1, '2019-11-08 15:42:09', '2019-11-08 15:42:09', NULL),
+(10, 4, 'medianet\\models\\DVD', 'L\'étalon Italien', 'L\'Étalon italien est un film érotique réalisé par Morton Lewis en 1970. C\'est le premier film de Sylvester Stallone.', 'Erotique', -1, '2019-11-08 15:43:19', '2019-11-08 15:43:59', NULL);
 
 -- --------------------------------------------------------
 
@@ -88,8 +93,10 @@ CREATE TABLE `dvds` (
 --
 
 INSERT INTO `dvds` (`id`, `acteurs`, `duree`) VALUES
-(1, 'Stallone', 119),
-(2, 'Stallone', 121);
+(1, 'Silverster Stallone', 119),
+(2, 'Silverster Stallone', 121),
+(3, 'Silverster Stallone', 123),
+(4, 'Silverster Stallone', 61);
 
 -- --------------------------------------------------------
 
@@ -111,22 +118,10 @@ CREATE TABLE `emprunts` (
 --
 
 INSERT INTO `emprunts` (`id`, `document_id`, `date_emprunt`, `date_limite`, `date_retour`, `user_id`) VALUES
-(1, 3, '2019-11-07 12:49:12', '2019-11-21 12:49:12', '2019-11-07 12:49:48', 1),
-(2, 3, '2019-11-07 12:58:17', '2019-11-21 12:58:17', '2019-11-07 12:58:34', 1),
-(3, 4, '2019-11-07 12:58:27', '2019-11-21 12:58:27', '2019-11-07 12:58:50', 1),
-(4, 1, '2019-11-07 13:56:54', '2019-11-21 13:56:54', '2019-11-07 13:57:33', 1),
-(5, 1, '2019-11-07 13:57:58', '2019-11-21 13:57:58', '2019-11-07 13:58:58', 1),
-(6, 1, '2019-11-07 13:59:36', '2019-11-21 13:59:36', '2019-11-07 14:00:18', 1),
-(7, 1, '2019-11-07 14:00:36', '2019-11-21 14:00:36', '2019-11-07 14:00:55', 1),
-(8, 1, '2019-11-07 14:01:41', '2019-11-21 14:01:41', '2019-11-07 14:01:45', 1),
-(9, 1, '2019-11-07 14:02:38', '2019-11-21 14:02:38', '2019-11-07 14:02:53', 1),
-(10, 1, '2019-11-07 14:03:30', '2019-11-21 14:03:30', '2019-11-07 14:03:36', 1),
-(11, 1, '2019-11-07 14:04:18', '2019-11-21 14:04:18', '2019-11-07 14:05:51', 1),
-(12, 1, '2019-11-07 14:08:39', '2019-11-21 14:08:39', '2019-11-07 14:08:44', 1),
-(13, 1, '2019-11-07 14:10:12', '2019-11-21 14:10:12', '2019-11-07 14:10:37', 1),
-(14, 1, '2019-11-07 14:10:47', '2019-11-21 14:10:47', '2019-11-07 14:10:55', 1),
-(15, 2, '2019-11-07 14:10:47', '2019-11-21 14:10:47', '2019-11-07 14:10:55', 1),
-(16, 3, '2019-11-07 14:10:47', '2019-11-21 14:10:47', NULL, 1);
+(1, 5, '2019-11-08 15:46:38', '2019-11-22 15:46:38', NULL, 2),
+(2, 6, '2019-11-08 15:47:15', '2019-11-22 15:47:15', '2019-11-08 15:47:43', 2),
+(3, 6, '2019-11-08 15:47:58', '2019-11-22 15:47:58', '2019-11-08 15:48:09', 2),
+(4, 7, '2019-11-08 15:47:58', '2019-11-22 15:47:58', '2019-11-08 15:48:09', 2);
 
 -- --------------------------------------------------------
 
@@ -145,8 +140,9 @@ CREATE TABLE `livres` (
 --
 
 INSERT INTO `livres` (`id`, `auteur`, `edition`) VALUES
-(1, 'Robert Muchamore', 'platine'),
-(2, 'Robert Muchamore', 'platine');
+(1, 'Victor Hugo', 'Livre de poche'),
+(2, 'Robert Muchamore', 'Cherub'),
+(3, 'J-K Rowling', 'HP');
 
 -- --------------------------------------------------------
 
@@ -168,7 +164,7 @@ CREATE TABLE `reservations` (
 --
 
 INSERT INTO `reservations` (`id`, `user_id`, `document_id`, `emprunt_id`, `date_reservation`, `date_limite`) VALUES
-(1, 2, 2, NULL, '2019-11-08 08:42:59', '2019-11-20 23:00:00');
+(1, 1, 10, NULL, '2019-11-08 15:43:59', '2019-11-15 15:43:59');
 
 -- --------------------------------------------------------
 
@@ -196,10 +192,12 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `nom`, `prenom`, `mdp`, `email`, `adresse`, `adhesion`, `created_at`, `updated_at`, `deleted_at`, `telephone`, `demande_adhesion`) VALUES
-(1, 'FELIX', 'FELIX', '$2y$10$m2iYWnDClXkVlOxDvdCNxeigyKXAAIu77eNlnAuMS6lwGLJ6.sYom', 'felix@gmail.com', '2 b rue capucin', '2019-11-01 23:00:00', '2019-11-07 12:46:10', '2019-11-07 12:46:10', NULL, '666', NULL),
-(2, 'leo', 'leo', '$2y$10$m2iYWnDClXkVlOxDvdCNxeigyKXAAIu77eNlnAuMS6lwGLJ6.sYom', 'leo@gmail.com', 'Chez moi', '2019-10-31 23:00:00', '2019-11-07 12:46:54', '2019-11-07 12:46:54', NULL, '999', NULL),
-(7, 'test', 'test', '$2y$10$HFsOaQJksoXvQbQ5d/8Z4O8kGZZcKd7nGmp55YMJbpEYtQ1KFuvH.', 'test@gmail.com', 'test', '2019-11-07 13:42:34', '2019-11-07 13:42:19', '2019-11-07 13:42:34', NULL, '33', NULL),
-(8, 'test', 'test', '$2y$10$il3IlRz1QP/myoumIi.Lfe749hX67wYkOCruvgH9uwkRvY5O.lHuO', 'ohlala@gmail.com', 'test', NULL, '2019-11-07 14:12:05', '2019-11-07 14:12:05', NULL, '888', '2019-11-07 14:12:05');
+(1, 'Felix', 'Léo', '$2y$10$Lj5lGTLhf2xAC0WAh4VVIuO32HeCR42khu/lq5EasPr7Q8I3RI.IG', 'leofelixoff@outlook.fr', '2B rue braconnot', '2019-11-12 15:29:12', '2019-11-08 15:29:12', '2019-11-08 15:29:12', NULL, '0662287945', NULL),
+(2, 'Pinot', 'Antoine', '$2y$10$e77XomZ6gWGoOP5JG8yBCeN5tSVhUpDlmxL0VDYB8OYkaWMCHif1e', 'antoine.pinot1@gmail.com', '21rue aristide briand 54520 laxou', '2019-11-25 15:31:25', '2019-11-08 15:31:25', '2019-11-08 15:31:25', NULL, '0780408131', NULL),
+(3, 'Praga', 'Yvain', '$2y$10$u1yXpn/MSiCxIHZAvIByxuQNK0wKP7HIpEEuEm6R8QdDTMvpDank2', 'praga.yvain@gmail.com', '2 rue des gentilles', '2019-11-06 15:32:06', '2019-11-08 15:32:06', '2019-11-08 15:32:06', NULL, '09000000', NULL),
+(4, 'Dal ponte', 'Simon', '$2y$10$671ULj6u2.hqjopZFDh92u3oMng1SJhkvTNgxsqTUgU/E.NnzDJG6', 'simon.dalponte@gmail.com', '768 rue des Zinzins', '2019-11-08 15:33:26', '2019-11-08 15:33:26', '2019-11-08 15:33:26', NULL, '06000000', NULL),
+(5, 'Canals', 'Gérome', '$2y$10$D5MFt.bNHg5cfMYWXszGk.RwqUDfa9nWb9vqMB2wu6BIPzG0xv4Ji', 'canals.gerome@gmail.com', 'Introuvable', NULL, '2019-11-08 15:50:07', '2019-11-08 15:50:07', NULL, '9999999', '2019-11-08 15:50:07'),
+(6, 'Baumont', 'Loic', '$2y$10$yaL78K1/fxKmn6dHesTfE.llKR4SMvQTqgL3baWalKK4KSASHeDRS', 'loic.baumont@gmail.com', 'introuvable', NULL, '2019-11-08 15:51:00', '2019-11-08 15:51:00', NULL, '999999', '2019-11-08 15:51:00');
 
 --
 -- Index pour les tables exportées
@@ -255,27 +253,27 @@ ALTER TABLE `users`
 -- AUTO_INCREMENT pour la table `cds`
 --
 ALTER TABLE `cds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `documents`
 --
 ALTER TABLE `documents`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT pour la table `dvds`
 --
 ALTER TABLE `dvds`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `emprunts`
 --
 ALTER TABLE `emprunts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 --
 -- AUTO_INCREMENT pour la table `livres`
 --
 ALTER TABLE `livres`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT pour la table `reservations`
 --
@@ -285,7 +283,7 @@ ALTER TABLE `reservations`
 -- AUTO_INCREMENT pour la table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
 /*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
