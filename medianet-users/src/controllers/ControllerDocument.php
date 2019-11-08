@@ -10,6 +10,20 @@ use Slim\Http\Request;
 use Slim\Http\Response;
 
 class ControllerDocument extends Controller {
+
+    public function listMedia(Request $request, Response $response){
+        $liste_media = [];
+        $liste_documents = Document::all();
+        $liste_media=$this->addToArray($liste_documents,$liste_media);
+        return $this->view->render($response, 'index.html.twig', ['medias' => $liste_media]);
+    }
+
+    public function addToArray($liste1,$liste2){
+        foreach ($liste1 as $doc) {
+            array_push($liste2, $doc);
+        }
+        return $liste2;
+    }
     
     public function showDocument($request, $response, $args) {
         $idDoc = Utils::sanitize($args['id']);

@@ -4,7 +4,6 @@ session_start();
 require_once('../../vendor/autoload.php');
 
 //controllers
-use medianet\controllers\ControllerHome;
 use medianet\controllers\ControllerUser;
 use medianet\controllers\ControllerDocument;
 
@@ -30,7 +29,7 @@ $app->add(FlashMiddleware::class);
 /** Routes */
 
 //affichage de la page d'accueil
-$app->get('/', \medianet\controllers\IndexUserController::class.':listMedia')->setName('home');
+$app->get('/', ControllerDocument::class.':listMedia')->setName('home');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 $app->get('/reserver/{id}', ControllerDocument::class.':setDisponible')->setName('dispo_switch');
 
@@ -41,8 +40,8 @@ $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDe
 
 //Profil
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil')->add(AuthMiddleware::class);
-$app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
-$app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
+$app->get('/pwd', ControllerUser::class.':afficherFormulaireChangeMdp')->setName('formPassword');
+$app->post('/pwd', ControllerUSer::class.':updatePassword')->setName('updatePassword');
 
 //Modifier informations utilisateur
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
@@ -52,7 +51,7 @@ $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdat
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 
 //Adhesion utilisateur
-$app->get('/adhesion', ControllerUser::class.':showAdhesion')->setname('adhesionUser');
+$app->get('/adhesion', ControllerUser::class.':formAdhesion')->setname('formAdhesion');
 $app->post('/adhesion', ControllerUser::class.':adhesion')->setname('sendAdhesion');
 
 $app->run();
