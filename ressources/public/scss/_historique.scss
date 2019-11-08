@@ -15,3 +15,7 @@
 .griditemlink:hover {
     @include itemgridlinkhover();
 }
+
+.itemgridbtn{
+    @include itemgridbtn
+}

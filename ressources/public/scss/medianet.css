@@ -387,6 +387,10 @@ td {
 .griditemlink:hover {
   background: gray; }
 
+.itemgridbtn {
+  background: gray;
+  padding: 1%; }
+
 body, html {
   margin: 0;
   padding: 0;

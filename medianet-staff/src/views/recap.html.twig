@@ -21,7 +21,9 @@
 			<p class="griditem">{{ emprunt['user_id'] }}</p>
 			<p class="griditem">{{ emprunt.user.nom }} {{ emprunt.user.prenom }} <i>(supprimé)</i>
 		{% else %}
-			<a class="griditemlink" href="{{ path_for('details_membre',{id: emprunt.user.id}) }}">{{ emprunt['user_id'] }}</a>
+			<p class="griditem">
+				<a class="btn griditembtn " href="{{ path_for('details_membre',{id: emprunt.user.id}) }}">{{ emprunt['user_id'] }}</a>
+			</p>
 			<p class="griditem">{{ emprunt.user.nom }} {{ emprunt.user.prenom }}
 		{% endif %}
 
