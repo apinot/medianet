@@ -50,6 +50,7 @@
 		<hr>
 		<ul class="profil-document-list">
 			{% for emprunt in user.emprunts %}
+			{% if emprunt.date_retour is null %}
 			<li class="document-item">
 				<div class="document-title">{{emprunt.document.type()}} : {{emprunt.document.nom}}</div>
 				<div class="document-content">
@@ -60,6 +61,7 @@
 					<a class="btn" href="{{ path_for('showDocument', {id: emprunt.document.id}) }}"> Voir le document</a>
 				</div>
 			</li>
+			{% endif %}
 			{% endfor %}
 		</ul>
 	</div>
