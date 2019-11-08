@@ -8,5 +8,3 @@ window.addEventListener('load', () => {
         });
     });
 });
-
-
