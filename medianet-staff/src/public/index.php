@@ -52,8 +52,8 @@ $app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdo
 $app->get('/documents/modifier/{id}', ControllerDocument::class.':formDocument')->setName('formDocument');
 $app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('updateDocument');
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('deleteDocument');
-$app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('addDocument');
-$app->post('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('ajoutDocument');
+$app->get('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('formAjoutDocument');
+$app->post('/documents/ajouter', ControllerDocument::class.':addDocument')->setName('addDocument');
 $app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('updateDispo');
 
 

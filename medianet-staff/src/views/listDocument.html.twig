@@ -4,6 +4,7 @@
 {% endblock %}
 
 {% block content %}
+    <a class="btn" href="{{ path_for('formAjoutDocument') }}">Ajouter</a>
     {% include 'research.html.twig' %}
     <div class="card-deck">
         {% for media in medias %}
