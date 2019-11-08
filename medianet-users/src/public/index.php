@@ -31,8 +31,7 @@ $app->add(FlashMiddleware::class);
 
 //affichage de la page d'accueil
 $app->get('/', ControllerDocument::class.':listMedia')->setName('home');
-$app->get('/search', ControllerDocument::class.':filter')->setName('filter');
-$app->get('/reserver/{id}', ControllerDocument::class.':setDisponible')->setName('dispo_switch');
+
 
 //Connexions et déconnexions
 $app->get('/connexion', ControllerUser::class.':afficherFomulaireConnexion')->setName('formConnexion');
@@ -40,17 +39,22 @@ $app->post('/connexion', ControllerUser::class.':connecter')->setName('execConne
 $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDeconnexion');
 
 //Profil
-$app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil')->add(AuthMiddleware::class);
-$app->get('/password', ControllerUser::class.':afficherFormulaireChangeMdp')->setName('formPassword');
-$app->post('/password', ControllerUSer::class.':updatePassword')->setName('updatePassword');
-
-//Modifier informations utilisateur
-$app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
-$app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
+$app->group('/compte', function($app) {
+    $app->get('/profil', ControllerUser::class.':afficherProfil')->setName('showProfil')->add(AuthMiddleware::class);
+    $app->get('/password', ControllerUser::class.':afficherFormulaireChangeMdp')->setName('formPassword');
+    $app->post('/password', ControllerUSer::class.':updatePassword')->setName('updatePassword');
+    //Modifier informations utilisateur
+    $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
+    $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');
+});
 
 //Documents
-$app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
-$app->get('/document/{id}/reserver', ControllerReservation::class.':reserver')->setName('reserver')->add(AuthMiddleware::class);
+$app->group('/document', function($app) {
+    $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
+    $app->get('/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
+    $app->get('/{id}/reserver', ControllerReservation::class.':reserver')->setName('reserver')->add(AuthMiddleware::class);
+   
+});
 
 //Adhesion utilisateur
 $app->get('/adhesion', ControllerUser::class.':formAdhesion')->setname('formAdhesion');
