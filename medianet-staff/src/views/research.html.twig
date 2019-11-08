@@ -1,6 +1,4 @@
 <div class="research">
-    <a class="btn" href="{{ path_for('addDocument') }}">Ajouter</a>
-
     <form action="{{path_for('filter')}}" method="get">
         <label class="itemresearch">Mot-clef</label>
         <input class="itemresearch" name="keyword" type="text" value="{{query['motcle']}}" placeholder="Veuillez entrer un mot-clef " autocomplete="off">

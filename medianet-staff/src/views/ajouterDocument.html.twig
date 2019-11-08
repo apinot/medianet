@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content %}
-    <form action="{{ path_for('ajoutDocument') }}" method="post">
+    <form action="{{ path_for('addDocument') }}" method="post">
         <div class="formular">
             <div>
                 <label for="">Nom :</label>
@@ -15,41 +15,40 @@
                 <label for="">Genre :</label> 
                 <input type="text" name="genre" required>
             </div>
+            
             <div id="cd_div" >
                 <div>
                     <label for="">Artistes: </label>
-                    <input type="text" name="artistes" required> 
+                    <input type="text" name="artistes"> 
                 </div>
                 <br>
                 <div>
                     <label for="">Maison de disque :</label>
-                    <input type="text" name="maison_disque" required>
+                    <input type="text" name="maison_disque">
                 </div>
             </div>
-
 
             <div id="dvd_div" >
                 <div>
                     <label for="">Acteurs :</label>
-                    <input type="text" name="acteurs" required>
+                    <input type="text" name="acteurs">
                 </div>
                 <br>
                 <div>
                     <label for="">Durée :</label>
-                    <input type="text" patern="\d+" name="duree" required>
+                    <input type="text" patern="\d+" name="duree">
                 </div>
             </div>
-
 
             <div id="livre_div">
                 <div>
                     <label for="">Auteur :</label>
-                    <input type="text" name="auteur" required>
+                    <input type="text" name="auteur">
                 </div>
                 <br>
                 <div>
                     <label for="">Edition :</label>
-                    <input type="text" name="edition" required>
+                    <input type="text" name="edition">
                 </div>
             </div>
 
