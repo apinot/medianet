@@ -6,11 +6,9 @@ namespace medianet\controllers;
 
 use medianet\models\User;
 
-class Auth
-{
-
+class Auth {
     public function verifEmail($email){
-        $user = User::where('email',$email)->get();
+        $user = User::where('email','=',$email)->first();
         if ($user == null){
             return true;
         }else{

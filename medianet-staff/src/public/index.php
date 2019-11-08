@@ -39,8 +39,8 @@ $app->get('/details/{id}', ControllerUser::class.':detailsMembers')->setName('de
 $app->get('/modifier/{id}', ControllerUser::class.':showUser')->setname('formUpdateUser');
 $app->post('/modifier/{id}', ControllerUser::class.':updateUser')->setName('execUpdateUser');
 $app->get('/delete/{id}', ControllerUser::class.':delete')->setName('delete');
-$app->get('/ajout', ControllerUser::class.':addMember')->setName('ajout_membre');
-$app->post('/ajout', ControllerUser::class.':verifMember')->setName('verif_membre');
+$app->get('/ajout', ControllerUser::class.':formAjoutUtilisateur')->setName('formUtilisateur');
+$app->post('/ajout', ControllerUser::class.':addUtilisateur')->setName('addUtilisateur');
 
 //mot de passe
 $app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
