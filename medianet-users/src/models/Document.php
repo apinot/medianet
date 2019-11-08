@@ -29,6 +29,9 @@ class Document extends Model
     }
 
     public function peutEtreReserver() {
-        return $this->disponible === 1;
+        if($this->disponible === 0) return false;
+        $reservation = $this->reservation()->whereNull('emprunt_id')->whereDate('date_limite', '>=', date('Y-m-d H:i:s'))->first();
+        if($reservation != null) return false;
+        return true;
     }
 }

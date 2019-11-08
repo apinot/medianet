@@ -26,7 +26,7 @@
         <div class="card-item">
             Genre : {{ media.genre }}
         </div> 
-        {% if media.disponible <= 0 %}
+        {% if media.disponible == 0 or media.peutEtreReserver() == false%}
             <i class="fas fa-times-circle" style="color: #FF0000;"> indisponible</i>
         {% else %}
             <i class="fas fa-check-square" style="color: #4CAF50;"> disponible</i>
