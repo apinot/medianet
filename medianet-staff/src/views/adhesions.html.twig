@@ -2,28 +2,29 @@
 
 {% block content %}
 	<h2>Demandes d'adhésion</h2>
-	<table>
-		<thead>
-			<th>n° d'adhérent</th>	
-			<th>Nom prénom</th>	
-			<th>Email</th>	
-			<th>Emission de la demande</th>		
-		</thead>
+	<div class="grid">
+		<p class="griditem">n° d'adhérent</p>	
+		<p class="griditem">Nom prénom</p>	
+		<p class="griditem">date demande d'adhésion</p>	
+		<p class="griditem">Email</p>
+		<p class="griditem">Adresse</p>	
+		<p class="griditem">Telephone</p>	
+		<p class="griditem">Option</p>
 	{% for user in users %}
-		<tr>
-			{% if user.demande_adhesion != NULL %}
-				<td>{{ user.id }}</td>
-				<td>{{ user.demande_adhesion | date('d/m/Y') }}</td> 
-				<td>{{ user.nom }} {{ user.prenom }}</td>
-				<td>{{ user.email }}</td>
-				<td>
-				<form action="{{ path_for('handleAdhesions', {id:user.id}) }}" method="POST">
-					<input class="btn" type="submit" name="valider" value="valider">
-					<input class="btn" type="submit" name="refuser" value="refuser">
-				</form>
-				</td>
-			{% endif %}
-		</tr>
+		{% if user.demande_adhesion != NULL %}
+			<p class="griditem">{{ user.id }}</p>
+			<p class="griditem">{{ user.nom }} {{ user.prenom }}</p>
+			<p class="griditem">{{ user.demande_adhesion | date('d/m/Y') }}</p> 
+			<p class="griditem">{{ user.email }}</p>
+			<p class="griditem">{{ user.adresse }}</p>
+			<p class="griditem">{{ user.telephone }}</p>
+			<div class="griditem">
+			<form action="{{ path_for('handleAdhesions', {id:user.id}) }}" method="POST">
+				<input class="btn" type="submit" name="valider" value="valider">
+				<input class="btn" type="submit" name="refuser" value="refuser">
+			</form>
+		</div>
+		{% endif %}
 	{% endfor %}
-	</table>
+	</div>
 {% endblock %}
