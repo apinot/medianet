@@ -58,6 +58,7 @@ class ControllerUser extends Controller {
         $new_user->email = $email;
         $new_user->mdp= $hashed_pass;
         $new_user->telephone = $telephone;
+        $new_user->adhesion = date('Y-m-s H:m:s');
         $new_user->save();
         return Utils::redirect($response,'membres');
     }
