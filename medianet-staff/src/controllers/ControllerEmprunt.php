@@ -98,7 +98,7 @@ class ControllerEmprunt extends Controller {
 		foreach($documentsId as $idDoc) {
 			if($idDoc == "") continue;
 			$doc = Document::find($idDoc);
-			if($doc == null) continue;
+			if($doc == null || $doc->disponible !== 0) continue;
 			$documents[] = $doc;
 		}
 		

@@ -35,7 +35,6 @@ class ControllerUser extends Controller {
         return Utils::redirect($response, 'home');
     }
 
-    //TODO afficher tous les emprunts ou juste ceux en cours ?
     public function afficherProfil(Request $request, Response $response) {
         $user = Auth::getUser();
         return $this->render($response, 'profil.html.twig', compact("user"));
