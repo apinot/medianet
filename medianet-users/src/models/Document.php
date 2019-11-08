@@ -29,10 +29,6 @@ class Document extends Model
     }
 
     public function peutEtreReserver() {
-        $reservation = $this->reservation()->whereNull('emprunt_id')->whereDate('date', '<=', date('Y-m-d H:i:s'));
-        $emprunt = $this->emprunt()->whereNull('date_retour');
-        
-        //On peut reserver si le document est disponible, si il n'est pas reservé et si il n'est pas retirer 
-        return $this->disponible || $reservation == null || (!$this->disponible && $reservation != null);
+        return $this->disponible === 1;
     }
 }

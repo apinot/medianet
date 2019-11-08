@@ -51,7 +51,7 @@ $app->post('/modifier', ControllerUser::class.':updateUser')->setName('execUpdat
 
 //Documents
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
-$app->get('/document/{id}/reserver', ControllerReservation::class.':reserver')->setName('showDocument')->add(AuthMiddleware::class);
+$app->get('/document/{id}/reserver', ControllerReservation::class.':reserver')->setName('reserver')->add(AuthMiddleware::class);
 
 //Adhesion utilisateur
 $app->get('/adhesion', ControllerUser::class.':showAdhesion')->setname('adhesionUser');

@@ -20,22 +20,19 @@ class ControllerReservation extends Controller {
             Flash::flashInfo('Ce document ne peut pas être réservé pour le moment');
             return Utils::redirect($response, 'showDocument', ['id' => $docid]);
         }
-        $emprunt = $document->emprunt()->whereNull('date_retour')->first();
 
         $dateActuelle = date("Y-m-d H:i:s");
-        $dateFinEmprunt = ( $emprunt !== null ? $emprunt->date_limite : $dateActuelle);
-        $timeStampProchain = date_timestamp_get(date_create($dateFinEmprunt)) + (3600 * 24 * 7);
+        $timeStampProchain = date_timestamp_get(date_create($dateActuelle)) + (3600 * 24 * 7);
         $dateLimite =  date("Y-m-d H:i:s", $timeStampProchain);
 
         $reservation = new Reservation();
         $reservation->user_id = $user->id;
         $reservation->document_id = $docid;
         $reservation->date_reservation = $dateActuelle;
-        $reservation->date_debut = $dateFinEmprunt;
         $reservation->date_limite = $dateLimite;
         $reservation->save();
 
-        $document->disponible = false;
+        $document->disponible = -1;
         $document->save();
 
         Flash::flashSuccess('Vous avez réservé le document');
