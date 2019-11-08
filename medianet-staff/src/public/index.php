@@ -8,7 +8,6 @@ use medianet\controllers\ControllerDocument;
 use medianet\controllers\ControllerReservation;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
-use medianet\controllers\ControllerStaff;
 
 //middlewares
 use medianet\middlewares\FlashMiddleware;
@@ -52,8 +51,8 @@ $app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdo
 $app->get('/documents/modifier/{id}', ControllerDocument::class.':formDocument')->setName('formDocument');
 $app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('updateDocument');
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('deleteDocument');
-$app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('addDocument');
-$app->post('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('ajoutDocument');
+$app->get('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('formAjoutDocument');
+$app->post('/documents/ajouter', ControllerDocument::class.':addDocument')->setName('addDocument');
 $app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('updateDispo');
 
 
@@ -68,8 +67,8 @@ $app->post('/user', ControllerUSer::class.':recapUser')->setName('byUser');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 
 //demandes d'adhésions
-$app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
-$app->post('/adhesions/{id}', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
+$app->get('/adhesions', ControllerUser::class.':showAdhesions')->setName('listAdhesions');
+$app->post('/adhesions/{id}', ControllerUser::class.':doAdhesion')->setName('handleAdhesions');
 
 $app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
 

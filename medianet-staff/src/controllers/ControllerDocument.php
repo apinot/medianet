@@ -45,12 +45,12 @@ class ControllerDocument extends Controller {
         Flash::flashSuccess('Le document a été supprimé');
         return Utils::redirect($response,'listdoc');
     }
-
-    public function addDocument(Request $request, Response $response){
+    
+    public function formAjoutDocument(Request $request, Response $response){
         return $this->view->render($response,'ajouterDocument.html.twig');
     }
 
-    public function formAjoutDocument(Request $request, Response $response){
+    public function addDocument(Request $request, Response $response){
         $type = Utils::getFilteredPost($request,'documentable_type');
         $this->createDoc($type,$response,$request);
         return Utils::redirect($response,'listdoc');
