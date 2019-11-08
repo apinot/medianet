@@ -50,7 +50,7 @@ $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 $app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdoc');
 $app->get('/documents/modifier/{id}', ControllerDocument::class.':edit')->setName('editDoc');
-$app->post('/documents/modifier/{id}', ControllerDocument::class.':verif')->setName('verifDoc');
+$app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('verifDoc');
 $app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
 $app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
 $app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
