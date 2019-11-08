@@ -9,8 +9,8 @@ class CD extends Model
 {
     protected $table = 'cds';
     protected $primaryKey = 'id';
-    protected $fillable = ['artistes', 'maison_disque'];
-    public $timestamps = false;
+    protected $fillable = ['artiste', 'maison_disque'];
+    public $timestamps = true;
 
     public function document() {
         $this->morphOne(Document::class);

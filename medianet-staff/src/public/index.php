@@ -5,6 +5,7 @@ require_once('../../vendor/autoload.php');
 
 //controllers
 use medianet\controllers\ControllerDocument;
+use medianet\controllers\ControllerReservation;
 use medianet\controllers\ControllerEmprunt;
 use medianet\controllers\ControllerUser;
 use medianet\controllers\ControllerStaff;
@@ -67,6 +68,8 @@ $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
 //demandes d'adhésions
 $app->get('/adhesions', ControllerStaff::class.':showAdhesions')->setName('listAdhesions');
 $app->post('/adhesions/{id}', ControllerStaff::class.':doAdhesion')->setName('handleAdhesions');
+
+$app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
 
 $app->run();
 
