@@ -17,4 +17,8 @@ class User extends Model
 		  return $this->hasMany(Emprunt::class);
     }
 
+    public function reservations (){
+        return $this->hasMany(reservations::class);
+  }
+
 } 

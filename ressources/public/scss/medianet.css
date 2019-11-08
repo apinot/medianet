@@ -1,3 +1,4 @@
+@import url("https://fonts.googleapis.com/css?family=Raleway|Roboto+Mono&display=swap");
 nav {
   background-color: #c10000;
   color: white;
@@ -28,7 +29,7 @@ nav {
     justify-content: flex-start;
     align-items: stretch;
     text-align: left; }
-    @media (min-width: 40em) {
+    @media (min-width: 30em) {
       nav .nav-items-group {
         flex-direction: row; } }
     nav .nav-items-group .nav-item {
@@ -48,7 +49,7 @@ nav {
         width: 100%;
         height: 100%;
         text-align: center; }
-        @media (min-width: 40em) {
+        @media (min-width: 30em) {
           nav .nav-items-group .nav-item .nav-link {
             padding-left: 1rem;
             padding-right: 1rem;
@@ -61,7 +62,7 @@ nav {
   column-gap: 1em;
   margin-left: 1em;
   margin-right: 1em; }
-  @media (min-width: 40em) {
+  @media (min-width: 30em) {
     .card-deck {
       grid-template-columns: repeat(2, 1fr); } }
   @media (min-width: 60em) {
@@ -82,7 +83,7 @@ nav {
       margin: 2% auto; }
     .card-deck > .card > .card-body {
       margin: 2%; }
-      @media (min-width: 40em) and (max-width: 60em) {
+      @media (min-width: 30em) and (max-width: 60em) {
         .card-deck > .card > .card-body {
           margin: 5%;
           overflow: unset; } }
@@ -93,7 +94,8 @@ nav {
         text-overflow: ellipsis; }
       .card-deck > .card > .card-body > .card-item {
         max-height: 60%;
-        padding-bottom: 5%;
+        margin-top: 1em;
+        margin-bottom: 1em;
         display: flex;
         flex-direction: row; }
       .card-deck > .card > .card-body > .card-bottom {
@@ -119,49 +121,38 @@ nav {
     .itemresearch {
       margin: 0em 0em 0em 1em; } }
 
-.success {
-  flex-grow: 1;
-  background-color: #D6F2D5;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  border-radius: 8px;
-  color: #0B8C43;
-  margin: 1%;
-  border: solid #a0f39d 0.2px; }
-
-.info {
-  flex-grow: 1;
-  background-color: #D6ECF6;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  border-radius: 8px;
-  color: #3F7592;
-  margin: 1%;
-  border: solid #81c49d 0.2px; }
-
-.danger {
-  flex-grow: 1;
-  background-color: #F2D8DC;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  border-radius: 8px;
-  color: #A62648;
-  margin: 1%;
-  border: solid #e7889d 0.2px; }
-
-.warning {
-  flex-grow: 1;
-  background-color: #F2F2DC;
-  padding-top: 1%;
-  padding-bottom: 1%;
-  padding-left: 2%;
-  border-radius: 8px;
-  color: #907643;
-  margin: 1%;
-  border: solid #ebeb9d; }
+.flash {
+  box-sizing: border-box;
+  margin: 0.8rem 1.6%;
+  padding: 0.5rem 0.7rem;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-end; }
+  .flash.success {
+    background-color: rgba(0, 255, 0, 0.2);
+    color: lime;
+    box-shadow: 3px 3px 5px lime; }
+  .flash.info {
+    background-color: rgba(0, 0, 255, 0.2);
+    box-shadow: 3px 3px 5px blue;
+    color: blue; }
+  .flash.error {
+    background-color: rgba(255, 0, 0, 0.2);
+    box-shadow: 3px 3px 5px red;
+    color: red; }
+  .flash .flash-text {
+    font-size: 1rem;
+    font-family: 'Roboto Mono', monospace;
+    flex: 1 1;
+    text-align: center; }
+  .flash .flash-btn {
+    font-size: 1.6rem;
+    cursor: pointer;
+    margin-left: 0.25em;
+    margin-right: 0.25em;
+    flex: 0 0;
+    text-align: center; }
 
 .btn {
   background-color: #1e1e1e;
@@ -183,7 +174,7 @@ nav {
   margin: 1em;
   row-gap: 1em;
   grid-template-columns: repeat(1, 1fr); }
-  @media (min-width: 40em) {
+  @media (min-width: 30em) {
     .profil {
       grid-template-columns: repeat(2, 1fr);
       column-gap: 1em; } }
@@ -220,7 +211,7 @@ nav {
     padding: 0.5em;
     border: lightgray solid 1px;
     box-shadow: 3px 3px 3px grey; }
-    @media (min-width: 40em) {
+    @media (min-width: 30em) {
       .profil .profil-list {
         grid-column-end: span 2; } }
     .profil .profil-list .profil-document-list {
@@ -240,7 +231,7 @@ nav {
         .profil .profil-list .profil-document-list .document-item .document-content {
           display: flex;
           flex-direction: column; }
-          @media (min-width: 40em) {
+          @media (min-width: 30em) {
             .profil .profil-list .profil-document-list .document-item .document-content {
               flex-direction: row;
               justify-content: space-between; } }

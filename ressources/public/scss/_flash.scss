@@ -1,15 +1,26 @@
-@import 'mixins/flash';
+@import 'mixins/_flash.scss';
 
-.success{
-    @include success();       
-}
-.info{
-    @include info();       
-}
-.danger{
-    @include danger();       
-}
-.warning{
-    @include warning();       
+.flash {
+    @include flash();
+
+    &.success{
+        @include success-flash($success-color, transparentize($success-color, 0.8));  
+    }
+    
+    &.info{
+        @include info-flash($info-color, transparentize($info-color, 0.8));       
+    }
+    
+    &.error{
+        @include error-flash($error-color, transparentize($error-color, 0.8));       
+    }
+
+    .flash-text {
+        @include flash-text();
+    }
+
+    .flash-btn {
+        @include flash-btn();
+    }
 }
 
