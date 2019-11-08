@@ -17,18 +17,18 @@ class ControllerUser extends Controller {
 
     public function membersList(Request $request, Response $response){
         $users = User::all();
-		return $this->render($response, 'membres_liste.html.twig',['users'=>$users]);
+		return $this->render($response, 'membresListe.html.twig',['users'=>$users]);
     }
     public function afficherProfil(Request $request, Response $response,$args) {
         $id = Utils::sanitize($args['id']);
         return $this->render($response, 'profil.html.twig', compact("user"));
     }
 
-    public function addMember(Request $request, Response $response,$args){
+    public function formAjoutUtilisateur(Request $request, Response $response,$args){
         return $this->render($response, 'addMember.html.twig');
     }
 
-    public function verifMember(Request $request, Response $response){
+    public function addUtilisateur(Request $request, Response $response){
         $nom = Utils::getFilteredPost($request,'nom');
         $prenom = Utils::getFilteredPost($request,'prenom');
         $adresse = Utils::getFilteredPost($request,'adresse');
@@ -37,17 +37,15 @@ class ControllerUser extends Controller {
         $password = Utils::getFilteredPost($request,'password');
         $confirm_pass = Utils::getFilteredPost($request,'confirm_pass');
 
-        var_dump($email);
-
-
         if($nom == "" || $prenom=="" || $adresse== "" || $email=="" || $telephone=="" || $password==""){
             Flash::flashError("Des champ de sont pas completer");
-            return Utils::redirect($response, 'ajout_membre');
+            return Utils::redirect($response, 'formUtilisateur');
         }
         if ($confirm_pass != $password){
             Flash::flashError("Confirmation incorrect");
-            return Utils::redirect($response, 'ajout_membre');
+            return Utils::redirect($response, 'formUtilisateur');
         }
+
         if(Auth::verifEmail($email)){
             $hashed_pass = password_hash($password,PASSWORD_DEFAULT);
             $new_user = new User();
@@ -60,7 +58,7 @@ class ControllerUser extends Controller {
 
         }else{
             Flash::flashError("Email deja utilisé");
-            return Utils::redirect($response, 'ajout_membre');
+            return Utils::redirect($response, 'formUtilisateur');
         }
 
 

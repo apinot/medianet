@@ -20,21 +20,20 @@ class ControllerEmprunt extends Controller {
 	public function takeDocument($request, $response, $args) { 
 		$userId = Utils::getFilteredPost($request, "user");
 		if($userId === null || $userId === "") {
-			Flash::flashInfo("Veuillez rensigner un numéro d\'adhérant");
+			Flash::flashInfo("Veuillez rensigner un numéro d'adhérant");
 			return Utils::redirect($response, "home");
 		}
 		
 		$user = User::find($userId);
 		if($user == null){
-			Flash::flashError("L'utilisateur n'existe pas !");
+			Flash::flashError("L'utilisateur n'existe pas");
 			return Utils::redirect($response, "home");
 		}
-		//vérifie que l'utilisateur est un adhérent
+		//vérifie que le compte de l'utilisateur est validé
 		if($user->adhesion == null){
-			Flash::flashError("l'adhérent n'existe pas");
+			Flash::flashError("le compte de l'utilisateur n'a pas été validé");
 			return Utils::redirect($response, "home");
 		}
-		
 		$documentsId = Utils::getFilteredPost($request, 'documents');
 		$documents = [];
 		$hasIgnored = false;
@@ -95,7 +94,6 @@ class ControllerEmprunt extends Controller {
 	*/
 	public function returnDocument($request, $response, $args) {
 		$documentsId = Utils::getFilteredPost($request, "documents");
-		
 		$documents = [];
 		foreach($documentsId as $idDoc) {
 			if($idDoc == "") continue;
@@ -132,11 +130,9 @@ class ControllerEmprunt extends Controller {
 		
 		return $this->render($response, 'finRendu.html.twig', ['user' => $user, 'documents' => $documents, 'empruntsRestant' => $possession]);
 	}
-	
 	//page récapitulative des emprunts
 	public function recapAll($request, $response, $args) {
 		$emprunts = Emprunt::all();
 		$this->render($response, 'recap.html.twig', ['emprunts' => $emprunts]);
 	}
-	
 }

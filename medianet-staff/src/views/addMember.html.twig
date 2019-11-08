@@ -1,7 +1,7 @@
 {% extends 'base.html.twig' %}
 
 {% block content%}
-<form action="{{ path_for('verif_membre') }}" method="post">
+<form action="{{ path_for('addUtilisateur') }}" method="post">
     <div class="formular">
         <div>
             <label>Nom:</label>
@@ -30,10 +30,6 @@
         <div>
             <label>Comfimation du mot de passe:</label>
             <input type="password" name="confirm_pass" value="" required>
-        </div>
-        <div>
-            <label>Photo</label>
-            <input id="iptPhoto" type="file" name='photo'>
         </div>
 
         <div>
