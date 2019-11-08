@@ -21,7 +21,7 @@ class ControllerDocument extends Controller {
             $document->disponible = 0;
         }
         $document->save();
-        return Utils::redirect($response,'listdoc');
+        return Utils::redirect($response,'showDocument', ['id' => $id]);
     }
 
     public function listMedia(Request $request, Response $response){
