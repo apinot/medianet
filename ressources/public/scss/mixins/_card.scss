@@ -14,7 +14,7 @@ $media-medium-size:30em !default;
     }
     
     @media (min-width: $media-queries) {
-        grid-template-columns: repeat(4, 1fr);
+        grid-template-columns: repeat(3, 1fr);
     }
 }
 
