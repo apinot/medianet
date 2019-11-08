@@ -12,23 +12,17 @@ use Slim\Http\Response;
 
 class ControllerDocument extends Controller {
 
-    public function modifStatusDocumentIndispo(Request $request, Response $response,$args){
+    public function modifStatusDocument(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $document = Document::find(intval($id));
-        $document->disponible = 0;
+        if ($document->disponible == 0) {
+            $document->disponible = 1;
+        } else { 
+            $document->disponible = 0;
+        }
         $document->save();
         return Utils::redirect($response,'listdoc');
     }
-
-    public function modifStatusDocumentDispo(Request $request, Response $response,$args){
-        $id = Utils::sanitize($args['id']);
-        $document = Document::find(intval($id));
-        $document->disponible = 1;
-        $document->save();
-        return Utils::redirect($response,'listdoc');
-    }
-
-
 
     public function listMedia(Request $request, Response $response){
         $liste_media = [];

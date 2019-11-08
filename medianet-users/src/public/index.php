@@ -40,8 +40,8 @@ $app->get('/deconnexion', ControllerUser::class.':deconnecter')->setName('execDe
 
 //Profil
 $app->get('/compte', ControllerUser::class.':afficherProfil')->setName('showProfil')->add(AuthMiddleware::class);
-$app->get('/pwd', ControllerUser::class.':afficherFormulaireChangeMdp')->setName('formPassword');
-$app->post('/pwd', ControllerUSer::class.':updatePassword')->setName('updatePassword');
+$app->get('/password', ControllerUser::class.':afficherFormulaireChangeMdp')->setName('formPassword');
+$app->post('/password', ControllerUSer::class.':updatePassword')->setName('updatePassword');
 
 //Modifier informations utilisateur
 $app->get('/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
