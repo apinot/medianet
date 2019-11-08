@@ -21,3 +21,8 @@
 @mixin  itemgridlinkhover(){
     background: gray;
 }
+
+@mixin  itemgridbtn(){
+    background: gray;
+    padding: 1%;
+}
