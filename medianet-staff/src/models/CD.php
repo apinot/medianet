@@ -9,7 +9,7 @@ class CD extends Model
 {
     protected $table = 'cds';
     protected $primaryKey = 'id';
-    protected $fillable = ['artiste', 'maison_disque'];
+    protected $fillable = ['artistes', 'maison_disque'];
     public $timestamps = false;
 
     public function document() {
