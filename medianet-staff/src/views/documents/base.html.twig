@@ -3,8 +3,8 @@
 {% block title %}{{Parent}} - document.nom{% endblock %}
 
 {% block content %}
-    <a href="{{ path_for('editDoc',{id:document.id}) }}" class="btn">Modifier</a>
-    <a class="btn" href="{{ path_for('delete_doc', {id: document.id}) }}">Supprimer</a>
+    <a href="{{ path_for('formDocument',{id:document.id}) }}" class="btn">Modifier</a>
+    <a class="btn" href="{{ path_for('deleteDocument', {id: document.id}) }}">Supprimer</a>
     {% if document.disponible == 1 %}
         <a class="btn" href="{{ path_for('updateDispo', {id: document.id}) }}">Rendre indisponible</a>
     {% else %}

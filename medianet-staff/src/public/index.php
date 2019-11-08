@@ -49,11 +49,11 @@ $app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
 //Documents
 $app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
 $app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdoc');
-$app->get('/documents/modifier/{id}', ControllerDocument::class.':edit')->setName('editDoc');
-$app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('verifDoc');
-$app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('delete_doc');
-$app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('add_doc');
-$app->post('/documents/ajouter', ControllerDocument::class.':verifAddDocument')->setName('verif_add_doc');
+$app->get('/documents/modifier/{id}', ControllerDocument::class.':formDocument')->setName('formDocument');
+$app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('updateDocument');
+$app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('deleteDocument');
+$app->get('/ajouter/documents', ControllerDocument::class.':addDocument')->setName('addDocument');
+$app->post('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('ajoutDocument');
 $app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('updateDispo');
 
 

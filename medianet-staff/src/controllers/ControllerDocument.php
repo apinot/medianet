@@ -31,7 +31,7 @@ class ControllerDocument extends Controller {
         return $this->view->render($response, 'listDocument.html.twig', ['medias' => $liste_media]);
     }
 
-    public function edit(Request $request, Response $response,$args)
+    public function formDocument(Request $request, Response $response,$args)
     {
         $id = Utils::sanitize($args['id']);
         $document = Document::find(intval($id));
@@ -42,6 +42,7 @@ class ControllerDocument extends Controller {
     public function delete(Request $request, Response $response,$args){
         $id = Utils::sanitize($args['id']);
         $document = Document::find(intval($id))->delete();
+        Flash::flashSuccess('Le document a été supprimé');
         return Utils::redirect($response,'listdoc');
     }
 
@@ -49,14 +50,14 @@ class ControllerDocument extends Controller {
         return $this->view->render($response,'ajouterDocument.html.twig');
     }
 
-    public function verifAddDocument(Request $request, Response $response){
+    public function formAjoutDocument(Request $request, Response $response){
         $type = Utils::getFilteredPost($request,'documentable_type');
-        $this->createDOc($type,$response,$request);
+        $this->createDoc($type,$response,$request);
         return Utils::redirect($response,'listdoc');
 
     }
 
-    public function createDOc($type,$response,$request){
+    public function createDoc($type,$response,$request){
         $document = new Document();
         $document->nom = Utils::getFilteredPost($request,'nom');
         $document->resume = Utils::getFilteredPost($request,'resume');
