@@ -27,4 +27,11 @@ class Document extends Model
         $res = explode('\\',$this->documentable_type);
         return $res[count($res)-1];
     }
+
+    public function peutEtreReserver() {
+        if($this->disponible === 0) return false;
+        $reservation = $this->reservation()->whereNull('emprunt_id')->whereDate('date_limite', '>=', date('Y-m-d H:i:s'))->first();
+        if($reservation != null) return false;
+        return true;
+    }
 }

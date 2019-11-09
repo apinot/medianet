@@ -6,17 +6,17 @@
 		<p class="griditem">Réference</p>
 		<p class="griditem">Titre</p>
 		<p class="griditem">n° d'adhérent</p>	
-		<p class="griditem">Nom prénom</p>
+		<p class="griditem">Nom</p>
+		<p class="griditem">prénom</p>
 		<p class="griditem">date reservation</p>		
-		<p class="griditem">date début</p>	
 		<p class="griditem">Limite</p>
 	{% for reservation in reservations %}
 		<p class="griditem"> {{ reservation.document.id }} </p>
 		<p class="griditem"> {{ reservation.document.nom }} </p>
 		<p class="griditem"> {{ reservation.user.id }}</p> 
-		<p class="griditem"> {{ reservation.user.nom }} {{ reservation.user.prenom }}</p> 
+		<p class="griditem"> {{ reservation.user.nom }}</p> 
+		<p class="griditem"> {{ reservation.user.prenom }}</p>
 		<p class="griditem"> {{ reservation.date_reservation }}</p> 
-		<p class="griditem"> {{ reservation.date_debut }}</p> 
 		<p class="griditem"> {{ reservation.date_limite }}</p>
 	{% endfor %}
 	</div>
