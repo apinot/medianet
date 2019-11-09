@@ -27,6 +27,6 @@ Pour chaque application (dossier medianet-staff/ et medianet-users/)
 4. Lancer un serveur http sur le fichier src/public/index.php
 
 ## Tester l'application
-User:  https://webetu.iutnc.univ-lorraine.fr/www/pinot17u/medianet-users/src/public/ 
-donnée de test: (email: john.doe@gmail.com, mot de passe: test)
-Staff: https://webetu.iutnc.univ-lorraine.fr/www/felix22u/medianet-staff/src/public/
+User:  https://webetu.iutnc.univ-lorraine.fr/www/pinot17u/medianet-users/src/public/  
+donnée de test: (email: john.doe@gmail.com, mot de passe: test)  
+Staff: https://webetu.iutnc.univ-lorraine.fr/www/felix22u/medianet-staff/src/public/  
