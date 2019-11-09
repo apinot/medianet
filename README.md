@@ -1,15 +1,27 @@
 # medianet
-
 FELIX Léo
 PINOT Antoine
 DAL PONTE Simon
 Praga Yvain
 
-Notice d'utilisation:
+## Liens utiles
 
-1. Se placer dans le dossier de l'application voulu (medianet-staff ou medianet-users)
-2. Installer le vendor avec: "composer install"
-3. Configurer un fichier db.conf.ini dans le dossier src/config (un fichier exemple vous est fournit)
-4. Se placer dans le dossier src/public
-5. puis lancer la commande: "php -S localhost:numerodeport", utiliser un port différent pour medianet-staff et medianet-user
-6. aller dans la barre de recherche d'un navigateur web: "localhost:nomduport" pour visualiser le site
+**Tableau de bord du projet**
+
+https://trello.com/b/5A2sTpOp/mediatek-semaine-atelier
+
+
+## Prérequis
+ - php 7.0.0 ou supérieur
+ - composer
+ - apache2
+ - serveur mariadb ou mysql
+
+## Installation de la base de donnée  
+Importer le fichier /db/medianet.sql dans votre base de données (des données d'exemples sont déjà présentes)  
+
+## Installation de l'application
+Pour chaque application (dossier medianet-staff/ et medianet-users/)
+1. Installer le vendor avec: "composer install"
+3. Configurer un fichier db.conf.ini dans le dossier src/config (un fichier exemple vous est fourni)
+4. Lancer un serveur http sur le fichier src/public/index.php

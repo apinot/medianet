@@ -27,34 +27,49 @@ $app = new \Slim\App($container);
 $app->add(FlashMiddleware::class);
 
 /** Routes */
-//affichage de la page d'accueil
-//TODO nettoyer
-
-//Tous les membres
-$app->get('/membres', ControllerUser::class.':membersList')->setName('membres');
-$app->get('/details/{id}', ControllerUser::class.':detailsMembers')->setName('details_membre');
-
-//gestion d'un utilisateur
-$app->get('/modifier/{id}', ControllerUser::class.':showUser')->setname('formUpdateUser');
-$app->post('/modifier/{id}', ControllerUser::class.':updateUser')->setName('execUpdateUser');
-$app->get('/delete/{id}', ControllerUser::class.':delete')->setName('delete');
-$app->get('/ajout', ControllerUser::class.':formAjoutUtilisateur')->setName('formUtilisateur');
-$app->post('/ajout', ControllerUser::class.':addUtilisateur')->setName('addUtilisateur');
-
-//mot de passe
-$app->get('/pwd', ControllerUser::class.':pwdPage')->setName('updatePwd');
-$app->post('/pwd', ControllerUSer::class.':changePwd')->setName('lookPwd');
+//Membres
+$app->group('/membre', function($app) {
+    //liste des membres
+    $app->get('s', ControllerUser::class.':membersList')->setName('membres');
+    
+    //creer un utilisateur
+    $app->get('/creer', ControllerUser::class.':formAjoutUtilisateur')->setName('formUtilisateur');
+    $app->post('/creer', ControllerUser::class.':addUtilisateur')->setName('addUtilisateur');
+    
+    //fiche détaillée d'un utilisateur
+    $app->get('/{id}', ControllerUser::class.':detailsMembers')->setName('details_membre');
+    
+    //modification d'un utilisateur
+    $app->get('/{id}/modifier', ControllerUser::class.':showUser')->setname('formUpdateUser');
+    $app->post('/{id}/modifier', ControllerUser::class.':updateUser')->setName('execUpdateUser');  
+    
+    //supprimer un utilisateur
+    $app->get('/{id}/delete', ControllerUser::class.':delete')->setName('delete');
+});
 
 //Documents
-$app->get('/document/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
-$app->get('/documents', ControllerDocument::class.':listMedia')->setName('listdoc');
-$app->get('/documents/modifier/{id}', ControllerDocument::class.':formDocument')->setName('formDocument');
-$app->post('/documents/modifier/{id}', ControllerDocument::class.':updateDocument')->setName('updateDocument');
-$app->get('/documents/supprimer/{id}', ControllerDocument::class.':delete')->setName('deleteDocument');
-$app->get('/documents/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('formAjoutDocument');
-$app->post('/documents/ajouter', ControllerDocument::class.':addDocument')->setName('addDocument');
-$app->get('/documents/status/{id}', ControllerDocument::class.':modifStatusDocument')->setName('updateDispo');
-
+$app->group('/document', function($app) {
+    //liste des documents
+    $app->get('s', ControllerDocument::class.':listMedia')->setName('listdoc');
+    
+    //ajouter un document
+    $app->get('/ajouter', ControllerDocument::class.':formAjoutDocument')->setName('formAjoutDocument');
+    $app->post('/ajouter', ControllerDocument::class.':addDocument')->setName('addDocument');
+    
+    //fiche detaillee d un document
+    $app->get('/{id}', ControllerDocument::class.':showDocument')->setName('showDocument');
+    
+    //modifier un document
+    $app->get('/{id}/modifier', ControllerDocument::class.':formDocument')->setName('formDocument');
+    $app->post('/{id}/modifier', ontrollerDocument::class.':updateDocument')->setName('updateDocument');
+    
+    //supprimer un document
+    $app->get('/{id}/supprimer', ControllerDocument::class.':delete')->setName('deleteDocument');
+    
+    //changer la disponibilité d un document
+    $app->get('/documents/{id}/status', ControllerDocument::class.':modifStatusDocument')->setName('updateDispo');
+    
+});
 
 //emprunts et retour
 $app->get('/', ControllerEmprunt::class.':pageEmprunt')->setName('home');
@@ -65,15 +80,10 @@ $app->post('/return', ControllerEmprunt::class.':returnDocument')->setName('exec
 $app->get('/recap', ControllerEmprunt::class.':recapAll')->setName('watchRecap');
 $app->post('/user', ControllerUSer::class.':recapUser')->setName('byUser');
 $app->get('/search', ControllerDocument::class.':filter')->setName('filter');
+$app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
 
 //demandes d'adhésions
 $app->get('/adhesions', ControllerUser::class.':showAdhesions')->setName('listAdhesions');
-$app->post('/adhesions/{id}', ControllerUser::class.':doAdhesion')->setName('handleAdhesions');
-
-$app->get('/reservation', ControllerReservation::class.':listeReservation')->setName('listReservation');
+$app->post('/adhesion/{id}', ControllerUser::class.':doAdhesion')->setName('handleAdhesions');
 
 $app->run();
-
-
-?>
-
