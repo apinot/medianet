@@ -56,7 +56,7 @@ CREATE TABLE `documents` (
   `genre` varchar(255) NOT NULL,
   `disponible` tinyint(1) NOT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -181,7 +181,7 @@ CREATE TABLE `users` (
   `adresse` varchar(255) NOT NULL,
   `adhesion` timestamp NULL DEFAULT NULL,
   `created_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `updated_at` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `updated_at` timestamp NULL DEFAULT NULL,
   `deleted_at` timestamp NULL DEFAULT NULL,
   `telephone` varchar(256) DEFAULT NULL,
   `demande_adhesion` timestamp NULL DEFAULT NULL
