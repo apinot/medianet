@@ -62,7 +62,7 @@ $app->group('/document', function($app) {
     
     //modifier un document
     $app->get('/{id}/modifier', ControllerDocument::class.':formDocument')->setName('formDocument');
-    $app->post('/{id}/modifier', ontrollerDocument::class.':updateDocument')->setName('updateDocument');
+    $app->post('/{id}/modifier', ControllerDocument::class.':updateDocument')->setName('updateDocument');
     
     //supprimer un document
     $app->get('/{id}/supprimer', ControllerDocument::class.':delete')->setName('deleteDocument');
